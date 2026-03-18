@@ -1,12 +1,5 @@
-- name: Email
-  icon: fa-solid fa-envelope
-  url: mailto:wookyoung@kimm.re.kr
-- name: Google Scholar
-  icon: ai ai-google-scholar
-  url: https://scholar.google.com/citations?user=XXXXXXXX
-- name: GitHub
-  icon: fa-brands fa-github
-  url: https://github.com/WookyoungWoody
-- name: ORCID
-  icon: ai ai-orcid
-  url: https://orcid.org/XXXX-XXXX-XXXX-XXXX
+email: wookyoung@kimm.re.kr
+github_username: WookyoungWoody
+scholar_userid: CHANGE_ME
+orcid_id: XXXX-XXXX-XXXX-XXXX
+rss_icon: true
