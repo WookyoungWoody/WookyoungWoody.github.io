@@ -244,6 +244,176 @@
       "summary": "Compact inverter compressor-based dress care system development (Participant)",
       "startDate": "2022",
       "endDate": "2022"
+    },
+    {
+      "name": "Ultra-Thin Vapor Chamber Performance Enhancement",
+      "summary": "Performance enhancement technology for ultra-thin vapor chambers for semiconductor cooling (Participant)",
+      "startDate": "2022",
+      "endDate": "2023"
+    },
+    {
+      "name": "PCHE Freezing Test for Vehicle Heat Exchangers",
+      "summary": "PCHE freezing performance test for automotive heat exchanger applications (Participant)",
+      "startDate": "2025",
+      "endDate": "2025"
+    },
+    {
+      "name": "BTMS Integrated A/Con System Evaluation",
+      "summary": "Battery thermal management system integrated A/Con system real-vehicle evaluation process development (Participant)",
+      "startDate": "2025",
+      "endDate": "2025"
+    }
+  ],
+  "certificates": [
+    {
+      "name": "Heat exchanger with anti-freezing capability (1)",
+      "issuer": "Korean Intellectual Property Office",
+      "date": "2023-03-27",
+      "url": ""
+    },
+    {
+      "name": "Heat exchanger with anti-freezing capability (2)",
+      "issuer": "Korean Intellectual Property Office",
+      "date": "2023-03-27",
+      "url": ""
+    },
+    {
+      "name": "Modular fin-tube reactor",
+      "issuer": "Korean Intellectual Property Office",
+      "date": "2024-11-04",
+      "url": ""
+    },
+    {
+      "name": "Fin-tube type reactor",
+      "issuer": "Korean Intellectual Property Office",
+      "date": "2024-11-04",
+      "url": ""
+    },
+    {
+      "name": "Tray structure for heat exchanger",
+      "issuer": "Korean Intellectual Property Office",
+      "date": "2022-10-13",
+      "url": ""
+    },
+    {
+      "name": "Oil recovery system for refrigeration systems (1)",
+      "issuer": "Korean Intellectual Property Office",
+      "date": "2022-10-13",
+      "url": ""
+    },
+    {
+      "name": "Oil recovery system for refrigeration systems (2)",
+      "issuer": "Korean Intellectual Property Office",
+      "date": "2022-10-13",
+      "url": ""
+    },
+    {
+      "name": "Micro-channel reactor",
+      "issuer": "Korean Intellectual Property Office",
+      "date": "2023-04-19",
+      "url": ""
+    },
+    {
+      "name": "Immersion cooling device",
+      "issuer": "Korean Intellectual Property Office",
+      "date": "2024-10-25",
+      "url": ""
+    },
+    {
+      "name": "Geothermal heat supply device and heating system",
+      "issuer": "Korean Intellectual Property Office",
+      "date": "2023-10-17",
+      "url": ""
+    },
+    {
+      "name": "Heat exchanger thermal performance testing apparatus",
+      "issuer": "Korean Intellectual Property Office",
+      "date": "2023-06-16",
+      "url": ""
+    },
+    {
+      "name": "Ternary refrigerant composition and heat pump system",
+      "issuer": "Korean Intellectual Property Office",
+      "date": "2022-10-24",
+      "url": ""
+    },
+    {
+      "name": "Display device",
+      "issuer": "Korean Intellectual Property Office",
+      "date": "2023-10-20",
+      "url": ""
+    },
+    {
+      "name": "Duct assembly and combustor",
+      "issuer": "Korean Intellectual Property Office",
+      "date": "2022-03-30",
+      "url": ""
+    },
+    {
+      "name": "Immersion cooling HVAC system and method",
+      "issuer": "Korean Intellectual Property Office",
+      "date": "2022-12-22",
+      "url": ""
+    },
+    {
+      "name": "Heat pipe integrated reactor for adsorption heat pump",
+      "issuer": "Korean Intellectual Property Office",
+      "date": "2022-04-06",
+      "url": ""
+    },
+    {
+      "name": "Adsorption heat pump evaporator and system",
+      "issuer": "Korean Intellectual Property Office",
+      "date": "2023-03-31",
+      "url": ""
+    },
+    {
+      "name": "PCHE thickness design program (C-2024-052179)",
+      "issuer": "Korea Copyright Commission",
+      "date": "2024-12-11",
+      "url": ""
+    },
+    {
+      "name": "High-temperature heat pump cycle design program (C-2024-038691)",
+      "issuer": "Korea Copyright Commission",
+      "date": "2024-10-22",
+      "url": ""
+    },
+    {
+      "name": "Heat exchanger HTC uncertainty analysis program (C-2023-059071)",
+      "issuer": "Korea Copyright Commission",
+      "date": "2023-12-12",
+      "url": ""
+    },
+    {
+      "name": "Lab-scale heat exchanger analysis program (C-2023-056463)",
+      "issuer": "Korea Copyright Commission",
+      "date": "2023-11-30",
+      "url": ""
+    },
+    {
+      "name": "100 kg/hr hydrogen PCHE design program (C-2025-056891)",
+      "issuer": "Korea Copyright Commission",
+      "date": "2025-12-11",
+      "url": ""
+    },
+    {
+      "name": "Adsorption cooling simulation program (C-2025-034652)",
+      "issuer": "Korea Copyright Commission",
+      "date": "2025-09-03",
+      "url": ""
+    },
+    {
+      "name": "Vapor chamber performance analysis program (C-2024-041200)",
+      "issuer": "Korea Copyright Commission",
+      "date": "2024-11-04",
+      "url": ""
+    },
+    {
+      "name": "Fin-tube heat exchanger design program (C-2024-038692)",
+      "issuer": "Korea Copyright Commission",
+      "date": "2024-10-22",
+      "url": ""
     }
   ],
   "volunteer": [
