@@ -35,7 +35,7 @@
         "PI: Thermophysical property iOS/Android app development",
         "Lead: PCHE design & testing for liquid hydrogen vaporizers (down to -220°C, 100 MPa)",
         "Lead: Immersion cooling waste heat utilization and thermal management",
-        "14 journal papers, 9 domestic patents, 3 international patents, 7 registered software programs"
+        "17+ journal papers (10 SCI + 7 KCI), 9 domestic patents, 3 international patents, 7 registered software programs, 5 technology transfers"
       ]
     }
   ],
@@ -136,6 +136,11 @@
       "keywords": ["Immersion cooling", "Direct liquid cooling", "Jet impingement", "PUE optimization"]
     },
     {
+      "name": "High-Heat-Flux Electronics Cooling",
+      "icon": "fa-solid fa-microchip",
+      "keywords": ["CPU/GPU cold plate", "Focused cooling", "Next-gen chip thermal management"]
+    },
+    {
       "name": "Heat Exchangers",
       "icon": "fa-solid fa-temperature-high",
       "keywords": ["PCHE", "Shell & Tube", "Plate HX", "Cryogenic applications"]
@@ -143,35 +148,139 @@
     {
       "name": "Heat Pump Systems",
       "icon": "fa-solid fa-fan",
-      "keywords": ["Chemisorption", "Adsorption", "High-temperature (300°C)", "Low GWP refrigerants"]
+      "keywords": ["Chemisorption", "Adsorption", "High-temperature (300°C)"]
+    },
+    {
+      "name": "Low GWP Refrigerant Systems",
+      "icon": "fa-solid fa-leaf",
+      "keywords": ["Eco-friendly refrigerants", "VLE measurement", "Equation of state development"]
     },
     {
       "name": "Two-Phase Heat Transfer",
       "icon": "fa-solid fa-droplet",
       "keywords": ["Boiling", "Evaporation", "Pulsating heat pipes", "Vapor chambers"]
+    },
+    {
+      "name": "Cryogenic Heat Transfer",
+      "icon": "fa-solid fa-snowflake",
+      "keywords": ["Liquid hydrogen vaporizer", "Supercritical fluid", "Sub-200°C systems"]
     }
   ],
   "projects": [
     {
       "name": "Jet-Enhanced Immersion Cooling for Data Centers",
-      "summary": "Development of high-efficiency jet-impingement immersion cooling technology for next-generation high-heat-density data center servers",
+      "summary": "Development of high-efficiency jet-impingement immersion cooling technology for next-generation high-heat-density data center servers (PI)",
       "startDate": "2025",
-      "endDate": "",
-      "url": ""
-    },
-    {
-      "name": "PCHE for Liquid Hydrogen Vaporizers",
-      "summary": "Design and testing of Printed Circuit Heat Exchangers for cryogenic liquid hydrogen applications below -200°C at 100 MPa",
-      "startDate": "2021",
-      "endDate": "2025",
-      "url": ""
+      "endDate": ""
     },
     {
       "name": "Thermophysical Property App",
-      "summary": "Cross-platform iOS/Android app for thermal-fluid property calculations using CoolProp/REFPROP via WASM",
+      "summary": "Cross-platform iOS/Android app for thermal-fluid property calculations using CoolProp/REFPROP via WASM (PI)",
       "startDate": "2025",
+      "endDate": ""
+    },
+    {
+      "name": "PCHE for Liquid Hydrogen Supply System",
+      "summary": "Core material development for liquid hydrogen supply system — PCHE performance testing and design (Lead)",
+      "startDate": "2021",
+      "endDate": "2025"
+    },
+    {
+      "name": "Compact PCHE Design for Liquid Hydrogen",
+      "summary": "Compact heat exchanger (PCHE) design technology for liquid hydrogen below -200°C, 100 MPa class (Lead)",
+      "startDate": "2021",
+      "endDate": "2025"
+    },
+    {
+      "name": "Immersion Cooling Waste Heat Utilization",
+      "summary": "Immersion cooling waste heat utilization and active thermal management technology (Lead)",
+      "startDate": "2025",
+      "endDate": ""
+    },
+    {
+      "name": "300°C High-Temperature Heat Pump System",
+      "summary": "300°C-class high-temperature heat pump system for fossil fuel replacement (Participant)",
+      "startDate": "2025",
+      "endDate": ""
+    },
+    {
+      "name": "Chemisorption Heat Pump with Electrochemical Compressor",
+      "summary": "Chemisorption heat pump system using electrochemical compressor (Participant)",
+      "startDate": "2021",
+      "endDate": "2025"
+    },
+    {
+      "name": "Next-Gen Alternative Refrigerant & HVAC Technology",
+      "summary": "Next-generation alternative refrigerant and high-efficiency HVAC core technology development (Participant)",
+      "startDate": "2021",
+      "endDate": "2025"
+    },
+    {
+      "name": "Low-Charge Industrial Heat Pump",
+      "summary": "Industrial heat pump with low refrigerant charge and simultaneous hot/cold water production (Participant)",
+      "startDate": "2022",
+      "endDate": "2023"
+    },
+    {
+      "name": "Water-Source Heating/Cooling Hybrid System",
+      "summary": "Water-source heating/cooling and regenerative heat hybrid system (Participant)",
+      "startDate": "2022",
+      "endDate": "2023"
+    },
+    {
+      "name": "Heat Pipe HX Performance Enhancement",
+      "summary": "Heat pipe heat exchanger performance enhancement using boiling (Participant)",
+      "startDate": "2022",
+      "endDate": "2022"
+    },
+    {
+      "name": "Post H-class Gas Turbine Technology",
+      "summary": "Post H-class gas turbine technology development (Participant)",
+      "startDate": "2022",
+      "endDate": "2022"
+    },
+    {
+      "name": "Compact Inverter Compressor Dress Care System",
+      "summary": "Compact inverter compressor-based dress care system development (Participant)",
+      "startDate": "2022",
+      "endDate": "2022"
+    }
+  ],
+  "volunteer": [
+    {
+      "organization": "Technology Transfer",
+      "position": "Heat pipe and vapor chamber structural design for electronics cooling",
+      "startDate": "",
       "endDate": "",
-      "url": ""
+      "summary": "Transferred heat pipe/vapor chamber design technology to industry partner for electronics thermal management"
+    },
+    {
+      "organization": "Technology Transfer",
+      "position": "Micro-channel bonding and fabrication techniques for heat exchangers",
+      "startDate": "",
+      "endDate": "",
+      "summary": "Transferred PCHE fabrication and micro-channel bonding techniques"
+    },
+    {
+      "organization": "Technology Transfer",
+      "position": "Low dew-point dehumidifier development technology",
+      "startDate": "",
+      "endDate": "",
+      "summary": "Transferred low dew-point dehumidifier design and development technology"
+    },
+    {
+      "organization": "Technology Transfer",
+      "position": "Ultra-thin vapor chamber for next-generation semiconductor cooling",
+      "startDate": "",
+      "endDate": "",
+      "summary": "Transferred ultra-thin vapor chamber technology for semiconductor thermal management"
+    },
+    {
+      "organization": "Technology Transfer",
+      "position": "Compact inverter compressor-based dress care system development",
+      "startDate": "",
+      "endDate": "",
+      "summary": "Transferred compact inverter compressor system design for consumer appliances"
     }
   ]
 }
