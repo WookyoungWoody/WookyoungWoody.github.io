@@ -1,189 +1,390 @@
 cv:
-  name: Albert Einstein
-  label: Scientist
-  email: einstein@example.com
-  location: Princeton, NJ
+  name: Wookyoung Kim
+  label: Senior Researcher
+  email: wookyoung@kimm.re.kr
+  location: Daejeon, Republic of Korea
   image: ""
-  summary: A German-born theoretical physicist, widely ranked among the greatest and most influential scientists of all time
+  summary: Thermal-fluid engineer specializing in data center cooling, heat exchangers, heat pump systems, and two-phase heat transfer. Experienced in both experimental research and engineering software development.
 
   social_networks:
-    - network: X
-      username: AlbertEinstein
     - network: GitHub
-      username: example
+      username: WookyoungWoody
     - network: LinkedIn
-      username: example
+      username: wookyoungwoody
 
   address:
-    street: 2712 Broadway St
-    city: San Francisco
-    region: California
-    postalCode: CA 94115
-    countryCode: US
+    street: 156 Gajeongbuk-ro, Yuseong-gu
+    city: Daejeon
+    postalCode: "34103"
+    countryCode: KR
 
   sections:
     Education:
-      - institution: University of Zurich
-        location: Zurich, Switzerland
-        url: https://www.uzh.ch/
-        area: Physics
-        studyType: PhD
-        start_date: 1900
-        end_date: 1905
-        score: ""
-        courses: "Theory of Relativity"
+      - institution: KAIST (Korea Advanced Institute of Science and Technology)
+        location: Daejeon, Republic of Korea
+        url: https://www.kaist.ac.kr
+        area: Mechanical Engineering
+        studyType: Ph.D.
+        start_date: 2017
+        end_date: 2021
         highlights:
-          - Description 1.
-          - Description 2.
+          - "Dissertation: Study on a Thermal Network-based Model for Predicting the Thermal Resistance of Pulsating Heat Pipes"
+          - "Advisor: Prof. Sung Jin Kim"
 
-      - institution: Eidgenössische Technische Hochschule
-        location: Zurich, Switzerland
-        area: Physics
-        studyType: Federal teaching diploma
-        start_date: 1896
-        end_date: 1900
+      - institution: KAIST
+        location: Daejeon, Republic of Korea
+        url: https://www.kaist.ac.kr
+        area: Mechanical Engineering
+        studyType: M.S.
+        start_date: 2015
+        end_date: 2017
         highlights:
-          - Description 1.
-          - Description 2.
+          - "Thesis: Effect of artificial cavities on the thermal performance of pulsating heat pipes"
+          - "Advisor: Prof. Sung Jin Kim"
+
+      - institution: KAIST
+        location: Daejeon, Republic of Korea
+        url: https://www.kaist.ac.kr
+        area: Mechanical Engineering
+        studyType: B.S.
+        start_date: 2011
+        end_date: 2015
 
     Experience:
-      - company: Institute for Advanced Study, Princeton University
-        position: Professor of Theoretical Physics
-        location: Princeton University, NJ
-        start_date: 1933
-        end_date: 1955
-        summary: Teaching at Palmer Physical Laboratory (now 302 Frist Campus Center). While not a professor at Princeton, I associated with the physics professors and continued to give lectures on campus.
+      - company: Korea Institute of Machinery and Materials (KIMM)
+        position: Senior Researcher
+        location: Daejeon, Republic of Korea
+        url: https://www.kimm.re.kr
+        start_date: "2021-03-01"
+        end_date: present
+        summary: Heat Pump Research Center, Department of Thermal Energy Solutions, Innovative Energy Machinery Research Division
         highlights:
-          - Relativity
-          - Description 2.
-
-      - company: California Institute of Technology
-        position: Visiting Professor
-        location: Pasadena, California, US
-        start_date: 1933
-        end_date: 1933
-        highlights:
-          - Description 1.
-          - Description 2.
-
-      - company: Kaiser Wilhelm Institute for Physics
-        position: Director
-        location: Berlin, Germany
-        start_date: 1917
-        end_date: 1933
-
-      - company: Karl-Ferdinand University
-        position: Professor of Theoretical Physics
-        location: Prague, Czechoslovakia
-        start_date: 1911
-        end_date: 1917
-
-      - company: University of Zurich
-        position: Associate Professor of Theoretical Physics
-        location: Zurich, Switzerland
-        start_date: 1909
-        end_date: 1911
-
-    Volunteer:
-      - company: People's Climate March
-        position: Lead Organizer
-        location: Zurich, Switzerland
-        start_date: 2014-04-01
-        end_date: 2015-07-01
-        summary: Lead organizer for the New York City branch of the People's Climate March, the largest climate march in history.
-        highlights:
-          - "Awarded 'Climate Hero' award by Greenpeace for my efforts organizing the march."
-          - "Men of the year 2014 by Time magazine"
-
-    Awards:
-      - title: Nobel Prize in Physics
-        authors:
-          - "Royal Swedish Academy of Sciences"
-        date: 1921-11-01
-        awarder: Royal Swedish Academy of Sciences
-        url: https://www.nobelprize.org/prizes/physics/1921/einstein/biographical/
-        summary: The Nobel Prizes are five separate prizes that, according to Alfred Nobel's will of 1895, are awarded to 'those who, during the preceding year, have conferred the greatest benefit to humankind.'
-
-      - title: Max Planck Medal
-        authors:
-          - "German Physical Society"
-        date: 2029
-        awarder: German Physical Society
-        summary: Awarded for outstanding scientific achievement
-
-    Publications:
-      - title: Zur Elektrodynamik bewegter Körper
-        authors:
-          - Albert Einstein
-        publisher: Annalen der Physik
-        releaseDate: 1905-06-30
-        url: https://en.wikisource.org/wiki/Translation:On_the_Electrodynamics_of_Moving_Bodies
-        summary: It concerned an interpretation of the Michelson–Morley experiment and the properties of light and time. Special relativity incorporates the principle that the speed of light is the same for all inertial observers regardless of the state of motion of the source.
-
-      - title: Über einen die Erzeugung und Verwandlung des Lichtes betreffenden heuristischen Gesichtspunkt
-        authors:
-          - Albert Einstein
-        publisher: Annalen der Physik
-        releaseDate: 1905-03-18
-        url: https://de.wikisource.org/wiki/Über_einen_die_Erzeugung_und_Verwandlung_des_Lichtes_betreffenden_heuristischen_Gesichtspunkt
-        summary: In the second paper, he applied the quantum theory to light to explain the photoelectric effect. In particular, he used the idea of light quanta (photons) to explain experimental results, but stressed the importance of the experimental results. The importance of his work on the photoelectric effect earned him the Nobel Prize in Physics in 1921.
-
-      - title: Die Grundlage der allgemeinen Relativitätstheorie
-        authors:
-          - Albert Einstein
-        publisher: Annalen der Physik
-        releaseDate: 1916-03-20
-        url: https://de.wikisource.org/wiki/Die_Grundlage_der_allgemeinen_Relativitätstheorie
-        summary: The publication of the theory of general relativity made him internationally famous. He was professor of physics at the universities of Zurich (1909–1911) and Prague (1911–1912), before he returned to ETH Zurich (1912–1914).
+          - "PI: Jet-enhanced immersion cooling for next-gen data center cooling"
+          - "PI: Thermophysical property iOS/Android app development"
+          - "Lead: PCHE design & testing for liquid hydrogen vaporizers (down to -220°C, 100 MPa)"
+          - "Lead: Immersion cooling waste heat utilization and thermal management"
+          - "17+ journal papers (10 SCI + 7 KCI), 9 domestic patents, 3 international patents, 7 registered software programs, 5 technology transfers"
 
     Skills:
-      - name: Physics
-        level: Master
-        icon: fa-solid fa-hashtag
-        keywords: "Quantum Mechanics, Quantum Computing, Quantum Information, Quantum Cryptography, Quantum Communication, Quantum Teleportation"
+      - name: Experimental
+        icon: fa-solid fa-flask
+        keywords:
+          - Two-phase heat transfer testing
+          - Cryogenic systems (down to -220°C)
+          - High-pressure testing (up to 100 MPa)
+          - PCHE diffusion bonding & fabrication
+          - Immersion cooling (CPU/GPU servers)
+          - Flow visualization (high-speed camera)
+          - VLE measurement & gas chromatography
 
-    Languages:
-      - name: German
-        summary: "Native speaker"
+      - name: Analytical & Computational
+        icon: fa-solid fa-computer
+        keywords:
+          - Thermal network modeling
+          - Heat exchanger design (PCHE, S&T, PHE)
+          - CFD simulation
+          - Machine Learning (PyTorch, JAX, PINN)
+          - CoolProp/REFPROP
 
-      - name: English
-        summary: "Fluent"
+      - name: Software Development
+        icon: fa-solid fa-code
+        keywords:
+          - Python, JavaScript, TypeScript
+          - FastAPI, React Native
+          - Git/GitHub, Linux, CMake
+          - Cross-platform app development (iOS/Android)
+          - AI/LLM agent development
 
     Interests:
-      - name: Physics
-        icon: fa-solid fa-tag
-        keywords: "Quantum Mechanics, Quantum Computing, Quantum Information, Quantum Cryptography, Quantum Communication, Quantum Teleportation"
+      - name: Data Center Cooling
+        icon: fa-solid fa-server
+        keywords:
+          - Immersion cooling
+          - Direct liquid cooling
+          - Jet impingement
+          - PUE optimization
 
-    Certificates:
-      - name: Machine Learning
-        date: 2018-01-01
-        issuer: Stanford University
-        icon: fa-solid fa-location-dot
+      - name: High-Heat-Flux Electronics Cooling
+        icon: fa-solid fa-microchip
+        keywords:
+          - CPU/GPU cold plate
+          - Focused cooling
+          - Next-gen chip thermal management
 
-      - name: Quantum Computing
-        date: 2018-01-01
-        issuer: Stanford University
-        icon: fa-solid fa-tag
+      - name: Heat Exchangers
+        icon: fa-solid fa-temperature-high
+        keywords:
+          - PCHE
+          - Shell & Tube
+          - Plate HX
+          - Cryogenic applications
 
-      - name: Quantum Information
-        date: 2018-01-01
-        issuer: Stanford University
-        icon: fa-solid fa-envelope
+      - name: Heat Pump Systems
+        icon: fa-solid fa-fan
+        keywords:
+          - Chemisorption
+          - Adsorption
+          - "High-temperature (300°C)"
+
+      - name: Low GWP Refrigerant Systems
+        icon: fa-solid fa-leaf
+        keywords:
+          - Eco-friendly refrigerants
+          - VLE measurement
+          - Equation of state development
+
+      - name: Two-Phase Heat Transfer
+        icon: fa-solid fa-droplet
+        keywords:
+          - Boiling
+          - Evaporation
+          - Pulsating heat pipes
+          - Vapor chambers
+
+      - name: Cryogenic Heat Transfer
+        icon: fa-solid fa-snowflake
+        keywords:
+          - Liquid hydrogen vaporizer
+          - Supercritical fluid
+          - "Sub-200°C systems"
+
+    Languages:
+      - name: Korean
+        summary: Native speaker
+
+      - name: English
+        summary: Professional proficiency
 
     Projects:
-      - name: Quantum Computing
-        summary: Quantum computing is the use of quantum-mechanical phenomena such as superposition and entanglement to perform computation. Computers that perform quantum computations are known as quantum computers.
-        highlights:
-          - Quantum Teleportation
-          - Quantum Cryptography
-        start_date: 2018-01-01
-        end_date: 2018-01-01
+      - name: Jet-Enhanced Immersion Cooling for Data Centers
+        summary: Development of high-efficiency jet-impingement immersion cooling technology for next-generation high-heat-density data center servers (PI)
+        start_date: 2025
+        end_date: present
 
-    References:
-      - name: Professor John Doe
-        icon: fa-solid fa-laptop
-        reference: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam condimentum, diam quis convallis euismod, arcu mi ullamcorper lorem, a vestibulum nunc magna at sem. Sed in risus ac felis varius blandit.
+      - name: Thermophysical Property App
+        summary: Cross-platform iOS/Android app for thermal-fluid property calculations using CoolProp/REFPROP via WASM (PI)
+        start_date: 2025
+        end_date: present
 
-      - name: Professor Jane Smith
-        icon: fa-solid fa-thumbtack
-        reference: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam condimentum, diam quis convallis euismod, arcu mi ullamcorper lorem, a vestibulum nunc magna at sem. Sed in risus ac felis varius blandit.
+      - name: PCHE for Liquid Hydrogen Supply System
+        summary: Core material development for liquid hydrogen supply system — PCHE performance testing and design (Lead)
+        start_date: 2021
+        end_date: 2025
+
+      - name: Compact PCHE Design for Liquid Hydrogen
+        summary: "Compact heat exchanger (PCHE) design technology for liquid hydrogen below -200°C, 100 MPa class (Lead)"
+        start_date: 2021
+        end_date: 2025
+
+      - name: Immersion Cooling Waste Heat Utilization
+        summary: Immersion cooling waste heat utilization and active thermal management technology (Lead)
+        start_date: 2025
+        end_date: present
+
+      - name: 300°C High-Temperature Heat Pump System
+        summary: "300°C-class high-temperature heat pump system for fossil fuel replacement (Participant)"
+        start_date: 2025
+        end_date: present
+
+      - name: Chemisorption Heat Pump with Electrochemical Compressor
+        summary: Chemisorption heat pump system using electrochemical compressor (Participant)
+        start_date: 2021
+        end_date: 2025
+
+      - name: Next-Gen Alternative Refrigerant & HVAC Technology
+        summary: Next-generation alternative refrigerant and high-efficiency HVAC core technology development (Participant)
+        start_date: 2021
+        end_date: 2025
+
+      - name: Low-Charge Industrial Heat Pump
+        summary: Industrial heat pump with low refrigerant charge and simultaneous hot/cold water production (Participant)
+        start_date: 2022
+        end_date: 2023
+
+      - name: Water-Source Heating/Cooling Hybrid System
+        summary: Water-source heating/cooling and regenerative heat hybrid system (Participant)
+        start_date: 2022
+        end_date: 2023
+
+      - name: Heat Pipe HX Performance Enhancement
+        summary: Heat pipe heat exchanger performance enhancement using boiling (Participant)
+        start_date: 2022
+        end_date: 2022
+
+      - name: Post H-class Gas Turbine Technology
+        summary: Post H-class gas turbine technology development (Participant)
+        start_date: 2022
+        end_date: 2022
+
+      - name: Compact Inverter Compressor Dress Care System
+        summary: Compact inverter compressor-based dress care system development (Participant)
+        start_date: 2022
+        end_date: 2022
+
+      - name: Ultra-Thin Vapor Chamber Performance Enhancement
+        summary: Performance enhancement technology for ultra-thin vapor chambers for semiconductor cooling (Participant)
+        start_date: 2022
+        end_date: 2023
+
+      - name: PCHE Freezing Test for Vehicle Heat Exchangers
+        summary: PCHE freezing performance test for automotive heat exchanger applications (Participant)
+        start_date: 2025
+        end_date: 2025
+
+      - name: BTMS Integrated A/Con System Evaluation
+        summary: Battery thermal management system integrated A/Con system real-vehicle evaluation process development (Participant)
+        start_date: 2025
+        end_date: 2025
+
+    Patents:
+      - name: Heat exchanger with anti-freezing capability (1)
+        date: "2023-03-27"
+        issuer: Korean Intellectual Property Office
+        icon: fa-solid fa-certificate
+
+      - name: Heat exchanger with anti-freezing capability (2)
+        date: "2023-03-27"
+        issuer: Korean Intellectual Property Office
+        icon: fa-solid fa-certificate
+
+      - name: Modular fin-tube reactor
+        date: "2024-11-04"
+        issuer: Korean Intellectual Property Office
+        icon: fa-solid fa-certificate
+
+      - name: Fin-tube type reactor
+        date: "2024-11-04"
+        issuer: Korean Intellectual Property Office
+        icon: fa-solid fa-certificate
+
+      - name: Tray structure for heat exchanger
+        date: "2022-10-13"
+        issuer: Korean Intellectual Property Office
+        icon: fa-solid fa-certificate
+
+      - name: Oil recovery system for refrigeration systems (1)
+        date: "2022-10-13"
+        issuer: Korean Intellectual Property Office
+        icon: fa-solid fa-certificate
+
+      - name: Oil recovery system for refrigeration systems (2)
+        date: "2022-10-13"
+        issuer: Korean Intellectual Property Office
+        icon: fa-solid fa-certificate
+
+      - name: Micro-channel reactor
+        date: "2023-04-19"
+        issuer: Korean Intellectual Property Office
+        icon: fa-solid fa-certificate
+
+      - name: Immersion cooling device
+        date: "2024-10-25"
+        issuer: Korean Intellectual Property Office
+        icon: fa-solid fa-certificate
+
+      - name: Geothermal heat supply device and heating system
+        date: "2023-10-17"
+        issuer: Korean Intellectual Property Office
+        icon: fa-solid fa-certificate
+
+      - name: Heat exchanger thermal performance testing apparatus
+        date: "2023-06-16"
+        issuer: Korean Intellectual Property Office
+        icon: fa-solid fa-certificate
+
+      - name: Ternary refrigerant composition and heat pump system
+        date: "2022-10-24"
+        issuer: Korean Intellectual Property Office
+        icon: fa-solid fa-certificate
+
+      - name: Display device
+        date: "2023-10-20"
+        issuer: Korean Intellectual Property Office
+        icon: fa-solid fa-certificate
+
+      - name: Duct assembly and combustor
+        date: "2022-03-30"
+        issuer: Korean Intellectual Property Office
+        icon: fa-solid fa-certificate
+
+      - name: Immersion cooling HVAC system and method
+        date: "2022-12-22"
+        issuer: Korean Intellectual Property Office
+        icon: fa-solid fa-certificate
+
+      - name: Heat pipe integrated reactor for adsorption heat pump
+        date: "2022-04-06"
+        issuer: Korean Intellectual Property Office
+        icon: fa-solid fa-certificate
+
+      - name: Adsorption heat pump evaporator and system
+        date: "2023-03-31"
+        issuer: Korean Intellectual Property Office
+        icon: fa-solid fa-certificate
+
+    Software Registrations:
+      - name: "PCHE thickness design program (C-2024-052179)"
+        date: "2024-12-11"
+        issuer: Korea Copyright Commission
+        icon: fa-solid fa-floppy-disk
+
+      - name: "High-temperature heat pump cycle design program (C-2024-038691)"
+        date: "2024-10-22"
+        issuer: Korea Copyright Commission
+        icon: fa-solid fa-floppy-disk
+
+      - name: "Heat exchanger HTC uncertainty analysis program (C-2023-059071)"
+        date: "2023-12-12"
+        issuer: Korea Copyright Commission
+        icon: fa-solid fa-floppy-disk
+
+      - name: "Lab-scale heat exchanger analysis program (C-2023-056463)"
+        date: "2023-11-30"
+        issuer: Korea Copyright Commission
+        icon: fa-solid fa-floppy-disk
+
+      - name: "100 kg/hr hydrogen PCHE design program (C-2025-056891)"
+        date: "2025-12-11"
+        issuer: Korea Copyright Commission
+        icon: fa-solid fa-floppy-disk
+
+      - name: "Adsorption cooling simulation program (C-2025-034652)"
+        date: "2025-09-03"
+        issuer: Korea Copyright Commission
+        icon: fa-solid fa-floppy-disk
+
+      - name: "Vapor chamber performance analysis program (C-2024-041200)"
+        date: "2024-11-04"
+        issuer: Korea Copyright Commission
+        icon: fa-solid fa-floppy-disk
+
+      - name: "Fin-tube heat exchanger design program (C-2024-038692)"
+        date: "2024-10-22"
+        issuer: Korea Copyright Commission
+        icon: fa-solid fa-floppy-disk
+
+    Technology Transfers:
+      - company: Technology Transfer
+        position: Heat pipe and vapor chamber structural design for electronics cooling
+        summary: Transferred heat pipe/vapor chamber design technology to industry partner for electronics thermal management
+        icon: fa-solid fa-handshake
+
+      - company: Technology Transfer
+        position: Micro-channel bonding and fabrication techniques for heat exchangers
+        summary: Transferred PCHE fabrication and micro-channel bonding techniques
+        icon: fa-solid fa-handshake
+
+      - company: Technology Transfer
+        position: Low dew-point dehumidifier development technology
+        summary: Transferred low dew-point dehumidifier design and development technology
+        icon: fa-solid fa-handshake
+
+      - company: Technology Transfer
+        position: Ultra-thin vapor chamber for next-generation semiconductor cooling
+        summary: Transferred ultra-thin vapor chamber technology for semiconductor thermal management
+        icon: fa-solid fa-handshake
+
+      - company: Technology Transfer
+        position: Compact inverter compressor-based dress care system development
+        summary: Transferred compact inverter compressor system design for consumer appliances
+        icon: fa-solid fa-handshake
