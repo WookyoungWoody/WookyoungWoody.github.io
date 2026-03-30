@@ -50,4 +50,3 @@ Since 2025 (Lead), this project investigates recovering the thermal energy rejec
 ## Funding
 
 This research is supported by government-funded projects through national R&D programs targeting next-generation thermal management and energy-efficient data center infrastructure.
-

@@ -77,4 +77,3 @@ Falling-film evaporators offer high heat-transfer coefficients at low temperatur
 ### Collaborators
 
 - **KIMM Heat Pump Research Center** — Korea Institute of Machinery and Materials
-

@@ -70,4 +70,3 @@ A Python-based PCHE performance prediction tool has been developed and officiall
 ### Funding
 
 This project is supported by government-funded hydrogen economy programs under the Korean Ministry of Science and ICT and the Ministry of Trade, Industry and Energy, as part of national initiatives to advance hydrogen infrastructure technology.
-
