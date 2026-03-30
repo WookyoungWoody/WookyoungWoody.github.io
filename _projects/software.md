@@ -87,28 +87,28 @@ Fin-tube heat exchanger design program (C-2024-038692). Automates rating and siz
 
 ## Technology Stack
 
-| Layer | Technologies |
-|---|---|
-| Backend | Python, FastAPI, CoolProp, REFPROP |
-| Frontend | React, React Native |
-| Numerical | Effectiveness-NTU, thermal network modeling |
-| AI/ML | PyTorch, JAX, Physics-Informed Neural Networks, LLM agents |
-| DevOps | Git/GitHub, Linux, CMake, Docker |
+| Layer     | Technologies                                               |
+| --------- | ---------------------------------------------------------- |
+| Backend   | Python, FastAPI, CoolProp, REFPROP                         |
+| Frontend  | React, React Native                                        |
+| Numerical | Effectiveness-NTU, thermal network modeling                |
+| AI/ML     | PyTorch, JAX, Physics-Informed Neural Networks, LLM agents |
+| DevOps    | Git/GitHub, Linux, CMake, Docker                           |
 
 ---
 
 ## Registered Software (Korea Copyright Commission)
 
-| Program | Registration No. | Year |
-|---|---|---|
-| Lab-Scale Heat Exchanger Analysis | C-2023-056463 | 2023 |
-| HTC Uncertainty Analysis | C-2023-059071 | 2023 |
-| High-Temp Heat Pump Cycle Design | C-2024-038691 | 2024 |
-| Fin-Tube HX Design | C-2024-038692 | 2024 |
-| Vapor Chamber Performance Analysis | C-2024-041200 | 2024 |
-| PCHE Thickness Design | C-2024-052179 | 2024 |
-| 100 kg/hr Hydrogen PCHE Design | C-2025-056891 | 2025 |
-| Adsorption Cooling Simulation | C-2025-034652 | 2025 |
+| Program                            | Registration No. | Year |
+| ---------------------------------- | ---------------- | ---- |
+| Lab-Scale Heat Exchanger Analysis  | C-2023-056463    | 2023 |
+| HTC Uncertainty Analysis           | C-2023-059071    | 2023 |
+| High-Temp Heat Pump Cycle Design   | C-2024-038691    | 2024 |
+| Fin-Tube HX Design                 | C-2024-038692    | 2024 |
+| Vapor Chamber Performance Analysis | C-2024-041200    | 2024 |
+| PCHE Thickness Design              | C-2024-052179    | 2024 |
+| 100 kg/hr Hydrogen PCHE Design     | C-2025-056891    | 2025 |
+| Adsorption Cooling Simulation      | C-2025-034652    | 2025 |
 
 ---
 
@@ -116,4 +116,3 @@ Fin-tube heat exchanger design program (C-2024-038692). Automates rating and siz
 
 - **Heat Pipe and Vapor Chamber Structural Design for Electronics Cooling** — fabrication-ready design methodology transferred to industry partners
 - **Micro-Channel Bonding and Fabrication Techniques for Heat Exchangers** — joining and sealing processes for PCHE and micro-channel devices
-

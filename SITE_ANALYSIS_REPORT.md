@@ -9,36 +9,36 @@
 
 ### Well-Configured
 
-| Area | Status |
-|------|--------|
-| About page | Complete & accurate (KIMM, KAIST, research areas) |
-| Publications | BibTeX + search, altmetric/dimensions badges enabled |
-| Projects | 4 projects with real academic content |
-| CV | JSON Resume + comprehensive data (17 patents, 8 SW, 5 tech transfers) |
-| SEO basics | OG tags, Schema.org, Google Search Console verified |
-| Security | SRI hashes, CSP header, external links `noopener` |
-| Performance | lazy loading, ImageMagick WebP, jekyll-minifier, terser |
-| Dark mode | Enabled with FOUC prevention |
+| Area         | Status                                                                |
+| ------------ | --------------------------------------------------------------------- |
+| About page   | Complete & accurate (KIMM, KAIST, research areas)                     |
+| Publications | BibTeX + search, altmetric/dimensions badges enabled                  |
+| Projects     | 4 projects with real academic content                                 |
+| CV           | JSON Resume + comprehensive data (17 patents, 8 SW, 5 tech transfers) |
+| SEO basics   | OG tags, Schema.org, Google Search Console verified                   |
+| Security     | SRI hashes, CSP header, external links `noopener`                     |
+| Performance  | lazy loading, ImageMagick WebP, jekyll-minifier, terser               |
+| Dark mode    | Enabled with FOUC prevention                                          |
 
 ### Navigation (Active)
 
-| Page | Permalink | nav_order |
-|------|-----------|-----------|
-| About (homepage) | `/` | default |
-| Publications | `/publications/` | 2 |
-| Projects | `/projects/` | 3 |
-| Repositories | `/repositories/` | 4 |
-| CV | `/cv/` | 5 |
+| Page             | Permalink        | nav_order |
+| ---------------- | ---------------- | --------- |
+| About (homepage) | `/`              | default   |
+| Publications     | `/publications/` | 2         |
+| Projects         | `/projects/`     | 3         |
+| Repositories     | `/repositories/` | 4         |
+| CV               | `/cv/`           | 5         |
 
 ### Hidden Pages (nav: false)
 
-| Page | Status |
-|------|--------|
-| Blog (`/blog/`) | Empty, no posts |
+| Page                    | Status                                         |
+| ----------------------- | ---------------------------------------------- |
+| Blog (`/blog/`)         | Empty, no posts                                |
 | Teaching (`/teaching/`) | Placeholder (`test@gmail.com`, wrong timezone) |
-| News (`/news/`) | Only 1 announcement |
-| Profiles (`/people/`) | Placeholder (Einstein template) |
-| Books (`/books/`) | Empty template |
+| News (`/news/`)         | Only 1 announcement                            |
+| Profiles (`/people/`)   | Placeholder (Einstein template)                |
+| Books (`/books/`)       | Empty template                                 |
 
 ---
 
@@ -46,41 +46,42 @@
 
 ### P1 — Fix Immediately
 
-| # | Item | Detail |
-|---|------|--------|
-| 1 | **4 project images missing** | `heatpump.jpg`, `software.jpg`, `pche.jpg`, `datacenter.jpg` not in `assets/img/` — project cards render without thumbnails |
-| 2 | **`prof_pic_color.png` is 14MB** | 2880x3840 PNG — compress to <200KB or convert to JPG |
-| 3 | **Incomplete BibTeX entries** | `kim2025freezing` (selected paper on homepage!) missing volume/pages/DOI; `kim2024vle` missing journal name; `kim2024chemisorption_numerical` missing volume/pages/DOI |
-| 4 | **`coauthors.yml` is placeholder** | Contains only fictional Einstein-era co-authors — replace with actual co-authors (from papers.bib) |
+| #   | Item                               | Detail                                                                                                                                                                 |
+| --- | ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | **4 project images missing**       | `heatpump.jpg`, `software.jpg`, `pche.jpg`, `datacenter.jpg` not in `assets/img/` — project cards render without thumbnails                                            |
+| 2   | **`prof_pic_color.png` is 14MB**   | 2880x3840 PNG — compress to <200KB or convert to JPG                                                                                                                   |
+| 3   | **Incomplete BibTeX entries**      | `kim2025freezing` (selected paper on homepage!) missing volume/pages/DOI; `kim2024vle` missing journal name; `kim2024chemisorption_numerical` missing volume/pages/DOI |
+| 4   | **`coauthors.yml` is placeholder** | Contains only fictional Einstein-era co-authors — replace with actual co-authors (from papers.bib)                                                                     |
 
 ### P2 — Fix Soon
 
-| # | Item | Detail |
-|---|------|--------|
-| 5 | **`profiles.md` placeholder** | Contains "555 your office number" fake addresses — delete content or populate with real lab members |
-| 6 | **`teaching.md` placeholder** | Calendar uses `test@gmail.com`, timezone is `Asia/Shanghai` (should be `Asia/Seoul`) |
-| 7 | **News is sparse** | Only 1 announcement ("Welcome") — add paper acceptances, conference talks, project milestones |
-| 8 | **Twitter/X card improvement** | Change card type `summary` to `summary_large_image` in `metadata.liquid`; add X username to `socials.yml` |
-| 9 | **Giscus comments not configured** | `giscus.repo`, `repo_id`, `category_id` are all blank |
-| 10 | **No pinned GitHub repos** | `repositories.yml` has no `github_repos` list — add KIMMPROP, PCHE tools, etc. |
+| #   | Item                               | Detail                                                                                                    |
+| --- | ---------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| 5   | **`profiles.md` placeholder**      | Contains "555 your office number" fake addresses — delete content or populate with real lab members       |
+| 6   | **`teaching.md` placeholder**      | Calendar uses `test@gmail.com`, timezone is `Asia/Shanghai` (should be `Asia/Seoul`)                      |
+| 7   | **News is sparse**                 | Only 1 announcement ("Welcome") — add paper acceptances, conference talks, project milestones             |
+| 8   | **Twitter/X card improvement**     | Change card type `summary` to `summary_large_image` in `metadata.liquid`; add X username to `socials.yml` |
+| 9   | **Giscus comments not configured** | `giscus.repo`, `repo_id`, `category_id` are all blank                                                     |
+| 10  | **No pinned GitHub repos**         | `repositories.yml` has no `github_repos` list — add KIMMPROP, PCHE tools, etc.                            |
 
 ### P3 — Future Enhancements
 
-| # | Item | Detail |
-|---|------|--------|
-| 11 | **Google Analytics** | Measurement ID not set — no traffic tracking |
-| 12 | **CV sections to add** | Awards/Honors, Invited Talks, Professional Service (reviewer, editorial), Grants (funding amounts) |
-| 13 | **Blog activation** | Either add research notes/technical posts or fully remove dropdown references |
-| 14 | **Template image cleanup** | Remove unused: `rhino.png`, `1.jpg`~`12.jpg`, `brownian-motion.gif`, `wave-mechanics.gif` |
-| 15 | **Accessibility** | Project alt text is generic "project thumbnail" — use descriptive text |
-| 16 | **Additional social profiles** | Add Scopus ID, ResearchGate for better academic SEO |
-| 17 | **Bing site verification** | Not configured |
+| #   | Item                           | Detail                                                                                             |
+| --- | ------------------------------ | -------------------------------------------------------------------------------------------------- |
+| 11  | **Google Analytics**           | Measurement ID not set — no traffic tracking                                                       |
+| 12  | **CV sections to add**         | Awards/Honors, Invited Talks, Professional Service (reviewer, editorial), Grants (funding amounts) |
+| 13  | **Blog activation**            | Either add research notes/technical posts or fully remove dropdown references                      |
+| 14  | **Template image cleanup**     | Remove unused: `rhino.png`, `1.jpg`~`12.jpg`, `brownian-motion.gif`, `wave-mechanics.gif`          |
+| 15  | **Accessibility**              | Project alt text is generic "project thumbnail" — use descriptive text                             |
+| 16  | **Additional social profiles** | Add Scopus ID, ResearchGate for better academic SEO                                                |
+| 17  | **Bing site verification**     | Not configured                                                                                     |
 
 ---
 
 ## 3. Technical SEO Audit Summary
 
 ### Configured Correctly
+
 - `serve_og_meta: true` + `serve_schema_org: true`
 - `og_image: assets/img/prof_pic.jpg`
 - Google site verification meta tag active
@@ -90,6 +91,7 @@
 - External links use `rel: external nofollow noopener`
 
 ### Needs Attention
+
 - OG image path may need leading `/` for correct absolute URL resolution
 - Twitter card type should be `summary_large_image` (currently `summary`)
 - No `twitter:site` / `twitter:creator` meta tags (no X username in socials.yml)
@@ -100,17 +102,20 @@
 ## 4. Content Quality by Section
 
 ### Projects (4 files)
+
 - **heatpump.md** — Excellent. Patents (8), collaborators, bibliography queries
 - **pche.md** — Excellent. PCHE for liquid H2, 5 patents, funding info
 - **datacenter_cooling.md** — Good. Could reference more publications
 - **software.md** — Good. 8 registered programs, KIMMPROP section added with App Store/Google Play links + QR codes
 
 ### Bibliography (papers.bib)
+
 - 23 entries total: 10 SCI/SCIE + 6 international conference + 7 KCI domestic
 - 5 papers marked `selected = true` for homepage display
 - 3 entries have incomplete metadata (see P1 #3)
 
 ### CV Data (cv.yml)
+
 - Education: B.S./M.S./Ph.D. all KAIST (complete)
 - Experience: KIMM Senior Researcher with highlights
 - 17 Patents, 8 Software Registrations, 5 Technology Transfers, 15 Projects
@@ -120,11 +125,11 @@
 
 ## 5. Completed Work (This Session)
 
-| Item | Status |
-|------|--------|
-| KIMMPROP iOS QR code (`assets/img/kimmprop_ios_qr.png`) | Created |
-| KIMMPROP Android QR code (`assets/img/kimmprop_android_qr.png`) | Created |
-| KIMMPROP section in `_projects/software.md` | Added (App Store/Google Play buttons + QR codes) |
+| Item                                                            | Status                                           |
+| --------------------------------------------------------------- | ------------------------------------------------ |
+| KIMMPROP iOS QR code (`assets/img/kimmprop_ios_qr.png`)         | Created                                          |
+| KIMMPROP Android QR code (`assets/img/kimmprop_android_qr.png`) | Created                                          |
+| KIMMPROP section in `_projects/software.md`                     | Added (App Store/Google Play buttons + QR codes) |
 
 ---
 
