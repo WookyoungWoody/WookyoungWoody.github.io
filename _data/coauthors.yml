@@ -1,34 +1,34 @@
-"adams":
-  - firstname: ["Edwin", "E.", "E. P.", "Edwin Plimpton"]
-    url: https://en.wikipedia.org/wiki/Edwin_Plimpton_Adams
+"kim":
+  - firstname: ["Jungchul", "J."]
+  - firstname: ["Chan Geun", "C. G."]
+  - firstname: ["Hak Soo", "H. S."]
+  - firstname: ["Dong Ho", "D. H."]
+  - firstname: ["Jeong Hyun", "J. H."]
+  - firstname: ["Sung Jin", "S. J."]
+  - firstname: ["Bokyem", "B."]
+  - firstname: ["Jin Sub", "J. S."]
+  - firstname: ["Seul Ah", "S. A."]
+  - firstname: ["Young", "Y."]
+  - firstname: ["Bogyeom", "B."]
+  - firstname: ["Minchang", "M."]
 
-"podolsky":
-  - firstname: ["Boris", "B.", "B. Y.", "Boris Yakovlevich"]
-    url: https://en.wikipedia.org/wiki/Boris_Podolsky
+"sohn":
+  - firstname: ["Sangho", "S."]
 
-"rosen":
-  - firstname: ["Nathan", "N."]
-    url: https://en.wikipedia.org/wiki/Nathan_Rosen
+"lee":
+  - firstname: ["Kong Hoon", "K. H."]
 
-"bach":
-  - firstname: ["Johann Sebastian", "J. S."]
-    url: https://en.wikipedia.org/wiki/Johann_Sebastian_Bach
+"shin":
+  - firstname: ["Dong Hwan", "D. H."]
 
-  - firstname: ["Carl Philipp Emanuel", "C. P. E."]
-    url: https://en.wikipedia.org/wiki/Carl_Philipp_Emanuel_Bach
+"moon":
+  - firstname: ["Sunyoung", "S."]
 
-"przibram":
-  - firstname: ["Karl"]
-    url: https://link.springer.com/article/10.1007/s00016-019-00242-z
+"chung":
+  - firstname: ["Yoong", "Y."]
 
-"schrodinger":
-  - firstname: ["Erwin"]
-    url: https://en.wikipedia.org/wiki/Erwin_Schr%C3%B6dinger
+"yoo":
+  - firstname: ["Jin Woo", "J. W."]
 
-"lorentz":
-  - firstname: ["Hendrik Antoon"]
-    url: https://en.wikipedia.org/wiki/Hendrik_Lorentz
-
-"planck":
-  - firstname: ["Max"]
-    url: https://en.wikipedia.org/wiki/Max_Planck
+"yoon":
+  - firstname: ["Seok Ho", "S. H."]
