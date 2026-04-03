@@ -6,7 +6,7 @@ from fpdf.enums import XPos, YPos
 import os
 
 PHOTO_PATH = "/Users/wookyoungkim/WookyoungWoody.github.io/assets/img/prof_pic.jpg"
-OUTPUT_PATH = "/Users/wookyoungkim/WookyoungWoody.github.io/assets/pdf/cv_wookyoung_kim.pdf"
+OUTPUT_PATH = "/Users/wookyoungkim/WookyoungWoody.github.io/assets/pdf/cv_academic.pdf"
 
 os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
 
@@ -183,18 +183,25 @@ def build_cv():
         if thesis:
             label = thesis_labels.get(deg, "Thesis:")
             indent = col_w[0] + 4
-            pdf.set_x(pdf.l_margin + indent)
+            original_l_margin = pdf.l_margin
+            pdf.set_x(original_l_margin + indent)
             pdf.set_font("Times", style="B", size=10)
             pdf.write(5, label + " ")
+            # Save x position after label — this is where title text starts
+            title_x = pdf.get_x()
+            # Set left margin to title start so wrapped lines align here
+            pdf.set_left_margin(title_x)
             pdf.set_font("Times", style="I", size=10)
             pdf.write(5, thesis)
             pdf.ln()
-            pdf.set_x(pdf.l_margin + indent)
+            pdf.set_left_margin(original_l_margin + indent)
+            pdf.set_x(original_l_margin + indent)
             pdf.set_font("Times", style="B", size=10)
             pdf.write(5, "Advisor: ")
             pdf.set_font("Times", size=10)
             pdf.write(5, advisor)
             pdf.ln(6)
+            pdf.set_left_margin(original_l_margin)
 
     # ============================================================ RESEARCH INTERESTS
     pdf.section_title("RESEARCH INTERESTS")
@@ -264,14 +271,14 @@ def build_cv():
     # SCI/SCIE
     pub_subsection("SCI/SCIE Journal Papers")
     sci_papers = [
-        ('W. Kim', ' et al., "Experimental and Theoretical Investigation of Freezing Phenomenon in Printed Circuit Heat Exchanger for Cryogenic Liquid Hydrogen Vaporizer", ', 'International Journal of Heat and Mass Transfer', ' (2025).'),
-        ('J. Kim, C.G. Kim, H.S. Kim, W. Kim', ', D.H. Kim, "Characterization of liquid behavior in distributor of falling-film evaporator", ', 'Physics of Fluids', ' 35(6), 067124 (2023).'),
-        ('W. Kim', ' et al., "Experimental studies on the VLE of R-32/R-125 and verification of experimental setup" (2024).'),
-        ('H.S. Kim, J.H. Kim, J.S. Kim, W. Kim', ', Y. Kim, "A numerical study on the performance of chemisorption heat pump according to various design conditions", ', 'Applied Thermal Engineering', ' (2024).'),
+        ('B. Kim, K.H. Lee, M. Kim, S. Moon, J.W. Yoo, W. Kim', ', "Experimental and theoretical investigation of freezing phenomenon in Printed Circuit Heat Exchanger", ', 'Applied Thermal Engineering', ' 273, 126455 (2025).'),
+        ('D.H. Kim, W. Kim', ', J.H. Kim, H.S. Kim, K.H. Lee, "Experimental studies on the VLE of R-32/R-125 and verification of experimental setup", ', 'Journal of Mechanical Science and Technology', ' 38(10), 5779-5785 (2024).'),
+        ('H.S. Kim, D.H. Kim, J.S. Kim, W. Kim', ', Y. Kim, "A numerical study on the performance of chemisorption heat pump according to various design conditions", ', 'Applied Thermal Engineering', ' 243, 122519 (2024).'),
         ('J.S. Kim, W. Kim', ', H.S. Kim, Y. Kim, "Pool boiling heat transfer of ammonia outside enhanced tubes with various fin structures", ', 'Applied Thermal Engineering', ' 247, 122986 (2024).'),
         ('H.S. Kim, J.H. Kim, J.S. Kim, W. Kim', ', Y. Kim, "Experimental study of a chemisorption heat pump under different operation conditions", ', 'Applied Thermal Engineering', ' 240, 122274 (2024).'),
-        ('J.S. Kim, W. Kim', ', H.S. Kim, Y. Kim, "Pool boiling heat transfer of ammonia outside a single tube with fin structures: Hysteresis phenomena and boiling enhancement", ', 'International Communications in Heat and Mass Transfer', ' 149, 107157 (2023).'),
-        ('W. Kim', ' and S.J. Kim, "Fundamental issues and technical problems about pulsating heat pipes", ', 'Journal of Heat Transfer - Transactions of the ASME', ' 143, 4051465 (2021).'),
+        ('J. Kim, C.G. Kim, H.S. Kim, W. Kim', ', D.H. Kim, "Characterization of liquid behavior in distributor of falling-film evaporator", ', 'Physics of Fluids', ' 35(6), 067124 (2023).'),
+        ('J.S. Kim, W. Kim', ', H.S. Kim, Y. Kim, S.H. Yoon, "Pool boiling heat transfer of ammonia outside a single tube with fin structures: Hysteresis phenomena and boiling enhancement", ', 'International Communications in Heat and Mass Transfer', ' 149, 107157 (2023).'),
+        ('W. Kim', ' and S.J. Kim, "Fundamental issues and technical problems about pulsating heat pipes", ', 'Journal of Heat Transfer - Transactions of the ASME', ' 143, 100803 (2021).'),
         ('W. Kim', ' and S.J. Kim, "Effect of a flow behavior on the thermal performance of closed-loop and closed-end pulsating heat pipes", ', 'International Journal of Heat and Mass Transfer', ' 149, 119251 (2020).'),
         ('W. Kim', ' and S.J. Kim, "Effect of reentrant cavities on the thermal performance of a pulsating heat pipe", ', 'Applied Thermal Engineering', ' 133, 61-69 (2018).'),
     ]
