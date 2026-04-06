@@ -195,6 +195,15 @@ def build_pdf():
         pdf.set_font("Helvetica", "", 8.5)
         pdf.set_text_color(*MED_GRAY)
         pdf.cell(0, 4.5, yr, ln=True)
+        if deg == "Ph.D.":
+            pdf.set_x(pdf.l_margin + 12)
+            pdf.set_font("Helvetica", "I", 7.5)
+            pdf.set_text_color(*MED_GRAY)
+            pdf.multi_cell(0, 4, "Dissertation: Study on a Thermal Network-based Model for Predicting the Thermal Resistance of Pulsating Heat Pipes")
+            pdf.set_x(pdf.l_margin + 12)
+            pdf.set_font("Helvetica", "I", 7.5)
+            pdf.set_text_color(*MED_GRAY)
+            pdf.cell(0, 4, "Advisor: Prof. Sung Jin Kim", ln=True)
 
     # --------------------------------------------------------- KEY ACHIEVEMENTS
     # 2x2 grid inside a tinted box for visual emphasis
