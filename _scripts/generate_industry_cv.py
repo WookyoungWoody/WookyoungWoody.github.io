@@ -1,12 +1,18 @@
 #!/usr/bin/env python3
 """Generate industry-focused CV PDF using fpdf2."""
 
+import json
+import os
 import warnings
+
 warnings.filterwarnings("ignore")
 
 from fpdf import FPDF
 
-OUTPUT = "/Users/wookyoungkim/WookyoungWoody.github.io/assets/pdf/cv_industry.pdf"
+_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+_REPO_ROOT = os.path.join(_SCRIPT_DIR, "..")
+
+OUTPUT = os.path.join(_REPO_ROOT, "assets", "pdf", "cv_industry.pdf")
 
 # Colors
 BLACK = (0, 0, 0)
@@ -51,7 +57,47 @@ class IndustryCVPDF(FPDF):
         self.multi_cell(0, 4.5, text)
 
 
+def _load_data():
+    resume_path = os.path.join(_REPO_ROOT, "assets", "json", "resume.json")
+    with open(resume_path, "r") as f:
+        return json.load(f)
+
+
+def _compute_counts(data):
+    all_pubs = data.get("publications", [])
+    journal_papers = [p for p in all_pubs if "Proceedings" not in p.get("publisher", "")]
+    patents = [c for c in data["certificates"] if c["issuer"] == "Korean Intellectual Property Office"]
+    software = [c for c in data["certificates"] if c["issuer"] == "Korea Copyright Commission"]
+    transfers = data.get("volunteer", [])
+    return journal_papers, patents, software, transfers
+
+
+def _year(date_str):
+    """Extract year from a date string like '2017-03-01'."""
+    return date_str[:4] if date_str else ""
+
+
 def build_pdf():
+    data = _load_data()
+    journal_papers, patents, software, transfers = _compute_counts(data)
+
+    # Counts for summary / achievements
+    n_journal = len(journal_papers)
+    n_patents = len(patents)
+    n_software = len(software)
+    n_transfers = len(transfers)
+
+    # SCI vs KCI breakdown (SCI = international journals, KCI = Korean journals)
+    # Approximate: publishers with Korean-language names or known Korean journals = KCI
+    korean_publishers = {
+        "Journal of Hydrogen and New Energy",
+        "Korean Journal of Air-Conditioning and Refrigeration Engineering",
+        "Transactions of the Korean Society of Mechanical Engineers B",
+        "Transactions of the Korean Hydrogen and New Energy Society",
+    }
+    n_sci = len([p for p in journal_papers if p.get("publisher", "") not in korean_publishers])
+    n_kci = n_journal - n_sci
+
     pdf = IndustryCVPDF(orientation="P", unit="mm", format="A4")
     pdf.set_margins(18, 12, 18)
     pdf.set_auto_page_break(auto=True, margin=10)
@@ -60,7 +106,20 @@ def build_pdf():
     cw = pdf.w - pdf.l_margin - pdf.r_margin  # ~174mm
 
     # ------------------------------------------------------------------ HEADER
-    photo_path = "/Users/wookyoungkim/WookyoungWoody.github.io/assets/img/prof_pic.jpg"
+    basics = data["basics"]
+    name = basics["name"].upper()
+    label = basics.get("label", "")
+    email = basics.get("email", "")
+    city = basics.get("location", {}).get("city", "")
+    country_code = basics.get("location", {}).get("countryCode", "")
+    location_str = f"{city}, Korea" if city else ""
+
+    github_username = ""
+    for profile in basics.get("profiles", []):
+        if profile.get("network", "").lower() == "github":
+            github_username = profile.get("username", "")
+
+    photo_path = os.path.join(_REPO_ROOT, "assets", "img", "prof_pic.jpg")
     photo_size = 22
     photo_x = pdf.w - pdf.r_margin - photo_size
     photo_y = pdf.t_margin
@@ -68,18 +127,21 @@ def build_pdf():
     text_w = cw - photo_size - 4
     pdf.set_font("Helvetica", "B", 15)
     pdf.set_text_color(*BLACK)
-    pdf.cell(text_w, 7, "WOOKYOUNG KIM, Ph.D.", ln=True)
+    pdf.cell(text_w, 7, f"{name}, Ph.D.", ln=True)
 
     pdf.set_font("Helvetica", "", 10)
     pdf.set_text_color(*ACCENT)
-    pdf.cell(text_w, 5, "Senior Researcher  |  Thermal-Fluid Engineering", ln=True)
+    pdf.cell(text_w, 5, f"{label}  |  Thermal-Fluid Engineering", ln=True)
 
     pdf.set_font("Helvetica", "", 7.5)
     pdf.set_text_color(*MED_GRAY)
-    contact = (
-        "wookyoung@kimm.re.kr  |  github.com/WookyoungWoody  |  "
-        "linkedin.com/in/wookyoungwoody  |  Daejeon, Korea"
-    )
+    contact_parts = [email]
+    if github_username:
+        contact_parts.append(f"github.com/{github_username}")
+    contact_parts.append("linkedin.com/in/wookyoungwoody")
+    if location_str:
+        contact_parts.append(location_str)
+    contact = "  |  ".join(contact_parts)
     pdf.cell(text_w, 4.5, contact, ln=True)
 
     pdf.image(photo_path, x=photo_x, y=photo_y, w=photo_size, h=photo_size)
@@ -100,7 +162,7 @@ def build_pdf():
         "Specialized in thermal management solutions for AI data centers, hydrogen energy systems, and heat pump technology. "
         "Extensive hands-on experience in thermal system design, experimental facility construction, performance testing, and data analysis. "
         "Spearheading development of multiple engineering software tools (Python/FastAPI/React Native). "
-        "Track record: 17+ journal papers, 17 patents, 8 registered software programs, 5 technology transfers to industry."
+        f"Track record: {n_journal}+ journal papers, {n_patents} patents, {n_software} registered software programs, {n_transfers} technology transfers to industry."
     )
     pdf.multi_cell(0, 4.5, summary)
 
@@ -155,55 +217,76 @@ def build_pdf():
     # --------------------------------------------------------- EXPERIENCE
     pdf.section_header("EXPERIENCE")
 
+    work = data["work"][0]
+    position = work.get("position", "")
+    company = work.get("name", "")
+    start_year = _year(work.get("startDate", ""))
+    end_date = work.get("endDate", "")
+    end_str = _year(end_date) if end_date else "Present"
+    date_range = f"Mar {start_year} - {end_str}"
+
     pdf.set_font("Helvetica", "B", 8.5)
     pdf.set_text_color(*BLACK)
-    pdf.cell(0, 4.5, "Senior Researcher  |  KIMM (Korea Institute of Machinery and Materials)  |  Mar 2021 - Present", ln=True)
+    pdf.cell(0, 4.5, f"{position}  |  {company}  |  {date_range}", ln=True)
     pdf.set_font("Helvetica", "I", 7.5)
     pdf.set_text_color(*MED_GRAY)
     pdf.cell(0, 3.5, "Korea's national research institute for machinery and materials engineering", ln=True)
     pdf.ln(0.5)
 
-    bullets_exp = [
-        "PI: Jet-enhanced immersion cooling for next-gen AI data center servers",
-        "PI: Cross-platform thermophysical property app (iOS/Android, React Native + FastAPI)",
-        "Lead: PCHE design for liquid hydrogen vaporizers (-220\u00b0C, 100 MPa class)",
-        "Lead: Immersion cooling waste heat utilization and thermal management systems",
-        "Delivered 5 technology transfers to industry partners",
-        "Developed 8 registered engineering software programs (Korea Copyright Commission)",
-    ]
+    # Build experience bullets from highlights, replacing the summary highlight with computed bullets
+    summary_highlight_keyword = "journal papers"
+    bullets_exp = []
+    for h in work.get("highlights", []):
+        if summary_highlight_keyword in h.lower():
+            # Replace with computed count bullets
+            bullets_exp.append(f"Delivered {n_transfers} technology transfers to industry partners")
+            bullets_exp.append(f"Developed {n_software} registered engineering software programs (Korea Copyright Commission)")
+        else:
+            bullets_exp.append(h)
+
     for b in bullets_exp:
         pdf.bullet(b, size=8)
 
     # --------------------------------------------------------- EDUCATION
     pdf.section_header("EDUCATION")
 
-    edu = [
-        ("Ph.D.", "Mechanical Engineering", "KAIST", "2017 - 2021"),
-        ("M.S.", "Mechanical Engineering", "KAIST", "2015 - 2017"),
-        ("B.S.", "Mechanical Engineering", "KAIST", "2011 - 2015"),
-    ]
-    for deg, field, inst, yr in edu:
+    for edu_entry in data["education"]:
+        study_type = edu_entry.get("studyType", "")
+        area = edu_entry.get("area", "")
+        institution = edu_entry.get("institution", "")
+        # Shorten "KAIST (Korea Advanced Institute...)" to "KAIST"
+        inst_display = institution.split("(")[0].strip()
+        start_yr = _year(edu_entry.get("startDate", ""))
+        end_yr = _year(edu_entry.get("endDate", ""))
+        yr_range = f"{start_yr} - {end_yr}" if start_yr and end_yr else start_yr or end_yr
+
         pdf.set_font("Helvetica", "B", 8.5)
         pdf.set_text_color(*BLACK)
-        pdf.cell(12, 4.5, deg, ln=False)
+        pdf.cell(12, 4.5, study_type, ln=False)
         pdf.set_font("Helvetica", "", 8.5)
         pdf.set_text_color(*DARK_GRAY)
-        pdf.cell(65, 4.5, field, ln=False)
+        pdf.cell(65, 4.5, area, ln=False)
         pdf.set_font("Helvetica", "B", 8.5)
         pdf.set_text_color(*ACCENT)
-        pdf.cell(50, 4.5, inst, ln=False)
+        pdf.cell(50, 4.5, inst_display, ln=False)
         pdf.set_font("Helvetica", "", 8.5)
         pdf.set_text_color(*MED_GRAY)
-        pdf.cell(0, 4.5, yr, ln=True)
-        if deg == "Ph.D.":
+        pdf.cell(0, 4.5, yr_range, ln=True)
+
+        courses = edu_entry.get("courses", [])
+        dissertation_line = next((c for c in courses if c.startswith("Dissertation:")), None)
+        advisor_line = next((c for c in courses if c.startswith("Advisor:")), None)
+
+        if dissertation_line:
             pdf.set_x(pdf.l_margin + 12)
             pdf.set_font("Helvetica", "I", 7.5)
             pdf.set_text_color(*MED_GRAY)
-            pdf.multi_cell(0, 4, "Dissertation: Study on a Thermal Network-based Model for Predicting the Thermal Resistance of Pulsating Heat Pipes")
+            pdf.multi_cell(0, 4, dissertation_line)
+        if advisor_line:
             pdf.set_x(pdf.l_margin + 12)
             pdf.set_font("Helvetica", "I", 7.5)
             pdf.set_text_color(*MED_GRAY)
-            pdf.cell(0, 4, "Advisor: Prof. Sung Jin Kim", ln=True)
+            pdf.cell(0, 4, advisor_line, ln=True)
 
     # --------------------------------------------------------- KEY ACHIEVEMENTS
     # 2x2 grid inside a tinted box for visual emphasis
@@ -219,10 +302,10 @@ def build_pdf():
     pdf.rect(pdf.l_margin, ach_y, cw, ach_h, style="D")
 
     achievements = [
-        ("17+", "Journal Papers (10 SCI + 7 KCI)"),
-        ("17", "Domestic Patents"),
-        ("8", "Registered Software Programs"),
-        ("5", "Technology Transfers to Industry"),
+        (f"{n_journal}+", f"Journal Papers ({n_sci} SCI + {n_kci} KCI)"),
+        (str(n_patents), "Domestic Patents"),
+        (str(n_software), "Registered Software Programs"),
+        (str(n_transfers), "Technology Transfers to Industry"),
     ]
     ach_col_w = cw / 4
     for i, (num, desc) in enumerate(achievements):
@@ -244,7 +327,7 @@ def build_pdf():
     pdf.section_header("SELECTED PUBLICATIONS")
 
     pubs = [
-        ("W. Kim", ' et al., "Freezing Phenomenon in PCHE for Cryogenic LH2 Vaporizer," Int. J. Heat Mass Transfer (2025)'),
+        ("W. Kim", ' et al., "Freezing Phenomenon in PCHE for Cryogenic LH2 Vaporizer," Appl. Therm. Eng. 273 (2025)'),
         ("W. Kim", ' and S.J. Kim, "Fundamental issues about pulsating heat pipes," J. Heat Transfer - ASME 143 (2021)'),
         ("W. Kim", ' and S.J. Kim, "Flow behavior effect on pulsating heat pipes," Int. J. Heat Mass Transfer 149 (2020)'),
         ("W. Kim", ' and S.J. Kim, "Reentrant cavities on pulsating heat pipe," Appl. Therm. Eng. 133 (2018)'),
@@ -274,7 +357,7 @@ def build_pdf():
         ("CAD / CAE:", "INVENTOR, SOLIDWORKS, COMSOL Multiphysics, ANSYS FLUENT, CoolProp, REFPROP"),
         ("AI / ML:", "PyTorch, JAX, PINN"),
         ("Experiment:", "Thermal loop design & construction (1-phase / 2-phase), Low GWP Refrigerant system, "
-                        "2-phase flow & heat transfer measurement, High-pressure testing (2000 bar), Flow visualization"),
+                        "2-phase flow & heat transfer measurement, High-pressure testing (100 MPa), Flow visualization"),
     ]
 
     for label, val in skills:

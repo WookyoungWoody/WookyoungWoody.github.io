@@ -35,7 +35,7 @@
         "PI: Thermophysical property iOS/Android app development",
         "Lead: PCHE design & testing for liquid hydrogen vaporizers (down to -220°C, 100 MPa)",
         "Lead: Immersion cooling waste heat utilization and thermal management",
-        "17+ journal papers (10 SCI + 7 KCI), 9 domestic patents, 3 international patents, 7 registered software programs, 5 technology transfers"
+        "17+ journal papers (10 SCI + 7 KCI), 17 domestic patents, 8 registered software programs, 5 technology transfers"
       ]
     }
   ],
@@ -541,6 +541,7 @@
       "name": "Effect of a flow behavior on the thermal performance of closed-loop and closed-end pulsating heat pipes",
       "publisher": "International Journal of Heat and Mass Transfer",
       "releaseDate": "2020",
+      "url": "https://doi.org/10.1016/j.ijheatmasstransfer.2019.119251",
       "summary": "Kim, Wookyoung and Kim, Sung Jin"
     },
     {
@@ -553,6 +554,7 @@
       "name": "Effect of reentrant cavities on the thermal performance of a pulsating heat pipe",
       "publisher": "Applied Thermal Engineering",
       "releaseDate": "2018",
+      "url": "https://doi.org/10.1016/j.applthermaleng.2017.12.109",
       "summary": "Kim, Wookyoung and Kim, Sung Jin"
     },
     {
@@ -603,6 +605,20 @@
       "startDate": "",
       "endDate": "",
       "summary": "Transferred compact inverter compressor system design for consumer appliances"
+    }
+  ],
+  "awards": [
+    {
+      "title": "",
+      "date": "",
+      "awarder": "",
+      "summary": ""
+    }
+  ],
+  "references": [
+    {
+      "name": "",
+      "reference": ""
     }
   ]
 }

@@ -63,7 +63,7 @@ cv:
           - "PI: Thermophysical property iOS/Android app development"
           - "Lead: PCHE design & testing for liquid hydrogen vaporizers (down to -220°C, 100 MPa)"
           - "Lead: Immersion cooling waste heat utilization and thermal management"
-          - "17+ journal papers (10 SCI + 7 KCI), 9 domestic patents, 3 international patents, 7 registered software programs, 5 technology transfers"
+          - "17+ journal papers (10 SCI + 7 KCI), 17 domestic patents, 8 registered software programs, 5 technology transfers"
 
     Skills:
       - name: Experimental
@@ -388,3 +388,49 @@ cv:
         position: Compact inverter compressor-based dress care system development
         summary: Transferred compact inverter compressor system design for consumer appliances
         icon: fa-solid fa-handshake
+
+    Awards:
+      - name: ""
+        date: ""
+        awarder: ""
+        summary: ""
+        icon: fa-solid fa-trophy
+
+    Invited Talks:
+      - title: ""
+        event: ""
+        location: ""
+        date: ""
+        type: ""
+        icon: fa-solid fa-microphone
+
+    Professional Service:
+      - role: ""
+        organization: ""
+        period: ""
+        summary: ""
+        icon: fa-solid fa-users
+
+    Grants:
+      - name: ""
+        funder: ""
+        role: ""
+        period: ""
+        amount: ""
+        summary: ""
+        icon: fa-solid fa-money-bill
+
+    Teaching:
+      - course: ""
+        level: ""
+        role: ""
+        institution: ""
+        period: ""
+        icon: fa-solid fa-chalkboard-teacher
+
+    Mentoring:
+      - student: ""
+        degree: ""
+        topic: ""
+        outcome: ""
+        icon: fa-solid fa-user-graduate
