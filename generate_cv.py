@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
 """Generate academic CV PDF for Wookyoung Kim."""
 
+import json
+import os
+import re
+
 from fpdf import FPDF
 from fpdf.enums import XPos, YPos
-import os
 
-PHOTO_PATH = "/Users/wookyoungkim/WookyoungWoody.github.io/assets/img/prof_pic.jpg"
-OUTPUT_PATH = "/Users/wookyoungkim/WookyoungWoody.github.io/assets/pdf/cv_academic.pdf"
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+PHOTO_PATH = os.path.join(SCRIPT_DIR, "assets/img/prof_pic.jpg")
+OUTPUT_PATH = os.path.join(SCRIPT_DIR, "assets/pdf/cv_academic.pdf")
 
 os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
 
@@ -95,6 +99,10 @@ class CV(FPDF):
 
 
 def build_cv():
+    # Load data from resume.json
+    with open(os.path.join(SCRIPT_DIR, "assets/json/resume.json"), "r") as f:
+        data = json.load(f)
+
     pdf = CV()
 
     # ============================================================ TITLE
@@ -104,6 +112,18 @@ def build_cv():
 
     # ============================================================ PERSONAL INFORMATION + PHOTO
     pdf.section_title("PERSONAL INFORMATION")
+
+    # Extract personal info from resume.json
+    basics = data["basics"]
+    work = data["work"][0]
+    affiliation_name = work["name"]
+    # Use first part of work summary as department label
+    work_summary_parts = work["summary"].split(",")
+    department = work_summary_parts[0].strip()  # "Heat Pump Research Center"
+    location = basics["location"]
+    address_line = (
+        f"{location['address']}, {location['city']} {location['postalCode']}, Korea"
+    )
 
     # Save position before personal info text
     text_start_y = pdf.get_y()
@@ -124,20 +144,24 @@ def build_cv():
         pdf.set_font("Times", size=10)
         pdf.multi_cell(text_col_w - key_w, 5, value, new_x=XPos.LMARGIN, new_y=YPos.NEXT)
 
-    kv_narrow("NAME:", "Wookyoung Kim")
+    kv_narrow("NAME:", basics["name"])
     kv_narrow("DATE OF BIRTH:", "September 27, 1993")
     kv_narrow("NATIONALITY:", "Korea")
-    kv_narrow("AFFILIATION:", "Korea Institute of Machinery and Materials (KIMM),\nHeat Pump Research Center")
-    kv_narrow("POSITION:", "Senior Researcher")
-    kv_narrow("CONTACT:", "Heat Pump Research Center")
+    kv_narrow("AFFILIATION:", f"{affiliation_name},\n{department}")
+    kv_narrow("POSITION:", work["position"])
+    kv_narrow("CONTACT:", department)
     pdf.set_font("Times", size=10)
     pdf.set_x(pdf.l_margin + 38)
-    pdf.multi_cell(text_col_w - 38, 5,
-                   "Korea Institute of Machinery and Materials (KIMM)\n"
-                   "156 Gajeongbuk-ro, Yuseong-gu, Daejeon 34103, Korea\n"
-                   "(TEL) +82-42-868-7619\n"
-                   "(E-MAIL) wookyoung@kimm.re.kr",
-                   new_x=XPos.LMARGIN, new_y=YPos.NEXT)
+    pdf.multi_cell(
+        text_col_w - 38,
+        5,
+        f"{affiliation_name}\n"
+        f"{address_line}\n"
+        f"(TEL) {basics['phone']}\n"
+        f"(E-MAIL) {basics['email']}",
+        new_x=XPos.LMARGIN,
+        new_y=YPos.NEXT,
+    )
 
     # Insert photo
     if os.path.exists(PHOTO_PATH):
@@ -161,15 +185,49 @@ def build_cv():
     pdf.line(pdf.l_margin, pdf.get_y(), pdf.l_margin + sum(col_w), pdf.get_y())
     pdf.ln(1)
 
-    rows = [
-        ("B.S.", "KAIST", "Department of Mechanical Engineering", "February, 2015", None, None),
-        ("M.S.", "KAIST", "Department of Mechanical Engineering", "February, 2017",
-         "\"Effect of artificial cavities on the thermal performance of pulsating heat pipes\"",
-         "Sung Jin Kim"),
-        ("Ph.D.", "KAIST", "Department of Mechanical Engineering", "February, 2021",
-         "\"Study on a Thermal Network-based Model for Predicting the Thermal Resistance of Pulsating Heat Pipes\"",
-         "Sung Jin Kim"),
-    ]
+    def parse_education_entry(edu):
+        """Parse a resume.json education entry into CV row format."""
+        deg = edu["studyType"]
+        # Use short institution name: take first word group before parenthesis
+        institution_full = edu["institution"]
+        univ = institution_full.split("(")[0].strip()
+        dept = f"Department of {edu['area']}"
+        # Format end date as "Month, YYYY"
+        end_date = edu.get("endDate", "")
+        if end_date:
+            parts = end_date.split("-")
+            year = parts[0]
+            month_num = int(parts[1]) if len(parts) > 1 else 0
+            month_names = {
+                2: "February", 5: "May", 8: "August", 11: "November",
+                1: "January", 3: "March", 4: "April", 6: "June",
+                7: "July", 9: "September", 10: "October", 12: "December",
+            }
+            month_str = month_names.get(month_num, "")
+            date_str = f"{month_str}, {year}" if month_str else year
+        else:
+            date_str = ""
+
+        # Parse thesis/dissertation and advisor from courses
+        thesis = None
+        advisor = None
+        for course in edu.get("courses", []):
+            if course.startswith("Dissertation:"):
+                thesis_text = course[len("Dissertation:"):].strip()
+                thesis = f'"{thesis_text}"'
+            elif course.startswith("Thesis:"):
+                thesis_text = course[len("Thesis:"):].strip()
+                thesis = f'"{thesis_text}"'
+            elif course.startswith("Advisor:"):
+                advisor_text = course[len("Advisor:"):].strip()
+                # Strip "Prof. " prefix if present
+                advisor = advisor_text.replace("Prof. ", "")
+
+        return (deg, univ, dept, date_str, thesis, advisor)
+
+    # JSON order is Ph.D., M.S., B.S. — reverse for chronological display (B.S. first)
+    edu_entries = list(reversed(data["education"]))
+    rows = [parse_education_entry(e) for e in edu_entries]
 
     thesis_labels = {"M.S.": "Thesis:", "Ph.D.": "Dissertation:"}
 
@@ -204,6 +262,7 @@ def build_cv():
             pdf.set_left_margin(original_l_margin)
 
     # ============================================================ RESEARCH INTERESTS
+    # NOTE: Research interests are hardcoded for formatting. Keep in sync with assets/json/resume.json["interests"]
     pdf.section_title("RESEARCH INTERESTS")
     interests = [
         "(1) Data center cooling (immersion cooling, direct liquid cooling, jet-impingement cooling)",
@@ -221,6 +280,7 @@ def build_cv():
     pdf.ln(1)
 
     # ============================================================ PUBLICATIONS
+    # NOTE: Publications are hardcoded for precise citation formatting. Keep in sync with assets/json/resume.json["publications"]
     pdf.section_title("PUBLICATIONS")
 
     def pub_subsection(title):
@@ -393,93 +453,75 @@ def build_cv():
         pdf.ln(1)
 
     # ============================================================ PATENTS
+    # Filter certificates from resume.json by issuer
+    patents = [c for c in data["certificates"] if c["issuer"] == "Korean Intellectual Property Office"]
+
     pdf.section_title("PATENTS")
     pdf.set_font("Times", style="I", size=10)
-    pdf.cell(0, 5, "Domestic Patents (17)", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
+    pdf.cell(0, 5, f"Domestic Patents ({len(patents)})", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
     pdf.ln(1)
 
-    patents = [
-        ("Heat exchanger with anti-freezing capability (1)", "2023.03.27"),
-        ("Heat exchanger with anti-freezing capability (2)", "2023.03.27"),
-        ("Modular fin-tube reactor", "2024.11.04"),
-        ("Fin-tube type reactor", "2024.11.04"),
-        ("Tray structure for heat exchanger", "2022.10.13"),
-        ("Oil recovery system for refrigeration systems (1)", "2022.10.13"),
-        ("Oil recovery system for refrigeration systems (2)", "2022.10.13"),
-        ("Micro-channel reactor", "2023.04.19"),
-        ("Immersion cooling device", "2024.10.25"),
-        ("Geothermal heat supply device and heating system", "2023.10.17"),
-        ("Heat exchanger thermal performance testing apparatus", "2023.06.16"),
-        ("Ternary refrigerant composition and heat pump system", "2022.10.24"),
-        ("Display device", "2023.10.20"),
-        ("Duct assembly and combustor", "2022.03.30"),
-        ("Immersion cooling HVAC system and method", "2022.12.22"),
-        ("Heat pipe integrated reactor for adsorption heat pump", "2022.04.06"),
-        ("Adsorption heat pump evaporator and system", "2023.03.31"),
-    ]
-    for i, (name, date) in enumerate(patents, 1):
+    for i, cert in enumerate(patents, 1):
+        # Convert date from YYYY-MM-DD to YYYY.MM.DD
+        date_str = cert["date"].replace("-", ".")
         pdf.set_font("Times", size=10)
         pdf.set_x(pdf.l_margin)
         prefix = f"({i}) "
         indent_mm = 8
         pdf.cell(indent_mm, 5, prefix)
         pdf.set_x(pdf.l_margin + indent_mm)
-        pdf.write(5, name)
+        pdf.write(5, cert["name"])
         pdf.set_font("Times", style="B", size=10)
-        pdf.write(5, f"  [{date}]")
+        pdf.write(5, f"  [{date_str}]")
         pdf.ln()
         pdf.ln(1)
 
     # ============================================================ SOFTWARE REGISTRATIONS
+    # Filter certificates from resume.json by issuer
+    software_certs = [c for c in data["certificates"] if c["issuer"] == "Korea Copyright Commission"]
+
     pdf.section_title("SOFTWARE REGISTRATIONS")
-    software = [
-        ("PCHE thickness design program", "C-2024-052179", "2024.12.11"),
-        ("High-temperature heat pump cycle design program", "C-2024-038691", "2024.10.22"),
-        ("Heat exchanger HTC uncertainty analysis program", "C-2023-059071", "2023.12.12"),
-        ("Lab-scale heat exchanger analysis program", "C-2023-056463", "2023.11.30"),
-        ("100 kg/hr hydrogen PCHE design program", "C-2025-056891", "2025.12.11"),
-        ("Adsorption cooling simulation program", "C-2025-034652", "2025.09.03"),
-        ("Vapor chamber performance analysis program", "C-2024-041200", "2024.11.04"),
-        ("Fin-tube heat exchanger design program", "C-2024-038692", "2024.10.22"),
-    ]
-    for i, (name, reg_num, date) in enumerate(software, 1):
+    for i, cert in enumerate(software_certs, 1):
+        # Parse name format: "Program name (C-XXXX-XXXXXX)"
+        match = re.match(r'^(.*?)\s*\((C-\d+-\d+)\)$', cert["name"])
+        if match:
+            prog_name = match.group(1).strip()
+            reg_num = match.group(2)
+        else:
+            prog_name = cert["name"]
+            reg_num = ""
+        date_str = cert["date"].replace("-", ".")
         pdf.set_font("Times", size=10)
         pdf.set_x(pdf.l_margin)
         prefix = f"({i}) "
         indent_mm = 8
         pdf.cell(indent_mm, 5, prefix)
         pdf.set_x(pdf.l_margin + indent_mm)
-        pdf.write(5, name + " ")
+        pdf.write(5, prog_name + " ")
         pdf.set_font("Times", style="B", size=10)
         pdf.write(5, f"({reg_num})")
         pdf.set_font("Times", size=10)
-        pdf.write(5, f"  [{date}]")
+        pdf.write(5, f"  [{date_str}]")
         pdf.ln()
         pdf.ln(1)
 
     # ============================================================ TECHNOLOGY TRANSFERS
+    transfers = data.get("volunteer", [])
+
     pdf.section_title("TECHNOLOGY TRANSFERS")
-    transfers = [
-        "Heat pipe and vapor chamber structural design for electronics cooling",
-        "Micro-channel bonding and fabrication techniques for heat exchangers",
-        "Low dew-point dehumidifier development technology",
-        "Ultra-thin vapor chamber for next-generation semiconductor cooling",
-        "Compact inverter compressor-based dress care system development",
-    ]
-    for i, text in enumerate(transfers, 1):
+    for i, transfer in enumerate(transfers, 1):
         pdf.set_font("Times", size=10)
         pdf.set_x(pdf.l_margin)
         prefix = f"({i}) "
         indent_mm = 8
         pdf.cell(indent_mm, 5, prefix)
         pdf.set_x(pdf.l_margin + indent_mm)
-        pdf.multi_cell(0, 5, text, new_x=XPos.LMARGIN, new_y=YPos.NEXT)
+        pdf.multi_cell(0, 5, transfer["position"], new_x=XPos.LMARGIN, new_y=YPos.NEXT)
         pdf.ln(1)
 
     pdf.output(OUTPUT_PATH)
     print(f"PDF generated: {OUTPUT_PATH}")
-    import os as _os
-    size = _os.path.getsize(OUTPUT_PATH)
+    size = os.path.getsize(OUTPUT_PATH)
     print(f"File size: {size:,} bytes ({size/1024:.1f} KB)")
 
 
