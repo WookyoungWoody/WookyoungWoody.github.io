@@ -32,7 +32,7 @@
       "summary": "Heat Pump Research Center, Department of Thermal Energy Solutions, Innovative Energy Machinery Research Division",
       "highlights": [
         "PI: Jet-enhanced immersion cooling for next-gen data center cooling",
-        "PI: Thermophysical property iOS/Android app development",
+        "PI: KIMMPROP - Thermophysical property iOS/Android app development",
         "Lead: PCHE design & testing for liquid hydrogen vaporizers (down to -220°C, 100 MPa)",
         "Lead: Immersion cooling waste heat utilization and thermal management",
         "19 journal papers (11 SCI + 8 KCI), 17 domestic patents, 8 registered software programs, 5 technology transfers"
@@ -168,37 +168,37 @@
       "name": "Jet-Enhanced Immersion Cooling for Data Centers",
       "summary": "Development of high-efficiency jet-impingement immersion cooling technology for next-generation high-heat-density data center servers (PI)",
       "startDate": "2025",
-      "endDate": ""
+      "endDate": "2025"
     },
     {
-      "name": "Thermophysical Property App",
+      "name": "KIMMPROP - Thermophysical Property iOS/Android App",
       "summary": "Cross-platform iOS/Android app for thermal-fluid property calculations using CoolProp/REFPROP via WASM (PI)",
       "startDate": "2025",
-      "endDate": ""
+      "endDate": "2025"
     },
     {
       "name": "PCHE for Liquid Hydrogen Supply System",
-      "summary": "Core material development for liquid hydrogen supply system — PCHE performance testing and design (Lead)",
+      "summary": "Core material development for liquid hydrogen supply system - PCHE performance testing and design (Lead)",
       "startDate": "2021",
-      "endDate": "2025"
+      "endDate": "2026"
     },
     {
       "name": "Compact PCHE Design for Liquid Hydrogen",
       "summary": "Compact heat exchanger (PCHE) design technology for liquid hydrogen below -200°C, 100 MPa class (Lead)",
-      "startDate": "2021",
-      "endDate": "2025"
+      "startDate": "2022",
+      "endDate": "2026"
     },
     {
       "name": "Immersion Cooling Waste Heat Utilization",
       "summary": "Immersion cooling waste heat utilization and active thermal management technology (Lead)",
-      "startDate": "2025",
-      "endDate": ""
+      "startDate": "2024",
+      "endDate": "2028"
     },
     {
       "name": "300°C High-Temperature Heat Pump System",
       "summary": "300°C-class high-temperature heat pump system for fossil fuel replacement (Participant)",
-      "startDate": "2025",
-      "endDate": ""
+      "startDate": "2023",
+      "endDate": "2028"
     },
     {
       "name": "Chemisorption Heat Pump with Electrochemical Compressor",
@@ -250,7 +250,7 @@
     },
     {
       "name": "PCHE Freezing Test for Vehicle Heat Exchangers",
-      "summary": "PCHE freezing performance test for automotive heat exchanger applications (Participant)",
+      "summary": "PCHE freezing performance test for automotive heat exchanger applications (PI)",
       "startDate": "2025",
       "endDate": "2025"
     },
@@ -619,6 +619,36 @@
     {
       "name": "",
       "reference": ""
+    }
+  ],
+  "affiliations": [
+    {
+      "organization": "Korean Society of Mechanical Engineers (KSME)",
+      "position": "Council Member",
+      "startDate": "2026-04",
+      "endDate": "",
+      "summary": ""
+    },
+    {
+      "organization": "SAREK Data Center Technology Committee",
+      "position": "Committee Member - Thermal Management / Cooling",
+      "startDate": "2026-03",
+      "endDate": "",
+      "summary": ""
+    },
+    {
+      "organization": "Society of Air-Conditioning and Refrigerating Engineers of Korea (SAREK)",
+      "position": "Regular Member",
+      "startDate": "2022-04",
+      "endDate": "",
+      "summary": ""
+    },
+    {
+      "organization": "Korean Society of Mechanical Engineers (KSME)",
+      "position": "Regular Member",
+      "startDate": "2021-05",
+      "endDate": "",
+      "summary": ""
     }
   ]
 }

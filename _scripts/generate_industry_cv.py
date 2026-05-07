@@ -100,7 +100,7 @@ def build_pdf():
 
     pdf = IndustryCVPDF(orientation="P", unit="mm", format="A4")
     pdf.set_margins(18, 12, 18)
-    pdf.set_auto_page_break(auto=True, margin=10)
+    pdf.set_auto_page_break(auto=True, margin=5)
     pdf.add_page()
 
     cw = pdf.w - pdf.l_margin - pdf.r_margin  # ~174mm
@@ -369,6 +369,38 @@ def build_pdf():
         pdf.set_font("Helvetica", "", 7.5)
         pdf.set_text_color(*DARK_GRAY)
         pdf.multi_cell(0, 4.5, val)
+
+    # --------------------------------------------------------- PROFESSIONAL ACTIVITIES
+    affiliations = data.get("affiliations", [])
+    if affiliations:
+        pdf.section_header("PROFESSIONAL ACTIVITIES")
+
+        def _aff_period(start, end):
+            if not start and not end:
+                return ""
+            if start and not end:
+                return f"{start.replace('-', '.')} - Present"
+            return f"{start.replace('-', '.')} - {end.replace('-', '.')}"
+
+        for aff in affiliations:
+            org = aff.get("organization", "")
+            position = aff.get("position", "")
+            period = _aff_period(aff.get("startDate", ""), aff.get("endDate", ""))
+
+            pdf.set_x(pdf.l_margin)
+            pdf.set_font("Helvetica", "", 7.5)
+            pdf.set_text_color(*DARK_GRAY)
+            pdf.cell(3.5, 4, chr(149), ln=False)
+            pdf.set_font("Helvetica", "B", 7.5)
+            pdf.set_text_color(*BLACK)
+            pos_w = pdf.get_string_width(position)
+            pdf.cell(pos_w, 4, position, ln=False)
+            pdf.set_font("Helvetica", "", 7.5)
+            pdf.set_text_color(*DARK_GRAY)
+            tail = f", {org}"
+            if period:
+                tail += f"  [{period}]"
+            pdf.multi_cell(0, 4, tail)
 
     pdf.output(OUTPUT)
     print(f"Generated: {OUTPUT}")
