@@ -519,6 +519,79 @@ def build_cv():
         pdf.multi_cell(0, 5, transfer["position"], new_x=XPos.LMARGIN, new_y=YPos.NEXT)
         pdf.ln(1)
 
+    # ============================================================ RESEARCH PROJECTS
+    projects = data.get("projects", [])
+
+    def _project_period(start, end):
+        if not start and not end:
+            return ""
+        if start and not end:
+            return f"{start}-Present"
+        if start == end:
+            return start
+        return f"{start}-{end}"
+
+    def _split_role(summary):
+        """Strip trailing '(PI)/(Lead)/(Participant)' from summary; return (clean_summary, role)."""
+        m = re.search(r"\s*\((PI|Lead|Participant)\)\s*$", summary)
+        if m:
+            return summary[: m.start()].rstrip(), m.group(1)
+        return summary, ""
+
+    if projects:
+        pdf.section_title("RESEARCH PROJECTS")
+        for i, proj in enumerate(projects, 1):
+            name = proj.get("name", "")
+            summary = proj.get("summary", "")
+            period = _project_period(proj.get("startDate", ""), proj.get("endDate", ""))
+            _, role = _split_role(summary)
+
+            indent_mm = 8
+            pdf.set_x(pdf.l_margin)
+            pdf.set_font("Times", size=10)
+            pdf.cell(indent_mm, 5, f"({i}) ")
+            pdf.set_x(pdf.l_margin + indent_mm)
+            # Title in bold
+            pdf.set_font("Times", style="B", size=10)
+            pdf.write(5, name)
+            # Role in regular
+            pdf.set_font("Times", size=10)
+            if role:
+                pdf.write(5, f"  ({role})")
+            if period:
+                pdf.write(5, f"  [{period}]")
+            pdf.ln(6)
+
+    # ============================================================ PROFESSIONAL ACTIVITIES
+    affiliations = data.get("affiliations", [])
+
+    def _aff_period(start, end):
+        if not start and not end:
+            return ""
+        if start and not end:
+            return f"{start.replace('-', '.')}-Present"
+        return f"{start.replace('-', '.')}-{end.replace('-', '.')}"
+
+    if affiliations:
+        pdf.section_title("PROFESSIONAL ACTIVITIES")
+        for i, aff in enumerate(affiliations, 1):
+            org = aff.get("organization", "")
+            position = aff.get("position", "")
+            period = _aff_period(aff.get("startDate", ""), aff.get("endDate", ""))
+
+            indent_mm = 8
+            pdf.set_x(pdf.l_margin)
+            pdf.set_font("Times", size=10)
+            pdf.cell(indent_mm, 5, f"({i}) ")
+            pdf.set_x(pdf.l_margin + indent_mm)
+            pdf.set_font("Times", style="B", size=10)
+            pdf.write(5, position)
+            pdf.set_font("Times", size=10)
+            pdf.write(5, f", {org}")
+            if period:
+                pdf.write(5, f"  [{period}]")
+            pdf.ln(6)
+
     pdf.output(OUTPUT_PATH)
     print(f"PDF generated: {OUTPUT_PATH}")
     size = os.path.getsize(OUTPUT_PATH)
