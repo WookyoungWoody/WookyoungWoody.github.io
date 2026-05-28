@@ -30,14 +30,21 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/repositories/";
           },
-        },{id: "nav-cv",
-          title: "CV",
-          description: "Curriculum Vitae of Wookyoung Kim, Ph.D. — Senior Researcher at KIMM.",
-          section: "Navigation",
-          handler: () => {
-            window.location.href = "/cv/";
-          },
-        },{id: "news-welcome-to-my-academic-portfolio-this-site-showcases-my-research-in-thermal-fluid-engineering-at-kimm",
+        },{id: "dropdown-classic-view",
+              title: "Classic view",
+              description: "",
+              section: "Dropdown",
+              handler: () => {
+                window.location.href = "/cv/";
+              },
+            },{id: "dropdown-paper-view-kami",
+              title: "Paper view (Kami)",
+              description: "",
+              section: "Dropdown",
+              handler: () => {
+                window.location.href = "/cv/html/";
+              },
+            },{id: "news-welcome-to-my-academic-portfolio-this-site-showcases-my-research-in-thermal-fluid-engineering-at-kimm",
           title: 'Welcome to my academic portfolio! This site showcases my research in thermal-fluid engineering...',
           description: "",
           section: "News",},{id: "projects-data-center-cooling",
