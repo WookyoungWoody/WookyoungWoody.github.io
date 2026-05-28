@@ -1,0 +1,922 @@
+{% comment %}
+  Kami-style CV body — style block + .cv-kami markup.
+  Reads site.data.resume (JSONResume). Used by both _layouts/cv_kami.liquid
+  (al-folio chrome) and _layouts/cv_kami_standalone.liquid (standalone HTML doc).
+{% endcomment %}
+
+{% assign r = site.data.resume %}
+{% assign basics = r.basics %}
+
+<style>
+  .cv-kami {
+    --kami-parchment: #f5f4ed;
+    --kami-ivory: #faf9f5;
+    --kami-sand: #e8e6dc;
+    --kami-border: #e8e6dc;
+    --kami-border-soft: #e5e3d8;
+    --kami-near-black: #141413;
+    --kami-dark-warm: #3d3d3a;
+    --kami-olive: #504e49;
+    --kami-stone: #6b6a64;
+    --kami-brand: #1b365d;
+    --kami-brand-light: #2d5a8a;
+    --kami-brand-tint: #eef2f7;
+    --kami-brand-tint-strong: #e4ecf5;
+    --kami-serif: charter, georgia, palatino, 'Times New Roman', serif;
+    --kami-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', consolas, monaco, monospace;
+
+    background: var(--kami-parchment);
+    color: var(--kami-near-black);
+    font-family: var(--kami-serif);
+    font-size: 10pt;
+    line-height: 1.45;
+    letter-spacing: 0;
+    max-width: 210mm;
+    margin: 0 auto 3rem;
+    padding: 14mm 16mm 18mm;
+    border: 1px solid var(--kami-border-soft);
+    border-radius: 4px;
+    box-shadow: 0 2px 18px rgba(20, 19, 19, 0.06);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .cv-kami * {
+    box-sizing: border-box;
+  }
+  .cv-kami a {
+    color: var(--kami-brand);
+    text-decoration: none;
+  }
+  .cv-kami a:hover {
+    text-decoration: underline;
+  }
+
+  /* HEADER */
+  .cv-kami .k-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 6mm;
+    margin-bottom: 5mm;
+    border-left: 2.5pt solid var(--kami-brand);
+    border-radius: 1.5pt;
+    padding-left: 8pt;
+    flex-wrap: wrap;
+  }
+  .cv-kami .k-name {
+    font-family: var(--kami-serif);
+    font-size: 26pt;
+    font-weight: 500;
+    letter-spacing: -0.2pt;
+    color: var(--kami-near-black);
+    line-height: 1;
+    display: flex;
+    align-items: baseline;
+    gap: 3mm;
+  }
+  .cv-kami .k-name .alias {
+    font-size: 12.5pt;
+    font-weight: 400;
+    color: var(--kami-stone);
+  }
+  .cv-kami .k-contact {
+    text-align: right;
+    font-size: 9pt;
+    color: var(--kami-stone);
+    line-height: 1.55;
+  }
+  .cv-kami .k-contact .role {
+    color: var(--kami-brand);
+    font-size: 10.5pt;
+    font-weight: 500;
+  }
+  .cv-kami .k-contact .sep {
+    color: var(--kami-border);
+    margin: 0 0.4em;
+  }
+  .cv-kami .k-contact a {
+    color: var(--kami-dark-warm);
+  }
+  .cv-kami .k-contact .loc {
+    color: var(--kami-olive);
+    font-weight: 500;
+  }
+  .cv-kami .k-pdf {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 4px;
+    font-size: 9pt;
+    color: var(--kami-brand);
+  }
+  .cv-kami .k-pdf:hover {
+    text-decoration: underline;
+  }
+
+  /* METRICS */
+  .cv-kami .k-metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 7mm;
+    margin: 2mm 0 5mm;
+    padding: 3mm 0;
+    border-top: 0.4pt solid var(--kami-border);
+    border-bottom: 0.4pt solid var(--kami-border);
+  }
+  .cv-kami .k-metric {
+    display: flex;
+    align-items: baseline;
+    gap: 2mm;
+  }
+  .cv-kami .k-metric .v {
+    font-family: var(--kami-serif);
+    font-size: 16pt;
+    font-weight: 500;
+    color: var(--kami-brand);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .cv-kami .k-metric .v .u {
+    font-size: 10.5pt;
+    margin-left: 0.5mm;
+    color: var(--kami-brand);
+  }
+  .cv-kami .k-metric .l {
+    font-size: 9pt;
+    color: var(--kami-olive);
+    line-height: 1.25;
+  }
+
+  /* SECTION */
+  .cv-kami .k-section {
+    margin-top: 6mm;
+  }
+  .cv-kami .k-section:first-of-type {
+    margin-top: 0;
+  }
+  .cv-kami .k-section-title {
+    font-family: var(--kami-serif);
+    font-size: 13pt;
+    font-weight: 500;
+    color: var(--kami-near-black);
+    border-left: 2.5pt solid var(--kami-brand);
+    border-radius: 1.5pt;
+    padding: 0 0 0 8pt;
+    margin: 0 0 3mm;
+    display: flex;
+    align-items: baseline;
+    gap: 2.5mm;
+  }
+  .cv-kami .k-section-title .sub {
+    margin-left: auto;
+    font-weight: 400;
+    font-size: 9pt;
+    color: var(--kami-stone);
+    letter-spacing: 0.2pt;
+  }
+
+  /* SUMMARY */
+  .cv-kami .k-summary {
+    font-size: 10pt;
+    line-height: 1.5;
+    color: var(--kami-near-black);
+  }
+  .cv-kami .hl {
+    color: var(--kami-brand);
+  }
+
+  /* EDUCATION */
+  .cv-kami .k-edu {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 4mm;
+    padding: 1.8mm 0;
+    border-bottom: 0.3pt dotted var(--kami-border);
+  }
+  .cv-kami .k-edu:last-child {
+    border-bottom: none;
+  }
+  .cv-kami .k-edu .school {
+    font-family: var(--kami-serif);
+    font-weight: 500;
+    font-size: 11pt;
+    color: var(--kami-near-black);
+  }
+  .cv-kami .k-edu .degree {
+    color: var(--kami-brand);
+    font-weight: 500;
+  }
+  .cv-kami .k-edu .area {
+    color: var(--kami-olive);
+    font-size: 9.5pt;
+  }
+  .cv-kami .k-edu .date {
+    color: var(--kami-stone);
+    font-variant-numeric: tabular-nums;
+    font-size: 9pt;
+    white-space: nowrap;
+  }
+  .cv-kami .k-edu-notes {
+    font-size: 9pt;
+    color: var(--kami-olive);
+    margin: 1mm 0 0;
+    padding-left: 0;
+    list-style: none;
+    line-height: 1.45;
+  }
+  .cv-kami .k-edu-notes li::before {
+    content: '·';
+    color: var(--kami-brand);
+    margin-right: 4px;
+  }
+
+  /* EXPERIENCE / PROJECT */
+  .cv-kami .k-project {
+    padding: 2mm 0;
+    border-top: 0.4pt solid var(--kami-border-soft);
+  }
+  .cv-kami .k-project:first-of-type {
+    border-top: 0.4pt solid var(--kami-border);
+  }
+  .cv-kami .k-proj-head {
+    display: flex;
+    align-items: baseline;
+    gap: 2mm;
+    margin-bottom: 1mm;
+    flex-wrap: wrap;
+  }
+  .cv-kami .k-proj-name {
+    font-family: var(--kami-serif);
+    font-size: 11pt;
+    font-weight: 500;
+    color: var(--kami-near-black);
+  }
+  .cv-kami .k-proj-kind {
+    font-size: 10pt;
+    color: var(--kami-olive);
+  }
+  .cv-kami .k-proj-role {
+    font-size: 9pt;
+    color: var(--kami-brand);
+    font-weight: 500;
+    margin-left: auto;
+    background: var(--kami-brand-tint);
+    padding: 0.4mm 1.8mm;
+    border-radius: 2pt;
+    letter-spacing: 0.3pt;
+    text-transform: uppercase;
+  }
+  .cv-kami .k-proj-date {
+    font-size: 9pt;
+    color: var(--kami-stone);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .cv-kami .k-proj-sum {
+    font-size: 9.5pt;
+    line-height: 1.5;
+    color: var(--kami-dark-warm);
+    margin: 0 0 1mm;
+  }
+  .cv-kami .k-proj-highlights {
+    list-style: none;
+    margin: 1mm 0 0;
+    padding: 0;
+    font-size: 9.5pt;
+    color: var(--kami-near-black);
+    line-height: 1.5;
+  }
+  .cv-kami .k-proj-highlights li {
+    position: relative;
+    padding-left: 12px;
+    margin-bottom: 1mm;
+  }
+  .cv-kami .k-proj-highlights li::before {
+    content: '–';
+    position: absolute;
+    left: 0;
+    color: var(--kami-brand);
+  }
+
+  /* PUBLICATIONS */
+  .cv-kami .k-pub {
+    display: grid;
+    grid-template-columns: 38px 1fr;
+    gap: 6mm;
+    padding: 1.8mm 0;
+    border-bottom: 0.3pt dotted var(--kami-border);
+  }
+  .cv-kami .k-pub:last-child {
+    border-bottom: none;
+  }
+  .cv-kami .k-pub-year {
+    font-family: var(--kami-serif);
+    font-size: 11pt;
+    font-weight: 500;
+    color: var(--kami-brand);
+    font-variant-numeric: tabular-nums;
+    line-height: 1.35;
+  }
+  .cv-kami .k-pub-title {
+    font-size: 9.5pt;
+    color: var(--kami-near-black);
+    font-weight: 500;
+    line-height: 1.4;
+  }
+  .cv-kami .k-pub-title a {
+    color: var(--kami-near-black);
+  }
+  .cv-kami .k-pub-title a:hover {
+    color: var(--kami-brand);
+  }
+  .cv-kami .k-pub-venue {
+    font-size: 9pt;
+    color: var(--kami-olive);
+    font-style: italic;
+    margin-top: 0.5mm;
+  }
+  .cv-kami .k-pub-authors {
+    font-size: 8.8pt;
+    color: var(--kami-stone);
+    margin-top: 0.5mm;
+    line-height: 1.4;
+  }
+
+  /* SKILLS */
+  .cv-kami .k-skill {
+    display: grid;
+    grid-template-columns: 38mm 1fr;
+    gap: 4mm;
+    padding: 2mm 0;
+    border-bottom: 0.3pt dotted var(--kami-border);
+    align-items: baseline;
+  }
+  .cv-kami .k-skill:last-child {
+    border-bottom: none;
+  }
+  .cv-kami .k-skill-label {
+    font-size: 9pt;
+    font-weight: 500;
+    color: var(--kami-brand);
+    letter-spacing: 0.5pt;
+    text-transform: uppercase;
+    line-height: 1.35;
+  }
+  .cv-kami .k-skill-body {
+    font-size: 9.5pt;
+    color: var(--kami-near-black);
+    line-height: 1.5;
+  }
+
+  /* INTERESTS */
+  .cv-kami .k-interests {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 3mm 6mm;
+  }
+  .cv-kami .k-interest {
+    padding: 1.5mm 0;
+    border-bottom: 0.3pt dotted var(--kami-border);
+  }
+  .cv-kami .k-interest .name {
+    font-family: var(--kami-serif);
+    font-size: 10pt;
+    font-weight: 500;
+    color: var(--kami-near-black);
+  }
+  .cv-kami .k-interest .kw {
+    font-size: 9pt;
+    color: var(--kami-olive);
+    margin-top: 0.5mm;
+    line-height: 1.4;
+  }
+
+  /* CERTIFICATES (Patents / Software) */
+  .cv-kami .k-cert-group {
+    margin-bottom: 3mm;
+  }
+  .cv-kami .k-cert-group-title {
+    font-family: var(--kami-serif);
+    font-size: 10pt;
+    font-weight: 500;
+    color: var(--kami-near-black);
+    margin: 2mm 0 1mm;
+    padding-bottom: 0.5mm;
+    border-bottom: 0.3pt dotted var(--kami-border);
+    display: flex;
+    align-items: baseline;
+    gap: 2mm;
+  }
+  .cv-kami .k-cert-group-title .count {
+    font-family: var(--kami-mono);
+    font-size: 9pt;
+    color: var(--kami-stone);
+    font-weight: 400;
+  }
+  .cv-kami .k-cert {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 4mm;
+    padding: 1.2mm 0;
+    border-bottom: 0.3pt dotted var(--kami-border-soft);
+    font-size: 9pt;
+    line-height: 1.4;
+  }
+  .cv-kami .k-cert:last-child {
+    border-bottom: none;
+  }
+  .cv-kami .k-cert .date {
+    color: var(--kami-brand);
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+  }
+  .cv-kami .k-cert .title {
+    color: var(--kami-near-black);
+  }
+
+  /* AFFILIATIONS */
+  .cv-kami .k-affil {
+    display: flex;
+    justify-content: space-between;
+    gap: 4mm;
+    padding: 1.5mm 0;
+    border-bottom: 0.3pt dotted var(--kami-border);
+    font-size: 9.5pt;
+    line-height: 1.45;
+  }
+  .cv-kami .k-affil:last-child {
+    border-bottom: none;
+  }
+  .cv-kami .k-affil .role {
+    color: var(--kami-brand);
+    font-weight: 500;
+  }
+  .cv-kami .k-affil .org {
+    color: var(--kami-olive);
+  }
+  .cv-kami .k-affil .date {
+    color: var(--kami-stone);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  .cv-kami .k-footer {
+    margin-top: 8mm;
+    padding-top: 3mm;
+    border-top: 0.4pt solid var(--kami-border-soft);
+    font-size: 8.5pt;
+    color: var(--kami-stone);
+    display: flex;
+    justify-content: space-between;
+    gap: 4mm;
+  }
+  .cv-kami .k-footer .mark {
+    color: var(--kami-brand);
+    font-weight: 500;
+  }
+
+  /* PRINT */
+  @media print {
+    .cv-kami {
+      box-shadow: none;
+      border: none;
+      max-width: 100%;
+      margin: 0;
+      padding: 11mm 13mm;
+      font-size: 9.4pt;
+    }
+    .cv-kami .k-project,
+    .cv-kami .k-edu,
+    .cv-kami .k-pub,
+    .cv-kami .k-skill,
+    .cv-kami .k-cert {
+      break-inside: avoid;
+    }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 720px) {
+    .cv-kami {
+      padding: 8mm 6mm 10mm;
+      font-size: 10pt;
+    }
+    .cv-kami .k-name {
+      font-size: 22pt;
+    }
+    .cv-kami .k-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .cv-kami .k-contact {
+      text-align: left;
+    }
+    .cv-kami .k-metrics {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 4mm 5mm;
+    }
+    .cv-kami .k-skill {
+      grid-template-columns: 1fr;
+      gap: 1mm;
+    }
+    .cv-kami .k-pub {
+      grid-template-columns: 32px 1fr;
+      gap: 4mm;
+    }
+    .cv-kami .k-cert {
+      grid-template-columns: 50px 1fr;
+    }
+  }
+</style>
+
+<div class="cv-kami">
+  <!-- HEADER -->
+  <div class="k-header">
+    <div>
+      <div class="k-name">
+        {{ basics.name }}
+      </div>
+      {% if page.cv_pdf %}
+        <a class="k-pdf" href="{{ page.cv_pdf | relative_url }}" target="_blank" rel="noopener noreferrer">
+          <i class="fa-solid fa-file-pdf"></i> Download PDF
+        </a>
+      {% endif %}
+    </div>
+    <div class="k-contact">
+      <span class="role">{{ basics.label }}</span><br>
+      {% if basics.email %}
+        <a href="mailto:{{ basics.email }}">{{ basics.email }}</a>
+      {% endif %}
+      {% if basics.phone %}
+        <span class="sep">·</span>{{ basics.phone }}
+      {% endif %}
+      <br>
+      {% for p in basics.profiles %}
+        <a href="{{ p.url }}" target="_blank" rel="noopener">{{ p.network }}/{{ p.username }}</a>
+        {% unless forloop.last -%}
+          <span class="sep">·</span>
+        {%- endunless %}
+      {% endfor %}
+      {% if basics.location %}
+        <br>
+        <span class="loc">
+          {% if basics.location.city %}{{ basics.location.city }}{% endif %}
+          {% if basics.location.countryCode %}, {{ basics.location.countryCode }}{% endif %}
+        </span>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- METRICS -->
+  <div class="k-metrics">
+    <div class="k-metric">
+      <span class="v">19<span class="u">papers</span></span>
+      <span class="l">SCI + KCI peer-reviewed</span>
+    </div>
+    <div class="k-metric">
+      <span class="v">17<span class="u">patents</span></span>
+      <span class="l">domestic, registered</span>
+    </div>
+    <div class="k-metric">
+      <span class="v">8<span class="u">programs</span></span>
+      <span class="l">registered software</span>
+    </div>
+    <div class="k-metric">
+      <span class="v">5<span class="u">transfers</span></span>
+      <span class="l">technology transfers</span>
+    </div>
+  </div>
+
+  <!-- SUMMARY -->
+  {% if basics.summary %}
+    <section class="k-section">
+      <div class="k-section-title">Summary</div>
+      <div class="k-summary">{{ basics.summary }}</div>
+    </section>
+  {% endif %}
+
+  <!-- EDUCATION -->
+  {% if r.education and r.education.size > 0 %}
+    <section class="k-section">
+      <div class="k-section-title">Education</div>
+      {% for e in r.education %}
+        <div>
+          <div class="k-edu">
+            <div>
+              <span class="degree">{{ e.studyType }}</span>
+              <span>·</span>
+              <span class="school">{{ e.institution }}</span>
+              <span class="area">· {{ e.area }}</span>
+            </div>
+            <div class="date">{{ e.startDate | split: '-' | first }} – {{ e.endDate | split: '-' | first | default: 'Present' }}</div>
+          </div>
+          {% if e.courses and e.courses.size > 0 %}
+            <ul class="k-edu-notes">
+              {% for c in e.courses %}
+                <li>{{ c }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </section>
+  {% endif %}
+
+  <!-- EXPERIENCE -->
+  {% if r.work and r.work.size > 0 %}
+    <section class="k-section">
+      <div class="k-section-title">
+        Experience
+        <span class="sub">
+          {% assign first_work = r.work | first %}
+          {{ first_work.startDate | split: '-' | first }} – Present
+        </span>
+      </div>
+      {% for w in r.work %}
+        <div class="k-project">
+          <div class="k-proj-head">
+            <span class="k-proj-name">{{ w.position }}</span>
+            <span class="k-proj-kind">· {{ w.name }}</span>
+            {% if w.location -%}
+              <span class="k-proj-date">· {{ w.location }}</span>
+            {%- endif %}
+            <span class="k-proj-date" style="margin-left: auto">
+              {{ w.startDate | split: '-' | first }} – {{ w.endDate | split: '-' | first | default: 'Present' }}
+            </span>
+          </div>
+          {% if w.summary %}
+            <p class="k-proj-sum">{{ w.summary }}</p>
+          {% endif %}
+          {% if w.highlights and w.highlights.size > 0 %}
+            <ul class="k-proj-highlights">
+              {% for h in w.highlights %}
+                <li>{{ h }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </section>
+  {% endif %}
+
+  <!-- PUBLICATIONS (split: SCI Journal / KCI Journal / Conference) -->
+  {% if r.publications and r.publications.size > 0 %}
+    {% assign sci_count = 0 %}
+    {% assign kci_count = 0 %}
+    {% assign conf_count = 0 %}
+    {% for p in r.publications %}
+      {% if p.publisher contains 'Proceedings' %}
+        {% assign conf_count = conf_count | plus: 1 %}
+      {% elsif p.publisher contains 'Korean' or p.publisher contains 'Hydrogen and New Energy' %}
+        {% assign kci_count = kci_count | plus: 1 %}
+      {% else %}
+        {% assign sci_count = sci_count | plus: 1 %}
+      {% endif %}
+    {% endfor %}
+
+    <section class="k-section">
+      <div class="k-section-title">
+        Publications
+        <span class="sub">{{ sci_count }} SCI · {{ kci_count }} KCI · {{ conf_count }} Conference</span>
+      </div>
+
+      {% if sci_count > 0 %}
+        <div class="k-cert-group">
+          <div class="k-cert-group-title">
+            SCI / International Journal Articles
+            <span class="count">{{ sci_count }} papers</span>
+          </div>
+          {% for p in r.publications %}
+            {% unless p.publisher contains 'Proceedings' or p.publisher contains 'Korean' or p.publisher contains 'Hydrogen and New Energy' %}
+              <div class="k-pub">
+                <div class="k-pub-year">{{ p.releaseDate | split: '-' | first }}</div>
+                <div>
+                  <div class="k-pub-title">
+                    {% if p.url %}
+                      <a href="{{ p.url }}" target="_blank" rel="noopener">{{ p.name }}</a>
+                    {% else %}
+                      {{ p.name }}
+                    {% endif %}
+                  </div>
+                  {% if p.publisher %}
+                    <div class="k-pub-venue">{{ p.publisher }}</div>
+                  {% endif %}
+                  {% if p.summary %}
+                    <div class="k-pub-authors">{{ p.summary }}</div>
+                  {% endif %}
+                </div>
+              </div>
+            {% endunless %}
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      {% if kci_count > 0 %}
+        <div class="k-cert-group">
+          <div class="k-cert-group-title">
+            KCI / Korean Journal Articles
+            <span class="count">{{ kci_count }} papers</span>
+          </div>
+          {% for p in r.publications %}
+            {% unless p.publisher contains 'Proceedings' %}
+              {% if p.publisher contains 'Korean' or p.publisher contains 'Hydrogen and New Energy' %}
+                <div class="k-pub">
+                  <div class="k-pub-year">{{ p.releaseDate | split: '-' | first }}</div>
+                  <div>
+                    <div class="k-pub-title">
+                      {% if p.url %}
+                        <a href="{{ p.url }}" target="_blank" rel="noopener">{{ p.name }}</a>
+                      {% else %}
+                        {{ p.name }}
+                      {% endif %}
+                    </div>
+                    {% if p.publisher %}
+                      <div class="k-pub-venue">{{ p.publisher }}</div>
+                    {% endif %}
+                    {% if p.summary %}
+                      <div class="k-pub-authors">{{ p.summary }}</div>
+                    {% endif %}
+                  </div>
+                </div>
+              {% endif %}
+            {% endunless %}
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      {% if conf_count > 0 %}
+        <div class="k-cert-group">
+          <div class="k-cert-group-title">
+            Conference Proceedings
+            <span class="count">{{ conf_count }} papers</span>
+          </div>
+          {% for p in r.publications %}
+            {% if p.publisher contains 'Proceedings' %}
+              <div class="k-pub">
+                <div class="k-pub-year">{{ p.releaseDate | split: '-' | first }}</div>
+                <div>
+                  <div class="k-pub-title">
+                    {% if p.url %}
+                      <a href="{{ p.url }}" target="_blank" rel="noopener">{{ p.name }}</a>
+                    {% else %}
+                      {{ p.name }}
+                    {% endif %}
+                  </div>
+                  {% if p.publisher %}
+                    <div class="k-pub-venue">{{ p.publisher }}</div>
+                  {% endif %}
+                  {% if p.summary %}
+                    <div class="k-pub-authors">{{ p.summary }}</div>
+                  {% endif %}
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
+    </section>
+  {% endif %}
+
+  <!-- PROJECTS -->
+  {% if r.projects and r.projects.size > 0 %}
+    <section class="k-section">
+      <div class="k-section-title">
+        Research Projects
+        <span class="sub">{{ r.projects.size }} entries</span>
+      </div>
+      {% for pr in r.projects %}
+        <div class="k-project">
+          <div class="k-proj-head">
+            <span class="k-proj-name">{{ pr.name }}</span>
+            <span class="k-proj-date" style="margin-left: auto">
+              {{ pr.startDate -}}
+              {%- if pr.endDate and pr.endDate != pr.startDate %} – {{ pr.endDate }}{% endif %}
+            </span>
+          </div>
+          {% if pr.summary %}
+            <p class="k-proj-sum">{{ pr.summary }}</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </section>
+  {% endif %}
+
+  <!-- CERTIFICATES (Patents + Software) -->
+  {% if r.certificates and r.certificates.size > 0 %}
+    {% assign patent_count = 0 %}
+    {% assign software_count = 0 %}
+    {% for c in r.certificates %}
+      {% if c.issuer contains 'Copyright' %}
+        {% assign software_count = software_count | plus: 1 %}
+      {% else %}
+        {% assign patent_count = patent_count | plus: 1 %}
+      {% endif %}
+    {% endfor %}
+
+    <section class="k-section">
+      <div class="k-section-title">Patents &amp; Registered Software</div>
+
+      {% if patent_count > 0 %}
+        <div class="k-cert-group">
+          <div class="k-cert-group-title">
+            Patents <span class="count">{{ patent_count }} registered</span>
+          </div>
+          {% for c in r.certificates %}
+            {% unless c.issuer contains 'Copyright' %}
+              <div class="k-cert">
+                <span class="date">{{ c.date | split: '-' | first }}</span>
+                <span class="title">{{ c.name }}</span>
+              </div>
+            {% endunless %}
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      {% if software_count > 0 %}
+        <div class="k-cert-group">
+          <div class="k-cert-group-title">
+            Registered Software <span class="count">{{ software_count }} programs</span>
+          </div>
+          {% for c in r.certificates %}
+            {% if c.issuer contains 'Copyright' %}
+              <div class="k-cert">
+                <span class="date">{{ c.date | split: '-' | first }}</span>
+                <span class="title">{{ c.name }}</span>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
+    </section>
+  {% endif %}
+
+  <!-- SKILLS -->
+  {% if r.skills and r.skills.size > 0 %}
+    <section class="k-section">
+      <div class="k-section-title">Core Skills</div>
+      {% for s in r.skills %}
+        <div class="k-skill">
+          <div class="k-skill-label">{{ s.name }}</div>
+          <div class="k-skill-body">
+            {% for k in s.keywords -%}
+              {{- k -}}
+              {%- unless forloop.last %} · {% endunless -%}
+            {%- endfor %}
+          </div>
+        </div>
+      {% endfor %}
+    </section>
+  {% endif %}
+
+  <!-- INTERESTS -->
+  {% if r.interests and r.interests.size > 0 %}
+    <section class="k-section">
+      <div class="k-section-title">Research Interests</div>
+      <div class="k-interests">
+        {% for i in r.interests %}
+          <div class="k-interest">
+            <div class="name">{{ i.name }}</div>
+            <div class="kw">
+              {% for k in i.keywords -%}
+                {{- k -}}
+                {%- unless forloop.last %} · {% endunless -%}
+              {%- endfor %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+
+  <!-- AFFILIATIONS -->
+  {% if r.affiliations and r.affiliations.size > 0 %}
+    <section class="k-section">
+      <div class="k-section-title">Professional Affiliations</div>
+      {% for a in r.affiliations %}
+        <div class="k-affil">
+          <div>
+            <span class="role">{{ a.position }}</span>
+            <span>·</span>
+            <span class="org">{{ a.organization }}</span>
+          </div>
+          <div class="date">
+            {{ a.startDate -}}
+            {%- if a.endDate and a.endDate != '' %} – {{ a.endDate }}{% else %} – Present{% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </section>
+  {% endif %}
+
+  <!-- FOOTER -->
+  <div class="k-footer">
+    <span>
+      Updated {{ site.time | date: '%Y-%m' -}}
+      {%- if page.show_classic_link %}
+        · <a href="{{ '/cv/' | relative_url }}">Classic CV view</a>
+      {%- endif %}
+    </span>
+  </div>
+</div>

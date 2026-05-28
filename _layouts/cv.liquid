@@ -27,8 +27,19 @@ layout: default
           target="_blank"
           rel="noopener noreferrer"
           class="float-right"
+          title="Download PDF"
         >
           <i class="fa-solid fa-file-pdf"></i>
+        </a>
+      {% endif %}
+      {% if page.cv_html %}
+        <a
+          href="{{ page.cv_html | relative_url }}"
+          class="float-right"
+          style="margin-right: 0.6rem"
+          title="Paper view (Kami)"
+        >
+          <i class="fa-solid fa-file-lines"></i>
         </a>
       {% endif %}
     </h1>
