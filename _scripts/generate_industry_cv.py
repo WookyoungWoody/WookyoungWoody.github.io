@@ -119,19 +119,13 @@ def build_pdf():
         if profile.get("network", "").lower() == "github":
             github_username = profile.get("username", "")
 
-    photo_path = os.path.join(_REPO_ROOT, "assets", "img", "prof_pic.jpg")
-    photo_size = 22
-    photo_x = pdf.w - pdf.r_margin - photo_size
-    photo_y = pdf.t_margin
-
-    text_w = cw - photo_size - 4
     pdf.set_font("Helvetica", "B", 15)
     pdf.set_text_color(*BLACK)
-    pdf.cell(text_w, 7, f"{name}, Ph.D.", ln=True)
+    pdf.cell(0, 7, f"{name}, Ph.D.", ln=True)
 
     pdf.set_font("Helvetica", "", 10)
     pdf.set_text_color(*ACCENT)
-    pdf.cell(text_w, 5, f"{label}  |  Thermal-Fluid Engineering", ln=True)
+    pdf.cell(0, 5, f"{label}  |  Thermal Engineering", ln=True)
 
     pdf.set_font("Helvetica", "", 7.5)
     pdf.set_text_color(*MED_GRAY)
@@ -142,14 +136,12 @@ def build_pdf():
     if location_str:
         contact_parts.append(location_str)
     contact = "  |  ".join(contact_parts)
-    pdf.cell(text_w, 4.5, contact, ln=True)
-
-    pdf.image(photo_path, x=photo_x, y=photo_y, w=photo_size, h=photo_size)
+    pdf.cell(0, 4.5, contact, ln=True)
 
     # Horizontal rule
     pdf.set_draw_color(*ACCENT)
     pdf.set_line_width(0.6)
-    rule_y = max(pdf.get_y(), photo_y + photo_size) + 1
+    rule_y = pdf.get_y() + 1
     pdf.line(pdf.l_margin, rule_y, pdf.w - pdf.r_margin, rule_y)
     pdf.set_y(rule_y + 1)
 
@@ -158,7 +150,7 @@ def build_pdf():
     pdf.set_font("Helvetica", "", 8.5)
     pdf.set_text_color(*DARK_GRAY)
     summary = (
-        "Thermal-fluid engineer with 5+ years of R&D experience at Korea's national research institute (KIMM). "
+        "Thermal engineer with 5+ years of R&D experience at Korea's national research institute (KIMM). "
         "Specialized in thermal management solutions for AI data centers, hydrogen energy systems, and heat pump technology. "
         "Extensive hands-on experience in thermal system design, experimental facility construction, performance testing, and data analysis. "
         "Spearheading development of multiple engineering software tools (Python/FastAPI/React Native). "
