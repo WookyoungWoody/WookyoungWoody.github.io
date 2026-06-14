@@ -553,12 +553,10 @@
         <span class="sep">·</span>{{ basics.phone }}
       {% endif %}
       <br>
-      {% for p in basics.profiles %}
-        <a href="{{ p.url }}" target="_blank" rel="noopener">{{ p.network }}/{{ p.username }}</a>
-        {% unless forloop.last -%}
-          <span class="sep">·</span>
-        {%- endunless %}
-      {% endfor %}
+      {% assign li = basics.profiles | where: "network", "LinkedIn" | first %}
+      {% if li %}
+        <a href="{{ li.url }}" target="_blank" rel="noopener">{{ li.network }}/{{ li.username }}</a>
+      {% endif %}
       {% if basics.location %}
         <br>
         <span class="loc">
