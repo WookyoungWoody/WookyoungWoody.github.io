@@ -331,6 +331,7 @@ def build_cv():
     # SCI/SCIE
     pub_subsection("SCI/SCIE Journal Papers")
     sci_papers = [
+        ('J.S. Kim, W. Kim', ', H.S. Kim, Y. Kim, "Falling film evaporation of ammonia on smooth and Low-Fin tube arrays", ', 'Thermal Science and Engineering Progress', ' 69, 104483 (2026).'),
         ('B. Kim, K.H. Lee, M. Kim, S. Moon, J.W. Yoo, W. Kim', ', "Experimental and theoretical investigation of freezing phenomenon in Printed Circuit Heat Exchanger", ', 'Applied Thermal Engineering', ' 273, 126455 (2025).'),
         ('D.H. Kim, W. Kim', ', J.H. Kim, H.S. Kim, K.H. Lee, "Experimental studies on the VLE of R-32/R-125 and verification of experimental setup", ', 'Journal of Mechanical Science and Technology', ' 38(10), 5779-5785 (2024).'),
         ('H.S. Kim, D.H. Kim, J.S. Kim, W. Kim', ', Y. Kim, "A numerical study on the performance of chemisorption heat pump according to various design conditions", ', 'Applied Thermal Engineering', ' 243, 122519 (2024).'),
@@ -386,6 +387,7 @@ def build_cv():
     # KCI
     pub_subsection("KCI Journal Papers")
     kci_papers = [
+        ('J.S. Kim, D.H. Shin, J. Shim, K.H. Lee, S. Sohn, W. Kim, C. Song', ', "A Study on the Design of an Air-to-Air Plate Heat Exchanger for 300°C High Temperature Heat Pumps", ', 'Korean Journal of Air-Conditioning and Refrigeration Engineering', ' 38(1), 13-25 (2026).'),
         ('W. Kim', ', B. Kim, S. Sohn, K.H. Lee, J. Kim, "Experimental Investigation on the Freezing Condition of PCHE for Cryogenic Liquid Hydrogen Vaporizer", ', 'Journal of Hydrogen and New Energy', ' 35(2), 240-248 (2024).'),
         ('W. Kim', ', H.S. Kim, J. Kim, D.H. Kim, "An Experimental Study on The Thermal Performance Measurement and Flow Visualization of Falling Film Evaporator Using R-1233ZD(E) Refrigerant", ', 'Korean Journal of Air-Conditioning and Refrigeration Engineering', ' 36(1), 9-17 (2024).'),
         ('S. Sohn, W. Kim', ', "A Study on Anti-Icing Design by Conjugate Heat Transfer Analysis in a Lab-Scale PCHE for Supply of Cryogenic High Pressure Liquid Hydrogen", ', 'Transactions of the Korean Hydrogen and New Energy Society', ' 33(5), 541-549 (2022).'),
@@ -438,11 +440,30 @@ def build_cv():
         "2024, \"Experimental and theoretical investigation on avoiding freezing phenomena of PCHE for cryogenic liquid hydrogen vaporizer\", 29th ICEC",
         "2024, \"Understanding the thermal characteristics of falling film evaporation of R-1233ZD(E) refrigerant using flow visualization and heat transfer measurement\", 11th ACRA",
         "2023, \"Experimental investigation on the flow and thermal characteristics of falling film evaporator using R-1233ZD(E) refrigerant\", 11th ICBCHT",
+        "2019, \"Experimental Investigation on the Thermal Performance of PHP Operating in a Circulation/oscillation Mode\", Korea-China-Japan Joint Symposium",
         "2019, \"Comparison of thermal performance between CEPHP and CLPHP\", 4th TFEC",
         "2018, \"Experimental investigation on the thermal performance of double-condenser pulsating heat pipes\", 10th ICBCHT",
+        "2017, \"Experimental Investigation on the Thermal Performance of a Pulsating Heat Pipe with Artificial Cavities\", 1st ACTS",
         "2017, \"Experimental investigation of artificial cavities on the thermal performance of a pulsating heat pipe\", InterPACK 2017",
     ]
     for i, text in enumerate(conf_papers, 1):
+        prefix = f"({i}) "
+        indent_mm = 8
+        pdf.set_font("Times", size=10)
+        pdf.set_x(pdf.l_margin)
+        pdf.cell(indent_mm, 5, prefix)
+        pdf.set_x(pdf.l_margin + indent_mm)
+        pdf.multi_cell(0, 5, text, new_x=XPos.LMARGIN, new_y=YPos.NEXT)
+        pdf.ln(1)
+
+    # Domestic Conference Presentations
+    pub_subsection("Domestic Conference Presentations")
+    domestic_conf_papers = [
+        "2018, \"Development of deployable radiator for spacecraft using a pulsating heat pipe\", KSME 2018 Spring Annual Meeting (Thermal Engineering Division)",
+        "2018, \"Effects of circulating flow on the thermal performance of a pulsating heat pipe\", KSME 2018 Annual Meeting",
+        "2016, \"Effects of artificial cavities on the startup performance of a pulsating heat pipe\", KSME 2016 Annual Meeting",
+    ]
+    for i, text in enumerate(domestic_conf_papers, 1):
         prefix = f"({i}) "
         indent_mm = 8
         pdf.set_font("Times", size=10)
@@ -475,6 +496,26 @@ def build_cv():
         pdf.write(5, f"  [{date_str}]")
         pdf.ln()
         pdf.ln(1)
+
+    # International Patents (USPTO)
+    us_patents = [c for c in data["certificates"] if c["issuer"] == "United States Patent and Trademark Office"]
+    if us_patents:
+        pdf.set_font("Times", style="I", size=10)
+        pdf.cell(0, 5, f"International Patents ({len(us_patents)})", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
+        pdf.ln(1)
+        for i, cert in enumerate(us_patents, 1):
+            date_str = cert["date"].replace("-", ".")
+            pdf.set_font("Times", size=10)
+            pdf.set_x(pdf.l_margin)
+            prefix = f"({i}) "
+            indent_mm = 8
+            pdf.cell(indent_mm, 5, prefix)
+            pdf.set_x(pdf.l_margin + indent_mm)
+            pdf.write(5, cert["name"])
+            pdf.set_font("Times", style="B", size=10)
+            pdf.write(5, f"  [{date_str}]")
+            pdf.ln()
+            pdf.ln(1)
 
     # ============================================================ SOFTWARE REGISTRATIONS
     # Filter certificates from resume.json by issuer
@@ -532,8 +573,8 @@ def build_cv():
         return f"{start}-{end}"
 
     def _split_role(summary):
-        """Strip trailing '(PI)/(Lead)/(Participant)' from summary; return (clean_summary, role)."""
-        m = re.search(r"\s*\((PI|Lead|Participant)\)\s*$", summary)
+        """Strip trailing '(PI)/(Lead)/(Participant)/(Graduate Researcher)' from summary; return (clean_summary, role)."""
+        m = re.search(r"\s*\((PI|Lead|Participant|Graduate Researcher)\)\s*$", summary)
         if m:
             return summary[: m.start()].rstrip(), m.group(1)
         return summary, ""
