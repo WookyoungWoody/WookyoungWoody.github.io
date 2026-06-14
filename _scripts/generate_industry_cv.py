@@ -145,11 +145,6 @@ def build_pdf():
     city = basics.get("location", {}).get("city", "")
     location_str = f"{city}, Korea" if city else ""
 
-    github_username = ""
-    for profile in basics.get("profiles", []):
-        if profile.get("network", "").lower() == "github":
-            github_username = profile.get("username", "")
-
     pdf.set_font("Helvetica", "B", 16)
     pdf.set_text_color(*BLACK)
     pdf.cell(0, 8, f"{name}, Ph.D.", ln=True)
@@ -161,8 +156,7 @@ def build_pdf():
     pdf.set_font("Helvetica", "", 8.5)
     pdf.set_text_color(*MED_GRAY)
     contact_parts = [email]
-    if github_username:
-        contact_parts.append(f"github.com/{github_username}")
+    contact_parts.append("scholar.google.com/citations?user=qhSKdD8AAAAJ")
     contact_parts.append("linkedin.com/in/wookyoungwoody")
     if location_str:
         contact_parts.append(location_str)
