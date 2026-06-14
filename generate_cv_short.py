@@ -163,6 +163,7 @@ def build_short_cv():
     n_kci = len(journal_pubs) - n_sci
     n_conf = len([p for p in pubs if "Proceedings" in p.get("publisher", "")])
     n_patents = len([c for c in data["certificates"] if c["issuer"] == "Korean Intellectual Property Office"])
+    n_us_patents = len([c for c in data["certificates"] if c["issuer"] == "United States Patent and Trademark Office"])
     n_software = len([c for c in data["certificates"] if c["issuer"] == "Korea Copyright Commission"])
     n_transfers = len(data.get("volunteer", []))
     n_projects = len(data.get("projects", []))
@@ -175,8 +176,9 @@ def build_short_cv():
     outputs = [
         ("SCI/SCIE Journal Papers", n_sci),
         ("KCI Journal Papers", n_kci),
-        ("International Conference Presentations", n_conf),
+        ("Conference Presentations", n_conf),
         ("Domestic Patents (registered)", n_patents),
+        ("U.S. Patents (registered)", n_us_patents),
         ("Registered Software Programs", n_software),
         ("Technology Transfers to Industry", n_transfers),
         ("Research Projects (PI/Lead / Total)", f"{len(pi_lead_projects)} / {n_projects}"),

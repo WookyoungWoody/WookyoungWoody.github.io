@@ -35,7 +35,7 @@
         "PI: KIMMPROP - Thermophysical property iOS/Android app development",
         "Lead: PCHE design & testing for liquid hydrogen vaporizers (down to -220°C, 100 MPa)",
         "Lead: Immersion cooling waste heat utilization and thermal management",
-        "19 journal papers (11 SCI + 8 KCI), 17 domestic patents, 8 registered software programs, 5 technology transfers"
+        "19 journal papers (11 SCI + 8 KCI), 18 domestic patents, 1 U.S. patent, 8 registered software programs, 5 technology transfers"
       ]
     }
   ],
@@ -98,7 +98,7 @@
         "Thermal network modeling",
         "Heat exchanger design (PCHE, S&T, PHE)",
         "CFD simulation",
-        "Machine Learning (PyTorch, JAX, PINN)",
+        "Machine learning & surrogate modeling (scikit-learn, PyTorch, LightGBM)",
         "CoolProp/REFPROP"
       ]
     },
@@ -164,6 +164,18 @@
     }
   ],
   "projects": [
+    {
+      "name": "Development of an AI-based Automated Design Tool for Data Center Direct Liquid Cooling (DLC) Systems",
+      "summary": "AI-driven automated design tool for data center direct liquid cooling (DLC) systems, using surrogate modeling and optimization for cold-plate and cooling-system design (PI)",
+      "startDate": "2026",
+      "endDate": "2026"
+    },
+    {
+      "name": "Development of a Direct Liquid Cooling (DLC) System for Reducing Power Consumption in Data Centers",
+      "summary": "National R&D project (KETEP, Ministry of Climate, Energy and Environment) to develop a direct liquid cooling (DLC) system that reduces data center power consumption; consortium led by Shinsung Engineering (Lead)",
+      "startDate": "2026",
+      "endDate": "2029"
+    },
     {
       "name": "Jet-Enhanced Immersion Cooling for Data Centers",
       "summary": "Development of high-efficiency jet-impingement immersion cooling technology for next-generation high-heat-density data center servers (PI)",
@@ -259,6 +271,18 @@
       "summary": "Battery thermal management system integrated A/Con system real-vehicle evaluation process development (Participant)",
       "startDate": "2025",
       "endDate": "2025"
+    },
+    {
+      "name": "Development of a Flexible Thin-Film Ultra-Thermal-Conductor",
+      "summary": "NRF basic research on flexible thin-film ultra-high-thermal-conductivity heat spreaders based on pulsating heat pipes (Graduate Researcher)",
+      "startDate": "2015",
+      "endDate": "2020"
+    },
+    {
+      "name": "Smart Thermal Control Device for Spacecraft",
+      "summary": "Pulsating-heat-pipe-based deployable radiator and smart thermal control device for spacecraft; contract with Korea Aerospace University (Participant)",
+      "startDate": "2016",
+      "endDate": "2018"
     }
   ],
   "certificates": [
@@ -411,9 +435,35 @@
       "issuer": "Korea Copyright Commission",
       "date": "2024-10-22",
       "url": ""
+    },
+    {
+      "name": "Plate pulsating heat spreader with artificial cavities",
+      "issuer": "Korean Intellectual Property Office",
+      "date": "2018-02-20",
+      "url": ""
+    },
+    {
+      "name": "Plate pulsating heat spreader with artificial cavities (US 10,436,520 B2)",
+      "issuer": "United States Patent and Trademark Office",
+      "date": "2019-10-08",
+      "url": ""
     }
   ],
   "publications": [
+    {
+      "name": "Falling film evaporation of ammonia on smooth and Low-Fin tube arrays",
+      "publisher": "Thermal Science and Engineering Progress",
+      "releaseDate": "2026",
+      "url": "https://doi.org/10.1016/j.tsep.2026.104483",
+      "summary": "Kim, Jin Sub and Kim, Wookyoung and Kim, Hak Soo and Kim, Young"
+    },
+    {
+      "name": "A Study on the Design of an Air-to-Air Plate Heat Exchanger for 300°C High Temperature Heat Pumps",
+      "publisher": "Korean Journal of Air-Conditioning and Refrigeration Engineering",
+      "releaseDate": "2026",
+      "url": "https://doi.org/10.6110/KJACR.2026.38.1.13",
+      "summary": "Kim, Jin Sub and Shin, Dong Hwan and Shim, Jaechwan and Lee, Kong Hoon and Sohn, Sangho and Kim, Wookyoung and Song, Chanho"
+    },
     {
       "name": "Experimental and theoretical investigation of freezing phenomenon in Printed Circuit Heat Exchanger",
       "publisher": "Applied Thermal Engineering",
@@ -545,6 +595,13 @@
       "summary": "Kim, Wookyoung and Kim, Sung Jin"
     },
     {
+      "name": "Experimental Investigation on the Thermal Performance of PHP Operating in a Circulation/oscillation Mode",
+      "publisher": "Proceedings of the Korea-China-Japan Joint Symposium",
+      "releaseDate": "2019",
+      "url": "",
+      "summary": "Kim, Wookyoung and Kim, Sung Jin"
+    },
+    {
       "name": "Comparison of thermal performance between CEPHP and CLPHP",
       "publisher": "Proceedings of the 4th Thermal and Fluids Engineering Conference (TFEC)",
       "releaseDate": "2019",
@@ -564,9 +621,37 @@
       "summary": "Kim, Wookyoung and Kim, Sung Jin"
     },
     {
+      "name": "Development of deployable radiator for spacecraft using a pulsating heat pipe",
+      "publisher": "Proceedings of the KSME 2018 Spring Annual Meeting (Thermal Engineering Division)",
+      "releaseDate": "2018",
+      "url": "",
+      "summary": "Kim, Wookyoung and Kim, Sung Jin"
+    },
+    {
+      "name": "Effects of circulating flow on the thermal performance of a pulsating heat pipe",
+      "publisher": "Proceedings of the KSME 2018 Annual Meeting",
+      "releaseDate": "2018",
+      "url": "",
+      "summary": "Kim, Wookyoung and Kim, Sung Jin"
+    },
+    {
+      "name": "Experimental Investigation on the Thermal Performance of a Pulsating Heat Pipe with Artificial Cavities",
+      "publisher": "Proceedings of the 1st Asian Conference on Thermal Sciences (ACTS 2017)",
+      "releaseDate": "2017",
+      "url": "",
+      "summary": "Kim, Wookyoung and Kim, Sung Jin"
+    },
+    {
       "name": "Experimental investigation of artificial cavities on the thermal performance of a pulsating heat pipe",
       "publisher": "Proceedings of the ASME InterPACK 2017",
       "releaseDate": "2017",
+      "summary": "Kim, Wookyoung and Kim, Sung Jin"
+    },
+    {
+      "name": "Effects of artificial cavities on the startup performance of a pulsating heat pipe",
+      "publisher": "Proceedings of the KSME 2016 Annual Meeting",
+      "releaseDate": "2016",
+      "url": "",
       "summary": "Kim, Wookyoung and Kim, Sung Jin"
     }
   ],
