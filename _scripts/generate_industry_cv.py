@@ -242,7 +242,7 @@ def build_pdf():
     start_year = _year(work.get("startDate", ""))
     end_date = work.get("endDate", "")
     end_str = _year(end_date) if end_date else "Present"
-    date_range = f"Mar {start_year} - {end_str}"
+    date_range = f"Jun {start_year} - {end_str}"
 
     pdf.set_font("Helvetica", "B", BODY_SIZE + 0.5)
     pdf.set_text_color(*BLACK)
