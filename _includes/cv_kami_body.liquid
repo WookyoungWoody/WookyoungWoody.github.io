@@ -557,6 +557,10 @@
       {% if li %}
         <a href="{{ li.url }}" target="_blank" rel="noopener">{{ li.network }}/{{ li.username }}</a>
       {% endif %}
+      {% if site.data.socials.scholar_userid %}
+        {% if li %}<span class="sep">·</span>{% endif %}
+        <a href="https://scholar.google.com/citations?user={{ site.data.socials.scholar_userid }}" target="_blank" rel="noopener">Google Scholar</a>
+      {% endif %}
       {% if basics.location %}
         <br>
         <span class="loc">
