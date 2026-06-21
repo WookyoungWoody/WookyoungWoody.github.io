@@ -155,13 +155,13 @@ def build_pdf():
 
     pdf.set_font("Helvetica", "", 8.5)
     pdf.set_text_color(*MED_GRAY)
-    contact_parts = [email]
-    contact_parts.append("scholar.google.com/citations?user=qhSKdD8AAAAJ")
-    contact_parts.append("linkedin.com/in/wookyoungwoody")
+    # Single contact line tuned to fit the page width (must stay 1 line to
+    # preserve the precise 2-page layout). Scholar shown as a short label
+    # ("Google Scholar") rather than the full citations URL to make room.
+    contact_parts = [email, "Google Scholar", "linkedin.com/in/wookyoungwoody", "wookyoungwoody.github.io"]
     if location_str:
         contact_parts.append(location_str)
-    contact = "  |  ".join(contact_parts)
-    pdf.cell(0, 5, contact, ln=True)
+    pdf.cell(0, 5, "  |  ".join(contact_parts), ln=True)
 
     # Horizontal rule
     pdf.set_draw_color(*ACCENT)
