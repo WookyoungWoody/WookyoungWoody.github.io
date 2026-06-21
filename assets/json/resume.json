@@ -177,7 +177,7 @@
     },
     {
       "name": "Development of a Direct Liquid Cooling (DLC) System for Reducing Power Consumption in Data Centers",
-      "summary": "National R&D project (KETEP, Ministry of Climate, Energy and Environment) to develop a direct liquid cooling (DLC) system that reduces data center power consumption; consortium led by Shinsung Engineering (Lead)",
+      "summary": "National R&D project (KETEP, Ministry of Climate, Energy and Environment) to develop a direct liquid cooling (DLC) system that reduces data center power consumption (Lead)",
       "startDate": "2026",
       "endDate": "2029"
     },
@@ -278,14 +278,44 @@
       "endDate": "2025"
     },
     {
+      "name": "3D Multiporous Cooling System for Ultra-high Heat Flux Applications",
+      "summary": "Development of a 3D multi-porous cooling device for ultra-high-heat-flux heat-generating elements (Graduate Researcher)",
+      "startDate": "2021",
+      "endDate": "2021"
+    },
+    {
+      "name": "Smart protective suit with active cooling/ventilation and antivirus suit changing system",
+      "summary": "Active cooling and ventilation system for a smart protective suit enabling on-body thermal management (Graduate Researcher)",
+      "startDate": "2020",
+      "endDate": "2020"
+    },
+    {
+      "name": "Next-Generation CPI Reliability Structural & Thermal Design",
+      "summary": "Structural and thermal design technology to secure the reliability of next-generation CPI; NRF original-technology development project (Graduate Researcher)",
+      "startDate": "2020",
+      "endDate": "2020"
+    },
+    {
+      "name": "OHP High-Pressure Working-Fluid Charging Technology",
+      "summary": "Technical service for high-pressure working-fluid charging of oscillating heat pipes (OHP); commissioned by Korea Institute of Energy Research (Graduate Researcher)",
+      "startDate": "2020",
+      "endDate": "2020"
+    },
+    {
+      "name": "Thermal optimization of MMU rear housing for reducing the weight",
+      "summary": "Heat-dissipation performance optimization and weight reduction of an MMU rear housing; industry project funded by Samsung Electronics (Graduate Researcher)",
+      "startDate": "2019",
+      "endDate": "2020"
+    },
+    {
       "name": "Development of a Flexible Thin-Film Ultra-Thermal-Conductor",
       "summary": "NRF basic research on flexible thin-film ultra-high-thermal-conductivity heat spreaders based on pulsating heat pipes (Graduate Researcher)",
       "startDate": "2015",
       "endDate": "2020"
     },
     {
-      "name": "Smart Thermal Control Device for Spacecraft",
-      "summary": "Pulsating-heat-pipe-based deployable radiator and smart thermal control device for spacecraft; contract with Korea Aerospace University (Participant)",
+      "name": "Study on a smart space thermal management system",
+      "summary": "Pulsating-heat-pipe-based deployable radiator and smart thermal control device for spacecraft; contract with Korea Aerospace University (Graduate Researcher)",
       "startDate": "2016",
       "endDate": "2018"
     }
