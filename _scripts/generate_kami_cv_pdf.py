@@ -5,7 +5,7 @@ Prefers the local file (_site/cv/standalone.html) so the script works offline as
 long as Jekyll has built the site at least once. Falls back to localhost:8080 if
 the file is absent.
 
-Output: assets/pdf/cv_kami.pdf
+Output: assets/pdf/cv_WKIM.pdf
 """
 
 import os
@@ -17,7 +17,7 @@ from playwright.sync_api import sync_playwright
 _REPO_ROOT = Path(__file__).resolve().parent.parent
 _LOCAL_HTML = _REPO_ROOT / "_site" / "cv" / "standalone.html"
 _LOCALHOST_URL = "http://localhost:8080/cv/standalone.html"
-_OUTPUT = _REPO_ROOT / "assets" / "pdf" / "cv_kami.pdf"
+_OUTPUT = _REPO_ROOT / "assets" / "pdf" / "cv_WKIM.pdf"
 
 
 def _pick_source() -> str:
