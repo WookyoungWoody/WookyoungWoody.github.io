@@ -16,3 +16,8 @@ vendor
 .omc/
 .serena/
 .playwright-mcp/
+
+# Personal CV evidence binder (degree certificates, patents, full PDFs of
+# papers/software) — kept local for organization, NOT pushed to the public
+# site. Public CV PDFs live under assets/pdf/.
+cv_documents/
