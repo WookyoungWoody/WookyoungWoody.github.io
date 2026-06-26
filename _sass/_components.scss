@@ -78,6 +78,22 @@ ul.task-list input[type="checkbox"] {
   margin-right: 1rem;
 }
 
+// On phones the floated profile spans the full content width, which makes
+// the photo dominate the page. Shrink it and center it instead of floating.
+@media (max-width: 575.98px) {
+  .profile {
+    width: 55%;
+    margin: 0 auto 1rem;
+
+    &.float-right,
+    &.float-left {
+      float: none;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}
+
 @media (min-width: 576px) {
   .profile {
     width: 30%;
