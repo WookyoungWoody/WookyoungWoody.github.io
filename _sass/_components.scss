@@ -78,8 +78,10 @@ ul.task-list input[type="checkbox"] {
   margin-right: 1rem;
 }
 
-// On phones the floated profile spans the full content width, which makes
-// the photo dominate the page. Shrink it and center it instead of floating.
+// On phones, stack the photo above the text instead of floating it beside
+// the content. !important is required to beat Bootstrap's .float-right /
+// .float-left utilities (float: ... !important). Also shrink and center it
+// so the photo doesn't dominate the page.
 @media (max-width: 575.98px) {
   .profile {
     width: 55%;
@@ -87,7 +89,7 @@ ul.task-list input[type="checkbox"] {
 
     &.float-right,
     &.float-left {
-      float: none;
+      float: none !important;
       margin-left: auto;
       margin-right: auto;
     }
