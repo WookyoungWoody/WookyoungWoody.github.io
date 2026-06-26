@@ -27,7 +27,7 @@ latest_posts:
 
 I am a Senior Researcher at the [Heat Pump Research Center](https://www.kimm.re.kr), Korea Institute of Machinery and Materials (KIMM). I received my Ph.D. in Mechanical Engineering from [KAIST](https://www.kaist.ac.kr) in 2021, under the supervision of [Prof. Sung Jin Kim](https://scholar.google.com/citations?user=1YqQxnkAAAAJ).
 
-My research focuses on **thermal-fluid engineering** with applications in:
+My research focuses on **thermal engineering** with applications in:
 
 - **Data center cooling** — immersion cooling, direct liquid cooling (DLC), jet-impingement cooling for next-generation high-power servers
 - **High-heat-flux electronics cooling** — CPU/GPU cold plate design, focused cooling for next-generation chips
