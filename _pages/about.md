@@ -10,10 +10,6 @@ profile:
   align: right
   image: prof_pic.jpg
   image_circular: false
-  more_info: >
-    <p>Heat Pump Research Center</p>
-    <p>156 Gajeongbuk-ro, Yuseong-gu</p>
-    <p>Daejeon 34103, Republic of Korea</p>
 
 selected_papers: true
 social: true
