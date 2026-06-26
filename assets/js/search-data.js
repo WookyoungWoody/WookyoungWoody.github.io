@@ -11,14 +11,14 @@ ninja.data = [{
     },
   },{id: "nav-publications",
           title: "publications",
-          description: "Peer-reviewed journal papers and conference proceedings in thermal-fluid engineering.",
+          description: "Peer-reviewed journal papers and conference proceedings in thermal engineering.",
           section: "Navigation",
           handler: () => {
             window.location.href = "/publications/";
           },
         },{id: "nav-projects",
           title: "projects",
-          description: "Research projects in thermal-fluid engineering and software development.",
+          description: "Research projects in thermal engineering and software development.",
           section: "Navigation",
           handler: () => {
             window.location.href = "/projects/";
@@ -44,8 +44,8 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/cv/html/";
               },
-            },{id: "news-welcome-to-my-academic-portfolio-this-site-showcases-my-research-in-thermal-fluid-engineering-at-kimm",
-          title: 'Welcome to my academic portfolio! This site showcases my research in thermal-fluid engineering...',
+            },{id: "news-welcome-to-my-academic-portfolio-this-site-showcases-my-research-in-thermal-engineering-at-kimm",
+          title: 'Welcome to my academic portfolio! This site showcases my research in thermal engineering...',
           description: "",
           section: "News",},{id: "projects-data-center-cooling",
           title: 'Data Center Cooling',
