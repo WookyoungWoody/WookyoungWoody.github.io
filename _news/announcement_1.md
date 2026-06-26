@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-Welcome to my academic portfolio! This site showcases my research in thermal-fluid engineering at KIMM.
+Welcome to my academic portfolio! This site showcases my research in thermal engineering at KIMM.

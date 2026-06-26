@@ -4,7 +4,7 @@ title: about
 permalink: /
 subtitle: Senior Researcher, <a href='https://www.kimm.re.kr'>Korea Institute of Machinery and Materials (KIMM)</a>
 
-description: Senior Researcher at KIMM specializing in thermal-fluid engineering, data center cooling, heat exchangers, and heat pump systems.
+description: Senior Researcher at KIMM specializing in thermal engineering, data center cooling, heat exchangers, and heat pump systems.
 
 profile:
   align: right

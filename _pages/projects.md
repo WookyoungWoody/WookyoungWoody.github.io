@@ -2,7 +2,7 @@
 layout: page
 title: projects
 permalink: /projects/
-description: Research projects in thermal-fluid engineering and software development.
+description: Research projects in thermal engineering and software development.
 nav: true
 nav_order: 3
 display_categories: [current, tools]

@@ -2,7 +2,7 @@
 layout: page
 permalink: /publications/
 title: publications
-description: Peer-reviewed journal papers and conference proceedings in thermal-fluid engineering.
+description: Peer-reviewed journal papers and conference proceedings in thermal engineering.
 nav: true
 nav_order: 2
 ---
