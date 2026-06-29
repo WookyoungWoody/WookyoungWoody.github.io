@@ -17,7 +17,10 @@ vendor
 .serena/
 .playwright-mcp/
 
-# Personal CV evidence binder (degree certificates, patents, full PDFs of
-# papers/software) — kept local for organization, NOT pushed to the public
-# site. Public CV PDFs live under assets/pdf/.
-cv_documents/
+# Personal CV evidence binder. Public site (.github.io) so most of this
+# stays local — only papers/ (author's own SCI/KCI PDFs) and README are
+# tracked. Patents, software registrations and degree certificates are
+# excluded (contain personal IDs / KIMM internal numbers).
+cv_documents/*
+!cv_documents/papers/
+!cv_documents/README.md
