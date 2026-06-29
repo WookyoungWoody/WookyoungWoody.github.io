@@ -162,7 +162,7 @@ cv:
         end_date: present
 
       - name: Thermophysical Property App
-        summary: Cross-platform iOS/Android app for thermal-fluid property calculations using CoolProp/REFPROP via WASM (PI)
+        summary: Cross-platform iOS/Android app for thermophysical property calculations using CoolProp/REFPROP via WASM (PI)
         start_date: 2025
         end_date: present
 

@@ -190,7 +190,7 @@
     },
     {
       "name": "KIMMPROP - Thermophysical Property iOS/Android App",
-      "summary": "Cross-platform iOS/Android app for thermal-fluid property calculations using CoolProp/REFPROP via WASM (PI)",
+      "summary": "Cross-platform iOS/Android app for thermophysical property calculations using CoolProp/REFPROP via WASM (PI)",
       "startDate": "2025",
       "endDate": "2025"
     },
