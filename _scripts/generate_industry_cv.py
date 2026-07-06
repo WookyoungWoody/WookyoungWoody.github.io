@@ -552,15 +552,21 @@ def build_pdf():
             aff_position = aff.get("position", "")
             period = _aff_period(aff.get("startDate", ""), aff.get("endDate", ""))
 
+            # NOTE: uses TINY_SIZE (not SMALL_SIZE) so long organization names
+            # (e.g. "SAREK Data Center Facility Technology Division Committee")
+            # stay on one line. A one-line wrap here previously pushed the last
+            # bullet onto a spurious 3rd page (2026-07 regression when the SAREK
+            # committee was renamed/promoted). Keep at TINY_SIZE unless width is
+            # re-verified with get_string_width.
             pdf.set_x(pdf.l_margin)
-            pdf.set_font("Helvetica", "", SMALL_SIZE)
+            pdf.set_font("Helvetica", "", TINY_SIZE)
             pdf.set_text_color(*DARK_GRAY)
             pdf.cell(3.5, LINE_H, chr(149), ln=False)
-            pdf.set_font("Helvetica", "B", SMALL_SIZE)
+            pdf.set_font("Helvetica", "B", TINY_SIZE)
             pdf.set_text_color(*BLACK)
             pos_w = pdf.get_string_width(aff_position)
             pdf.cell(pos_w, LINE_H, aff_position, ln=False)
-            pdf.set_font("Helvetica", "", SMALL_SIZE)
+            pdf.set_font("Helvetica", "", TINY_SIZE)
             pdf.set_text_color(*DARK_GRAY)
             tail = f", {org}"
             if period:
