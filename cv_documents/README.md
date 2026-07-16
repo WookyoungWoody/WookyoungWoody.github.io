@@ -4,12 +4,12 @@ Binder of CV evidence (papers, patents, software registrations, degree
 certificates). The repo is **public** (GitHub Pages), so this folder
 is split:
 
-| Subfolder | Tracked in git? | Reason |
-|---|---|---|
-| `papers/` | yes (public) | Author's own peer-reviewed publications |
-| `patents/` | no — local only | Korean patent docs include inventor signatures & internal IDs |
-| `software/` | no — local only | KIMM internal S-codes in software registration PDFs |
-| `degrees/` | no — local only | Personal identifiers on degree certificates |
+| Subfolder   | Tracked in git? | Reason                                                        |
+| ----------- | --------------- | ------------------------------------------------------------- |
+| `papers/`   | yes (public)    | Author's own peer-reviewed publications                       |
+| `patents/`  | no — local only | Korean patent docs include inventor signatures & internal IDs |
+| `software/` | no — local only | KIMM internal S-codes in software registration PDFs           |
+| `degrees/`  | no — local only | Personal identifiers on degree certificates                   |
 
 The split is enforced in the repo `.gitignore` (`cv_documents/*` then
 allow-list `papers/` + this README).
@@ -37,12 +37,12 @@ PhD-era SCI papers (KAIST 2017–2021, advisor Prof. Sung Jin Kim, all
 first-author):
 
 1. W. Kim & S.J. Kim, "Effect of reentrant cavities on the thermal
-   performance of a pulsating heat pipe," *Appl. Therm. Eng.* 133 (2018)
+   performance of a pulsating heat pipe," _Appl. Therm. Eng._ 133 (2018)
 2. W. Kim & S.J. Kim, "Effect of a flow behavior on the thermal performance
-   of closed-loop and closed-end pulsating heat pipes," *Int. J. Heat Mass
-   Transfer* 149 (2020) — manuscript + corrigendum
+   of closed-loop and closed-end pulsating heat pipes," _Int. J. Heat Mass
+   Transfer_ 149 (2020) — manuscript + corrigendum
 3. W. Kim & S.J. Kim, "Fundamental issues and technical problems about
-   pulsating heat pipes," *J. Heat Transfer – ASME* 143 (2021)
+   pulsating heat pipes," _J. Heat Transfer – ASME_ 143 (2021)
 
 ## KCI papers (`papers/kci/`)
 
