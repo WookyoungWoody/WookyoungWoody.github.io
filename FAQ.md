@@ -42,11 +42,7 @@ Make sure you followed through the [deployment instructions](#deployment) in the
 
 ## My webpage works locally. But after deploying, it is not displayed correctly (CSS and JS are not loaded properly). How do I fix that?
 
-If the website does not load the theme, the layout looks weird, and all links are broken, being the main page displayed this way:
-
-<img src="assets/img/template_error.png" width="500">
-
-make sure to correctly specify the `url` and `baseurl` paths in `_config.yml`. Set `url` to `https://<your-github-username>.github.io` or to `https://<your.custom.domain>` if you are using a custom domain. If you are deploying a <ins>personal</ins> or <ins>organization</ins> website, leave `baseurl` **empty** (do **NOT** delete it). If you are deploying a project page, set `baseurl: /<your-project-name>/`. If all previous steps were done correctly, all is missing is for your browser to fetch again the site stylesheet. For this, you can:
+If the website does not load the theme, the layout looks weird, and all links are broken, make sure to correctly specify the `url` and `baseurl` paths in `_config.yml`. Set `url` to `https://<your-github-username>.github.io` or to `https://<your.custom.domain>` if you are using a custom domain. If you are deploying a <ins>personal</ins> or <ins>organization</ins> website, leave `baseurl` **empty** (do **NOT** delete it). If you are deploying a project page, set `baseurl: /<your-project-name>/`. If all previous steps were done correctly, all is missing is for your browser to fetch again the site stylesheet. For this, you can:
 
 - press [Shift + F5 on Chromium-based](https://support.google.com/chrome/answer/157179#zippy=%2Cwebpage-shortcuts) or [Ctrl + F5 on Firefox-based](https://support.mozilla.org/en-US/kb/keyboard-shortcuts-perform-firefox-tasks-quickly) browsers to reload the page ignoring cached content
 - clean your browser history
@@ -120,10 +116,7 @@ Currently we have the following workflows:
 - `axe.yml`: does some accessibility testing in your site. It uses the [axe cli](https://github.com/dequelabs/axe-core-npm/tree/develop/packages/cli) tool with a chrome driver to render the webpage and allow the analysis. Must be run manually, since fixing some of the issues is not straightforward
 - `broken-links-site.yml`: checks for broken links in your built website with the [lychee-action](https://github.com/lycheeverse/lychee-action)
 - `broken-links.yml`: checks for broken links in your repository with the [lychee-action](https://github.com/lycheeverse/lychee-action)
-- `deploy-docker-tag.yml`: adds some metadata to the docker image and pushes it to Docker Hub
-- `deploy-image.yml`: deploys a new docker image with the latest changes to Docker Hub
 - `deploy.yml`: deploys the website to GitHub Pages
-- `docker-slim.yml`: deploys a smaller version of the docker image to Docker Hub with the [docker-slim-action](https://github.com/kitabisa/docker-slim-action)
 - `lighthouse-badger.yml`: runs a [lighthouse](https://github.com/GoogleChrome/lighthouse) test for your site with the [lighthouse-badger-action](https://github.com/MyActionWay/lighthouse-badger-action), saving the results in the repository for easy inspecting, as can be seen [here](https://github.com/alshedivat/al-folio?tab=readme-ov-file#lighthouse-pagespeed-insights). For more information on how to enable this workflow, check our [FAQ question about it](https://github.com/alshedivat/al-folio/blob/main/FAQ.md#when-i-manually-run-the-lighthouse-badger-workflow-it-fails-with-error-input-required-and-not-supplied-token-how-do-i-fix-that)
 - `prettier-comment-on-pr.yml`: not working. For now, this action is disabled. It was supposed to run prettier on the PRs and comment on them with the changes needed. For more information, check [issue 2115](https://github.com/alshedivat/al-folio/issues/2115)
 - `prettier.yml`: runs [prettier](https://prettier.io/) on the code to ensure it is well formatted. For more information, check our [FAQ question about it](https://github.com/alshedivat/al-folio/blob/main/FAQ.md#my-code-runs-fine-locally-but-when-i-create-a-commit-and-submit-it-it-fails-with-prettier-code-formatter-workflow-run-failed-for-main-branch-how-do-i-fix-that)
