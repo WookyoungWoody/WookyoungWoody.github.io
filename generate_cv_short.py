@@ -116,7 +116,8 @@ def build_short_cv():
 
     # ============================================================ EDUCATION (compact, single line)
     pdf.section_title("EDUCATION")
-    edu_entries = list(reversed(data["education"]))
+    # JSON order is already reverse-chronological (Ph.D., M.S., B.S.) — display as-is
+    edu_entries = list(data["education"])
     for edu in edu_entries:
         deg = edu["studyType"]
         univ = edu["institution"].split("(")[0].strip()
