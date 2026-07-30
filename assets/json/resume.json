@@ -47,15 +47,18 @@
   ],
   "education": [
     {
-      "institution": "KAIST",
+      "institution": "KAIST (Korea Advanced Institute of Science and Technology)",
       "location": "Daejeon, Republic of Korea",
       "url": "https://www.kaist.ac.kr",
       "area": "Mechanical Engineering",
-      "studyType": "B.S.",
-      "startDate": "2011-03-01",
-      "endDate": "2015-02-28",
+      "studyType": "Ph.D.",
+      "startDate": "2017-03-01",
+      "endDate": "2021-02-28",
       "score": "",
-      "courses": []
+      "courses": [
+        "Dissertation: Study on a Thermal Network-based Model for Predicting the Thermal Resistance of Pulsating Heat Pipes",
+        "Advisor: Prof. Sung Jin Kim"
+      ]
     },
     {
       "institution": "KAIST",
@@ -69,18 +72,15 @@
       "courses": ["Thesis: Effect of artificial cavities on the thermal performance of pulsating heat pipes", "Advisor: Prof. Sung Jin Kim"]
     },
     {
-      "institution": "KAIST (Korea Advanced Institute of Science and Technology)",
+      "institution": "KAIST",
       "location": "Daejeon, Republic of Korea",
       "url": "https://www.kaist.ac.kr",
       "area": "Mechanical Engineering",
-      "studyType": "Ph.D.",
-      "startDate": "2017-03-01",
-      "endDate": "2021-02-28",
+      "studyType": "B.S.",
+      "startDate": "2011-03-01",
+      "endDate": "2015-02-28",
       "score": "",
-      "courses": [
-        "Dissertation: Study on a Thermal Network-based Model for Predicting the Thermal Resistance of Pulsating Heat Pipes",
-        "Advisor: Prof. Sung Jin Kim"
-      ]
+      "courses": []
     }
   ],
   "skills": [

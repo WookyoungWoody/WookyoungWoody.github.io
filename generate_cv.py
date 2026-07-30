@@ -225,8 +225,8 @@ def build_cv():
 
         return (deg, univ, dept, date_str, thesis, advisor)
 
-    # JSON order is Ph.D., M.S., B.S. — reverse for chronological display (B.S. first)
-    edu_entries = list(reversed(data["education"]))
+    # JSON order is already reverse-chronological (Ph.D., M.S., B.S.) — display as-is
+    edu_entries = list(data["education"])
     rows = [parse_education_entry(e) for e in edu_entries]
 
     thesis_labels = {"M.S.": "Thesis:", "Ph.D.": "Dissertation:"}
