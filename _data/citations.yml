@@ -1,8 +1,63 @@
-# Google Scholar citation counts, keyed by "<scholar_userid>:<google_scholar_id>".
-# Populated by bin/update_scholar_citations.py (scheduled via
-# .github/workflows/update-citations.yml) using scholar_userid from
-# _data/socials.yml. Consumed by _layouts/bib.liquid for citation badges on
-# entries that carry a google_scholar_id field in _bibliography/papers.bib.
 metadata:
-  last_updated: "2000-01-01"
-papers: {}
+  last_updated: '2026-08-01'
+papers:
+  qhSKdD8AAAAJ:2osOgNQ5qMEC:
+    citations: 1
+    title: Experimental and theoretical investigation of freezing phenomenon in Printed Circuit Heat Exchanger
+    year: '2025'
+  qhSKdD8AAAAJ:IjCSPb-OGe4C:
+    citations: 10
+    title: Pool boiling heat transfer of ammonia outside enhanced tubes with various fin structures
+    year: '2024'
+  qhSKdD8AAAAJ:Tyk-4Ss8FVUC:
+    citations: 1
+    title: Characterization of liquid behavior in distributor of falling-film evaporator
+    year: '2023'
+  qhSKdD8AAAAJ:UeHWp8X0CEIC:
+    citations: 4
+    title: A numerical study on the performance of chemisorption heat pump according to various design conditions
+    year: '2024'
+  qhSKdD8AAAAJ:W7OEmFMy1HYC:
+    citations: 6
+    title: A study on anti-icing design by conjugate heat transfer analysis in a lab-scale printed circuit heat exchanger for supply of cryogenic high pressure liquid hydrogen
+    year: '2022'
+  qhSKdD8AAAAJ:WF5omc3nYNoC:
+    citations: 1
+    title: Falling film evaporation of ammonia on smooth and Low-Fin tube arrays
+    year: '2026'
+  qhSKdD8AAAAJ:Y0pCki6q_DkC:
+    citations: 13
+    title: 'Pool boiling heat transfer of ammonia outside a single tube with fin structures: Hysteresis phenomena and boiling enhancement'
+    year: '2023'
+  qhSKdD8AAAAJ:YsMSGLbcyi4C:
+    citations: 1
+    title: Thermal Performance Test of Prototype for Cu-Cu Fin Tube Heat Pipe Heat Exchanger
+    year: '2023'
+  qhSKdD8AAAAJ:d1gkVwhDpl0C:
+    citations: 49
+    title: Effect of a flow behavior on the thermal performance of closed-loop and closed-end pulsating heat pipes
+    year: '2020'
+  qhSKdD8AAAAJ:eQOLeE2rZwMC:
+    citations: 3
+    title: Experimental investigation on the freezing condition of printed circuit heat exchanger for cryogenic liquid hydrogen vaporizer
+    year: '2024'
+  qhSKdD8AAAAJ:qjMakFHDy7sC:
+    citations: 0
+    title: Experimental studies on the VLE of R-32/R-125 and verification of experimental setup
+    year: '2024'
+  qhSKdD8AAAAJ:u-x6o8ySG0sC:
+    citations: 61
+    title: Effect of reentrant cavities on the thermal performance of a pulsating heat pipe
+    year: '2018'
+  qhSKdD8AAAAJ:u5HHmVD_uO8C:
+    citations: 22
+    title: Fundamental issues and technical problems about pulsating heat pipes
+    year: '2021'
+  qhSKdD8AAAAJ:ufrVoPGSRksC:
+    citations: 0
+    title: Experimental and theoretical investigation on avoiding freezing phenomena of Printed Circuit Heat Exchanger for cryogenic liquid hydrogen vaporizer
+    year: Unknown Year
+  qhSKdD8AAAAJ:zYLM7Y9cAGgC:
+    citations: 3
+    title: Experimental study of a chemisorption heat pump under different operation conditions
+    year: '2024'
