@@ -7,7 +7,7 @@ This repository hosts my academic portfolio at **[https://wookyoungwoody.github.
 ## Site Structure
 
 - **Publications** – Peer-reviewed papers and conference contributions managed via [`_bibliography/papers.bib`](/_bibliography/papers.bib) and rendered through [jekyll-scholar](https://github.com/inukshuk/jekyll-scholar)
-- **CV** – Single-source resume data in [`assets/json/resume.json`](/assets/json/resume.json), rendered at [`/cv/`](/cv)
+- **CV** – Single-source resume data in [`assets/json/resume.json`](/assets/json/resume.json), rendered at [`/cv/`](https://wookyoungwoody.github.io/cv/)
 - **Projects** – Research and software projects: data center cooling, heat pump systems, PCHE design, and software tools in [`_projects/`](/_projects)
 - **Repositories** – GitHub statistics and links to public repositories
 

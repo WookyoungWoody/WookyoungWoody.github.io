@@ -1,6 +1,6 @@
 _site
 .bundle
-.DS_store
+.DS_Store
 .idea
 .jekyll-cache
 .jekyll-metadata
@@ -17,10 +17,9 @@ vendor
 .serena/
 .playwright-mcp/
 
-# Personal CV evidence binder. Public site (.github.io) so most of this
-# stays local — only papers/ (author's own SCI/KCI PDFs) and README are
-# tracked. Patents, software registrations and degree certificates are
-# excluded (contain personal IDs / KIMM internal numbers).
-cv_documents/*
-!cv_documents/papers/
-!cv_documents/README.md
+# Personal CV evidence binder — fully local-only. Public site (.github.io),
+# so nothing here is tracked: publisher-version paper PDFs must not be
+# publicly hosted (copyright), and patents / software registrations / degree
+# certificates contain personal IDs / KIMM internal numbers. The site serves
+# curated paper PDFs from assets/pdf/papers/ instead.
+cv_documents/

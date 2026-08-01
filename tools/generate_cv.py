@@ -9,8 +9,9 @@ from fpdf import FPDF
 from fpdf.enums import XPos, YPos
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-PHOTO_PATH = os.path.join(SCRIPT_DIR, "assets/img/prof_pic.jpg")
-OUTPUT_PATH = os.path.join(SCRIPT_DIR, "assets/pdf/cv_academic.pdf")
+REPO_ROOT = os.path.dirname(SCRIPT_DIR)
+PHOTO_PATH = os.path.join(REPO_ROOT, "assets/img/prof_pic.jpg")
+OUTPUT_PATH = os.path.join(REPO_ROOT, "assets/pdf/cv_academic.pdf")
 
 os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
 
@@ -100,7 +101,7 @@ class CV(FPDF):
 
 def build_cv():
     # Load data from resume.json
-    with open(os.path.join(SCRIPT_DIR, "assets/json/resume.json"), "r") as f:
+    with open(os.path.join(REPO_ROOT, "assets/json/resume.json"), "r") as f:
         data = json.load(f)
 
     pdf = CV()
