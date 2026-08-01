@@ -640,13 +640,12 @@ third_party_libraries:
     version: "2.1.8"
 
 # -----------------------------------------------------------------------------
-# Get external JSON data
+# CV data source
 # -----------------------------------------------------------------------------
 
-jekyll_get_json:
-  - data: resume
-    json: assets/json/resume.json # it can also be an url
-
+# Single-source CV data lives in _data/resume.yml (JSONResume schema, YAML
+# form), auto-loaded by Jekyll as site.data.resume. The list below controls
+# which sections render on /cv and in what order.
 jsonresume:
   - basics
   - work

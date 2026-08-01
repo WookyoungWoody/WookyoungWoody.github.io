@@ -5,7 +5,7 @@ Compact 2-page CV: counts replace full lists for papers/patents/etc.
 Source: assets/json/resume.json. Output: assets/pdf/cv_academic_short.pdf.
 """
 
-import json
+import yaml
 import os
 import re
 
@@ -70,8 +70,8 @@ def _aff_period(sd, ed):
 
 
 def build_short_cv():
-    with open(os.path.join(REPO_ROOT, "assets/json/resume.json"), "r") as f:
-        data = json.load(f)
+    with open(os.path.join(REPO_ROOT, "_data/resume.yml"), "r") as f:
+        data = yaml.safe_load(f)
 
     pdf = ShortCV()
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Generate academic CV PDF for Wookyoung Kim."""
 
-import json
+import yaml
 import os
 import re
 
@@ -101,8 +101,8 @@ class CV(FPDF):
 
 def build_cv():
     # Load data from resume.json
-    with open(os.path.join(REPO_ROOT, "assets/json/resume.json"), "r") as f:
-        data = json.load(f)
+    with open(os.path.join(REPO_ROOT, "_data/resume.yml"), "r") as f:
+        data = yaml.safe_load(f)
 
     pdf = CV()
 

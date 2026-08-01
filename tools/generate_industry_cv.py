@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Generate industry-focused CV PDF using fpdf2.  2-page version."""
 
-import json
+import yaml
 import os
 import warnings
 
@@ -89,9 +89,9 @@ class IndustryCVPDF(FPDF):
 
 
 def _load_data():
-    resume_path = os.path.join(_REPO_ROOT, "assets", "json", "resume.json")
+    resume_path = os.path.join(_REPO_ROOT, "_data", "resume.yml")
     with open(resume_path, "r") as f:
-        return json.load(f)
+        return yaml.safe_load(f)
 
 
 def _compute_counts(data):
@@ -423,7 +423,7 @@ def build_pdf():
     # --------------------------------------------------------- SELECTED PATENTS
     pdf.section_header("SELECTED PATENTS")
 
-    # 8 representative patents drawn from resume.json certificates (KIPO)
+    # 8 representative patents drawn from resume.yml certificates (KIPO)
     # Sorted to highlight most relevant to current research themes
     selected_patent_names = [
         "Immersion cooling device",
