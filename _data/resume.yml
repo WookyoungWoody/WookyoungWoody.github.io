@@ -2,6 +2,10 @@
 # Loaded by Jekyll as site.data.resume — consumed by _layouts/cv.liquid
 # (/cv), _includes/cv_kami_body.liquid (/cv/html), and the PDF generators
 # in tools/. Section order on /cv follows the jsonresume list in _config.yml.
+#
+# Publication extras used only by tools/generate_cv.py (ignored by the web):
+#   volume/issue/pages  — citation numbers (pages = range or article no.)
+#   shortTitle/shortVenue/shortPublisher — curated abbreviations for the PDF
 basics:
   name: Wookyoung Kim
   label: Senior Researcher
@@ -381,80 +385,116 @@ publications:
     releaseDate: "2026"
     url: https://doi.org/10.1016/j.tsep.2026.104483
     summary: Kim, Jin Sub and Kim, Wookyoung and Kim, Hak Soo and Kim, Young
+    volume: "69"
+    pages: "104483"
   - name: A Study on the Design of an Air-to-Air Plate Heat Exchanger for 300°C High Temperature Heat Pumps
     publisher: Korean Journal of Air-Conditioning and Refrigeration Engineering
     releaseDate: "2026"
     url: https://doi.org/10.6110/KJACR.2026.38.1.13
     summary: Kim, Jin Sub and Shin, Dong Hwan and Shim, Jaechwan and Lee, Kong Hoon and Sohn, Sangho and Kim, Wookyoung
       and Song, Chanho
+    volume: "38"
+    issue: "1"
+    pages: 13-25
   - name: Experimental and theoretical investigation of freezing phenomenon in Printed Circuit Heat Exchanger
     publisher: Applied Thermal Engineering
     releaseDate: "2025"
     url: https://doi.org/10.1016/j.applthermaleng.2025.126455
     summary: Kim, Bogyeom and Lee, Kong Hoon and Kim, Minchang and Moon, Sunyoung and Yoo, Jin Woo and Kim, Wookyoung
+    volume: "273"
+    pages: "126455"
   - name: Experimental studies on the VLE of R-32/R-125 and verification of experimental setup
     publisher: Journal of Mechanical Science and Technology
     releaseDate: "2024"
     url: https://doi.org/10.1007/s12206-024-0948-5
     summary: Kim, Dong Ho and Kim, Wookyoung and Kim, Jeong Hyun and Kim, Hak Soo and Lee, Kong Hoon
+    volume: "38"
+    issue: "10"
+    pages: 5779-5785
   - name: A numerical study on the performance of chemisorption heat pump according to various design conditions
     publisher: Applied Thermal Engineering
     releaseDate: "2024"
     url: https://doi.org/10.1016/j.applthermaleng.2024.122519
     summary: Kim, Hak Soo and Kim, Dong Ho and Kim, Jin Sub and Kim, Wookyoung and Kim, Young
+    volume: "243"
+    pages: "122519"
   - name: Pool boiling heat transfer of ammonia outside enhanced tubes with various fin structures
     publisher: Applied Thermal Engineering
     releaseDate: "2024"
     url: https://doi.org/10.1016/j.applthermaleng.2024.122986
     summary: Kim, Jin Sub and Kim, Wookyoung and Kim, Hak Soo and Kim, Young
+    volume: "247"
+    pages: "122986"
   - name: Experimental study of a chemisorption heat pump under different operation conditions
     publisher: Applied Thermal Engineering
     releaseDate: "2024"
     url: https://doi.org/10.1016/j.applthermaleng.2023.122274
     summary: Kim, Hak Soo and Kim, Jeong Hyun and Kim, Jin Sub and Kim, Wookyoung and Kim, Young
+    volume: "240"
+    pages: "122274"
   - name: Experimental and theoretical investigation on avoiding freezing phenomena of Printed Circuit Heat Exchanger
       for cryogenic liquid hydrogen vaporizer
     publisher: Proceedings of the 29th International Cryogenic Engineering Conference (ICEC29)
     releaseDate: "2024"
     summary: Kim, Wookyoung and others
+    shortTitle: Experimental and theoretical investigation on avoiding freezing phenomena of PCHE for cryogenic liquid
+      hydrogen vaporizer
+    shortVenue: 29th ICEC
   - name: Understanding the thermal characteristics of falling film evaporation of R-1233ZD(E) refrigerant using flow
       visualization and heat transfer measurement
     publisher: Proceedings of the 11th Asian Conference on Refrigeration and Air-conditioning (ACRA)
     releaseDate: "2024"
     summary: Kim, Wookyoung and others
+    shortVenue: 11th ACRA
   - name: Experimental Investigation on the Freezing Condition of Printed Circuit Heat Exchanger for Cryogenic Liquid
       Hydrogen Vaporizer
     publisher: Journal of Hydrogen and New Energy
     releaseDate: "2024"
     url: https://doi.org/10.7316/JHNE.2024.35.2.240
     summary: Kim, Wookyoung and Kim, Bokyem and Sohn, Sangho and Lee, Kong Hoon and Kim, Jungchul
+    volume: "35"
+    issue: "2"
+    pages: 240-248
+    shortTitle: Experimental Investigation on the Freezing Condition of PCHE for Cryogenic Liquid Hydrogen Vaporizer
   - name: An Experimental Study on The Thermal Performance Measurement and Flow Visualization of Falling Film Evaporator
       Using R-1233ZD(E) Refrigerant
     publisher: Korean Journal of Air-Conditioning and Refrigeration Engineering
     releaseDate: "2024"
     url: https://doi.org/10.6110/KJACR.2024.36.1.9
     summary: Kim, Wookyoung and Kim, Hak Soo and Kim, Jungchul and Kim, Dong Ho
+    volume: "36"
+    issue: "1"
+    pages: 9-17
   - name: Characterization of liquid behavior in distributor of falling-film evaporator
     publisher: Physics of Fluids
     releaseDate: "2023"
     url: https://doi.org/10.1063/5.0151455
     summary: Kim, Jungchul and Kim, Chan Geun and Kim, Hak Soo and Kim, Wookyoung and Kim, Dong Ho
+    volume: "35"
+    issue: "6"
+    pages: "067124"
   - name: "Pool boiling heat transfer of ammonia outside a single tube with fin structures: Hysteresis phenomena and
       boiling enhancement"
     publisher: International Communications in Heat and Mass Transfer
     releaseDate: "2023"
     url: https://doi.org/10.1016/j.icheatmasstransfer.2023.107157
     summary: Kim, Jin Sub and Kim, Wookyoung and Kim, Hak Soo and Kim, Young and Yoon, Seok Ho
+    volume: "149"
+    pages: "107157"
   - name: Experimental investigation on the flow and thermal characteristics of falling film evaporator using R-1233ZD(E)
       refrigerant
     publisher: Proceedings of the 11th International Conference on Boiling and Condensation Heat Transfer (ICBCHT)
     releaseDate: "2023"
     summary: Kim, Wookyoung and others
+    shortVenue: 11th ICBCHT
   - name: An Experimental Study on the Performance Characteristics of a Falling Film Evaporator for R-1234ze(E) Refrigerant
     publisher: Korean Journal of Air-Conditioning and Refrigeration Engineering
     releaseDate: "2023"
     url: https://doi.org/10.6110/KJACR.2023.35.7.363
     summary: Kim, Dong Ho and Kim, Hak Soo and Kim, Jungchul and Kim, Wookyoung
+    volume: "35"
+    issue: "7"
+    pages: 363-370
   - name: Comparative Study of Air Cooling and Immersion Cooling for the Thermal Management of a Cylindrical Battery
       Pack
     publisher: Transactions of the Korean Society of Mechanical Engineers B
@@ -462,74 +502,104 @@ publications:
     url: https://doi.org/10.3795/KSME-B.2023.47.10.543
     summary: Kim, Jin Sub and Kim, Seul Ah and Shin, Dong Hwan and Kim, Wookyoung and Moon, Sunyoung and Chung, Yoong
       and Sohn, Sangho
+    volume: "47"
+    issue: "10"
+    pages: 543-550
+    shortPublisher: Transactions of the KSME B
   - name: A Study on Anti-Icing Design by Conjugate Heat Transfer Analysis in a Lab-Scale Printed Circuit Heat Exchanger
       for Supply of Cryogenic High Pressure Liquid Hydrogen
     publisher: Transactions of the Korean Hydrogen and New Energy Society
     releaseDate: "2022"
     url: https://doi.org/10.7316/KHNES.2022.33.5.541
     summary: Sohn, Sangho and Kim, Wookyoung
+    volume: "33"
+    issue: "5"
+    pages: 541-549
+    shortTitle: A Study on Anti-Icing Design by Conjugate Heat Transfer Analysis in a Lab-Scale PCHE for Supply of
+      Cryogenic High Pressure Liquid Hydrogen
   - name: Numerical Study on the Performance of Hybrid Falling Film Evaporator
     publisher: Korean Journal of Air-Conditioning and Refrigeration Engineering
     releaseDate: "2022"
     url: https://doi.org/10.6110/KJACR.2022.34.8.371
     summary: Kim, Hak Soo and Kim, Wookyoung and Lee, Kong Hoon and Kim, Dong Ho
+    volume: "34"
+    issue: "8"
+    pages: 371-379
   - name: Selection of the Equation of State for Thermodynamic Properties in the Low GWP Mixture Refrigerants
     publisher: Transactions of the Korean Society of Mechanical Engineers B
     releaseDate: "2022"
     url: https://doi.org/10.3795/KSME-B.2022.46.10.563
     summary: Lee, Kong Hoon and Kim, Dong Ho and Kim, Wookyoung and Kim, Jin Sub and Kim, Young and Yoo, Jin Woo
+    volume: "46"
+    issue: "10"
+    pages: 563-571
+    shortPublisher: Transactions of the KSME B
   - name: Fundamental issues and technical problems about pulsating heat pipes
     publisher: Journal of Heat Transfer - Transactions of the ASME
     releaseDate: "2021"
     url: https://doi.org/10.1115/1.4051465
     summary: Kim, Wookyoung and Kim, Sung Jin
+    volume: "143"
+    pages: "100803"
   - name: Effect of a flow behavior on the thermal performance of closed-loop and closed-end pulsating heat pipes
     publisher: International Journal of Heat and Mass Transfer
     releaseDate: "2020"
     url: https://doi.org/10.1016/j.ijheatmasstransfer.2019.119251
     summary: Kim, Wookyoung and Kim, Sung Jin
+    volume: "149"
+    pages: "119251"
   - name: Experimental Investigation on the Thermal Performance of PHP Operating in a Circulation/oscillation Mode
     publisher: Proceedings of the Korea-China-Japan Joint Symposium
     releaseDate: "2019"
     url: ""
     summary: Kim, Wookyoung and Kim, Sung Jin
+    shortVenue: Korea-China-Japan Joint Symposium
   - name: Comparison of thermal performance between CEPHP and CLPHP
     publisher: Proceedings of the 4th Thermal and Fluids Engineering Conference (TFEC)
     releaseDate: "2019"
     summary: Kim, Wookyoung and Kim, Sung Jin
+    shortVenue: 4th TFEC
   - name: Effect of reentrant cavities on the thermal performance of a pulsating heat pipe
     publisher: Applied Thermal Engineering
     releaseDate: "2018"
     url: https://doi.org/10.1016/j.applthermaleng.2017.12.109
     summary: Kim, Wookyoung and Kim, Sung Jin
+    volume: "133"
+    pages: 61-69
   - name: Experimental investigation on the thermal performance of double-condenser pulsating heat pipes
     publisher: Proceedings of the 10th International Conference on Boiling and Condensation Heat Transfer (ICBCHT)
     releaseDate: "2018"
     summary: Kim, Wookyoung and Kim, Sung Jin
+    shortVenue: 10th ICBCHT
   - name: Development of deployable radiator for spacecraft using a pulsating heat pipe
     publisher: Proceedings of the KSME 2018 Spring Annual Meeting (Thermal Engineering Division)
     releaseDate: "2018"
     url: ""
     summary: Kim, Wookyoung and Kim, Sung Jin
+    shortVenue: KSME 2018 Spring Annual Meeting (Thermal Engineering Division)
   - name: Effects of circulating flow on the thermal performance of a pulsating heat pipe
     publisher: Proceedings of the KSME 2018 Annual Meeting
     releaseDate: "2018"
     url: ""
     summary: Kim, Wookyoung and Kim, Sung Jin
+    shortVenue: KSME 2018 Annual Meeting
   - name: Experimental Investigation on the Thermal Performance of a Pulsating Heat Pipe with Artificial Cavities
     publisher: Proceedings of the 1st Asian Conference on Thermal Sciences (ACTS 2017)
     releaseDate: "2017"
     url: ""
     summary: Kim, Wookyoung and Kim, Sung Jin
+    shortVenue: 1st ACTS
   - name: Experimental investigation of artificial cavities on the thermal performance of a pulsating heat pipe
     publisher: Proceedings of the ASME InterPACK 2017
     releaseDate: "2017"
     summary: Kim, Wookyoung and Kim, Sung Jin
+    shortVenue: InterPACK 2017
   - name: Effects of artificial cavities on the startup performance of a pulsating heat pipe
     publisher: Proceedings of the KSME 2016 Annual Meeting
     releaseDate: "2016"
     url: ""
     summary: Kim, Wookyoung and Kim, Sung Jin
+    shortVenue: KSME 2016 Annual Meeting
 volunteer:
   - organization: Technology Transfer
     position: Heat pipe and vapor chamber structural design for electronics cooling

@@ -263,16 +263,11 @@ def build_cv():
             pdf.set_left_margin(original_l_margin)
 
     # ============================================================ RESEARCH INTERESTS
-    # NOTE: Research interests are hardcoded for formatting. Keep in sync with assets/json/resume.json["interests"]
+    # Rendered from resume.yml["interests"] (name + keywords).
     pdf.section_title("RESEARCH INTERESTS")
     interests = [
-        "(1) Data center cooling (immersion cooling, direct liquid cooling, jet-impingement cooling)",
-        "(2) High-heat-flux electronics cooling (CPU/GPU cold plate design)",
-        "(3) Heat exchangers (PCHE for cryogenic liquid hydrogen, compact heat exchanger design)",
-        "(4) Heat pump systems (chemisorption/adsorption heat pumps, high-temperature heat pumps)",
-        "(5) Low GWP refrigerant systems (next-gen eco-friendly refrigerants, VLE measurement)",
-        "(6) Two-phase heat transfer (boiling, evaporation, pulsating heat pipes, vapor chambers)",
-        "(7) Cryogenic heat transfer (liquid hydrogen vaporizer, supercritical fluid heat transfer)",
+        f"({i}) {it['name']} ({', '.join(it.get('keywords', []))})"
+        for i, it in enumerate(data.get("interests", []), 1)
     ]
     for line in interests:
         pdf.set_font("Times", size=10)
@@ -281,8 +276,46 @@ def build_cv():
     pdf.ln(1)
 
     # ============================================================ PUBLICATIONS
-    # NOTE: Publications are hardcoded for precise citation formatting. Keep in sync with assets/json/resume.json["publications"]
+    # Rendered from resume.yml["publications"]; citation numbers come from the
+    # volume/issue/pages fields and curated abbreviations from shortTitle/
+    # shortVenue/shortPublisher (see the resume.yml header comment).
     pdf.section_title("PUBLICATIONS")
+
+    def author_initials(author):
+        """'Kim, Jin Sub' -> 'J.S. Kim' (given-name tokens to initials)."""
+        last, _, given = author.partition(", ")
+        if not given:
+            return author
+        initials = ".".join(tok[0] for tok in re.split(r"[\s-]+", given) if tok) + "."
+        return f"{initials} {last}"
+
+    def author_line(summary):
+        names = [author_initials(a.strip()) for a in summary.split(" and ")]
+        if len(names) == 2:
+            return f"{names[0]} and {names[1]}"
+        return ", ".join(names)
+
+    def journal_tuple(p):
+        year = p["releaseDate"][:4]
+        vol = p["volume"] + (f"({p['issue']})" if p.get("issue") else "")
+        journal = p.get("shortPublisher", p["publisher"])
+        title = p.get("shortTitle", p["name"])
+        return (author_line(p["summary"]), f', "{title}", ', journal, f" {vol}, {p['pages']} ({year}).")
+
+    def conf_line(p):
+        year = p["releaseDate"][:4]
+        title = p.get("shortTitle", p["name"])
+        venue = p.get("shortVenue", p["publisher"])
+        return f'{year}, "{title}", {venue}'
+
+    sci_pubs, kci_pubs, intl_conf, domestic_conf = [], [], [], []
+    for p in data["publications"]:
+        if "Proceedings" in p["publisher"]:
+            (domestic_conf if "KSME" in p["publisher"] else intl_conf).append(p)
+        elif "Korean" in p["publisher"] or "Hydrogen and New Energy" in p["publisher"]:
+            kci_pubs.append(p)
+        else:
+            sci_pubs.append(p)
 
     def pub_subsection(title):
         pdf.set_font("Helvetica", style="B", size=10)
@@ -331,19 +364,7 @@ def build_cv():
 
     # SCI/SCIE
     pub_subsection("SCI/SCIE Journal Papers")
-    sci_papers = [
-        ('J.S. Kim, W. Kim', ', H.S. Kim, Y. Kim, "Falling film evaporation of ammonia on smooth and Low-Fin tube arrays", ', 'Thermal Science and Engineering Progress', ' 69, 104483 (2026).'),
-        ('B. Kim, K.H. Lee, M. Kim, S. Moon, J.W. Yoo, W. Kim', ', "Experimental and theoretical investigation of freezing phenomenon in Printed Circuit Heat Exchanger", ', 'Applied Thermal Engineering', ' 273, 126455 (2025).'),
-        ('D.H. Kim, W. Kim', ', J.H. Kim, H.S. Kim, K.H. Lee, "Experimental studies on the VLE of R-32/R-125 and verification of experimental setup", ', 'Journal of Mechanical Science and Technology', ' 38(10), 5779-5785 (2024).'),
-        ('H.S. Kim, D.H. Kim, J.S. Kim, W. Kim', ', Y. Kim, "A numerical study on the performance of chemisorption heat pump according to various design conditions", ', 'Applied Thermal Engineering', ' 243, 122519 (2024).'),
-        ('J.S. Kim, W. Kim', ', H.S. Kim, Y. Kim, "Pool boiling heat transfer of ammonia outside enhanced tubes with various fin structures", ', 'Applied Thermal Engineering', ' 247, 122986 (2024).'),
-        ('H.S. Kim, J.H. Kim, J.S. Kim, W. Kim', ', Y. Kim, "Experimental study of a chemisorption heat pump under different operation conditions", ', 'Applied Thermal Engineering', ' 240, 122274 (2024).'),
-        ('J. Kim, C.G. Kim, H.S. Kim, W. Kim', ', D.H. Kim, "Characterization of liquid behavior in distributor of falling-film evaporator", ', 'Physics of Fluids', ' 35(6), 067124 (2023).'),
-        ('J.S. Kim, W. Kim', ', H.S. Kim, Y. Kim, S.H. Yoon, "Pool boiling heat transfer of ammonia outside a single tube with fin structures: Hysteresis phenomena and boiling enhancement", ', 'International Communications in Heat and Mass Transfer', ' 149, 107157 (2023).'),
-        ('W. Kim', ' and S.J. Kim, "Fundamental issues and technical problems about pulsating heat pipes", ', 'Journal of Heat Transfer - Transactions of the ASME', ' 143, 100803 (2021).'),
-        ('W. Kim', ' and S.J. Kim, "Effect of a flow behavior on the thermal performance of closed-loop and closed-end pulsating heat pipes", ', 'International Journal of Heat and Mass Transfer', ' 149, 119251 (2020).'),
-        ('W. Kim', ' and S.J. Kim, "Effect of reentrant cavities on the thermal performance of a pulsating heat pipe", ', 'Applied Thermal Engineering', ' 133, 61-69 (2018).'),
-    ]
+    sci_papers = [journal_tuple(p) for p in sci_pubs]
 
     for i, parts in enumerate(sci_papers, 1):
         prefix = f"({i}) "
@@ -387,16 +408,7 @@ def build_cv():
 
     # KCI
     pub_subsection("KCI Journal Papers")
-    kci_papers = [
-        ('J.S. Kim, D.H. Shin, J. Shim, K.H. Lee, S. Sohn, W. Kim, C. Song', ', "A Study on the Design of an Air-to-Air Plate Heat Exchanger for 300°C High Temperature Heat Pumps", ', 'Korean Journal of Air-Conditioning and Refrigeration Engineering', ' 38(1), 13-25 (2026).'),
-        ('W. Kim', ', B. Kim, S. Sohn, K.H. Lee, J. Kim, "Experimental Investigation on the Freezing Condition of PCHE for Cryogenic Liquid Hydrogen Vaporizer", ', 'Journal of Hydrogen and New Energy', ' 35(2), 240-248 (2024).'),
-        ('W. Kim', ', H.S. Kim, J. Kim, D.H. Kim, "An Experimental Study on The Thermal Performance Measurement and Flow Visualization of Falling Film Evaporator Using R-1233ZD(E) Refrigerant", ', 'Korean Journal of Air-Conditioning and Refrigeration Engineering', ' 36(1), 9-17 (2024).'),
-        ('S. Sohn, W. Kim', ', "A Study on Anti-Icing Design by Conjugate Heat Transfer Analysis in a Lab-Scale PCHE for Supply of Cryogenic High Pressure Liquid Hydrogen", ', 'Transactions of the Korean Hydrogen and New Energy Society', ' 33(5), 541-549 (2022).'),
-        ('D.H. Kim, H.S. Kim, J. Kim, W. Kim', ', "An Experimental Study on the Performance Characteristics of a Falling Film Evaporator for R-1234ze(E) Refrigerant", ', 'Korean Journal of Air-Conditioning and Refrigeration Engineering', ' 35(7), 363-370 (2023).'),
-        ('J.S. Kim, S.A. Kim, D.H. Shin, W. Kim', ', S. Moon, Y. Chung, S. Sohn, "Comparative Study of Air Cooling and Immersion Cooling for the Thermal Management of a Cylindrical Battery Pack", ', 'Transactions of the KSME B', ' 47(10), 543-550 (2023).'),
-        ('H.S. Kim, W. Kim', ', K.H. Lee, D.H. Kim, "Numerical Study on the Performance of Hybrid Falling Film Evaporator", ', 'Korean Journal of Air-Conditioning and Refrigeration Engineering', ' 34(8), 371-379 (2022).'),
-        ('K.H. Lee, D.H. Kim, W. Kim', ', J.S. Kim, Y. Kim, J.W. Yoo, "Selection of the Equation of State for Thermodynamic Properties in the Low GWP Mixture Refrigerants", ', 'Transactions of the KSME B', ' 46(10), 563-571 (2022).'),
-    ]
+    kci_papers = [journal_tuple(p) for p in kci_pubs]
 
     for i, parts in enumerate(kci_papers, 1):
         prefix = f"({i}) "
@@ -437,16 +449,7 @@ def build_cv():
 
     # Conference proceedings
     pub_subsection("International Conference Proceedings")
-    conf_papers = [
-        "2024, \"Experimental and theoretical investigation on avoiding freezing phenomena of PCHE for cryogenic liquid hydrogen vaporizer\", 29th ICEC",
-        "2024, \"Understanding the thermal characteristics of falling film evaporation of R-1233ZD(E) refrigerant using flow visualization and heat transfer measurement\", 11th ACRA",
-        "2023, \"Experimental investigation on the flow and thermal characteristics of falling film evaporator using R-1233ZD(E) refrigerant\", 11th ICBCHT",
-        "2019, \"Experimental Investigation on the Thermal Performance of PHP Operating in a Circulation/oscillation Mode\", Korea-China-Japan Joint Symposium",
-        "2019, \"Comparison of thermal performance between CEPHP and CLPHP\", 4th TFEC",
-        "2018, \"Experimental investigation on the thermal performance of double-condenser pulsating heat pipes\", 10th ICBCHT",
-        "2017, \"Experimental Investigation on the Thermal Performance of a Pulsating Heat Pipe with Artificial Cavities\", 1st ACTS",
-        "2017, \"Experimental investigation of artificial cavities on the thermal performance of a pulsating heat pipe\", InterPACK 2017",
-    ]
+    conf_papers = [conf_line(p) for p in intl_conf]
     for i, text in enumerate(conf_papers, 1):
         prefix = f"({i}) "
         indent_mm = 8
@@ -459,11 +462,7 @@ def build_cv():
 
     # Domestic Conference Presentations
     pub_subsection("Domestic Conference Presentations")
-    domestic_conf_papers = [
-        "2018, \"Development of deployable radiator for spacecraft using a pulsating heat pipe\", KSME 2018 Spring Annual Meeting (Thermal Engineering Division)",
-        "2018, \"Effects of circulating flow on the thermal performance of a pulsating heat pipe\", KSME 2018 Annual Meeting",
-        "2016, \"Effects of artificial cavities on the startup performance of a pulsating heat pipe\", KSME 2016 Annual Meeting",
-    ]
+    domestic_conf_papers = [conf_line(p) for p in domestic_conf]
     for i, text in enumerate(domestic_conf_papers, 1):
         prefix = f"({i}) "
         indent_mm = 8

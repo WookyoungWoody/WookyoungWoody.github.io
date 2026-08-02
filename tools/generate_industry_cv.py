@@ -3,6 +3,7 @@
 
 import yaml
 import os
+import re
 import warnings
 
 warnings.filterwarnings("ignore")
@@ -287,6 +288,21 @@ def build_pdf():
             ],
         ),
     ]
+
+    # Advisory drift check: every curated Experience bullet should trace back
+    # to a project in resume.yml (this section is hand-tuned to fit 2 pages,
+    # so bullets stay curated -- but a bullet describing work that is not in
+    # resume.yml is a red flag; see cv-manager notes on a past incident).
+    def _tokens(text):
+        return {t for t in re.findall(r"[a-z0-9]+", str(text).lower()) if len(t) > 3}
+
+    project_token_sets = [_tokens(p) for p in data.get("projects", []) + data.get("publications", [])]
+    for _, stream_bullets in streams:
+        for b in stream_bullets:
+            bt = _tokens(b.split("[")[0])
+            best = max((len(bt & pt) / len(bt) for pt in project_token_sets), default=0)
+            if bt and best < 0.3:
+                print(f"WARNING: Experience bullet not traceable to resume.yml projects: {b!r}")
 
     for stream_title, stream_bullets in streams:
         # Stream label
