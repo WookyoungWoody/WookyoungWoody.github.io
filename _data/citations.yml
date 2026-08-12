@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-08-03'
+  last_updated: '2026-08-12'
 papers:
   qhSKdD8AAAAJ:2osOgNQ5qMEC:
     citations: 1
@@ -18,7 +18,7 @@ papers:
     title: A numerical study on the performance of chemisorption heat pump according to various design conditions
     year: '2024'
   qhSKdD8AAAAJ:W7OEmFMy1HYC:
-    citations: 5
+    citations: 6
     title: A study on anti-icing design by conjugate heat transfer analysis in a lab-scale printed circuit heat exchanger for supply of cryogenic high pressure liquid hydrogen
     year: '2022'
   qhSKdD8AAAAJ:WF5omc3nYNoC:
@@ -42,7 +42,7 @@ papers:
     title: Experimental investigation on the freezing condition of printed circuit heat exchanger for cryogenic liquid hydrogen vaporizer
     year: '2024'
   qhSKdD8AAAAJ:qjMakFHDy7sC:
-    citations: 0
+    citations: 1
     title: Experimental studies on the VLE of R-32/R-125 and verification of experimental setup
     year: '2024'
   qhSKdD8AAAAJ:u-x6o8ySG0sC:
@@ -50,7 +50,7 @@ papers:
     title: Effect of reentrant cavities on the thermal performance of a pulsating heat pipe
     year: '2018'
   qhSKdD8AAAAJ:u5HHmVD_uO8C:
-    citations: 22
+    citations: 23
     title: Fundamental issues and technical problems about pulsating heat pipes
     year: '2021'
   qhSKdD8AAAAJ:ufrVoPGSRksC:
