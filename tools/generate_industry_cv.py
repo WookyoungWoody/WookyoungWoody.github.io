@@ -175,15 +175,17 @@ def build_pdf():
     pdf.section_header("PROFESSIONAL SUMMARY", spacing_before=1.5)
     pdf.set_font("Helvetica", "", BODY_SIZE)
     pdf.set_text_color(*DARK_GRAY)
+    # NOTE: keep this text within ~5 rendered lines (~550 chars). The fixed-
+    # position KEY ACHIEVEMENTS box at the bottom of page 1 breaks across
+    # pages (2 -> 7 page blowup) if the summary grows by even one line.
     summary = (
-        "Thermal engineer with 5+ years of R&D experience at Korea's national research institute (KIMM). "
-        "Specialized in thermal management solutions for AI data centers, liquid hydrogen energy systems, "
-        "and heat pump technology. Hands-on expertise spanning system design, experimental facility "
-        "construction, high-pressure/cryogenic testing, and engineering software development "
-        "(Python / FastAPI / React Native). "
-        f"Track record: {n_journal} journal papers ({n_sci} SCI + {n_kci} KCI), "
-        f"{n_patents} domestic patents, {n_us} U.S. patent, {n_software} registered software programs, "
-        f"{n_transfers} technology transfers to industry."
+        "Ph.D. thermal engineer with 10+ years in electronics cooling and two-phase heat transfer, from "
+        "pulsating heat pipes (KAIST) to AI data center cooling (DLC, immersion, jet impingement) "
+        "as PI/project lead at Korea's national research institute (KIMM). Combines hands-on experimental "
+        "expertise (-220°C / 100 MPa testing, hydrogen heat exchangers, heat pumps) with "
+        "production-grade software development (Python / FastAPI / React Native). Lab-to-market record: "
+        f"{n_transfers} technology transfers, {n_patents} domestic + {n_us} U.S. patents, "
+        f"{n_journal} journal papers ({n_sci} SCI + {n_kci} KCI), {n_software} registered design programs."
     )
     pdf.multi_cell(0, LINE_H, summary)
 
