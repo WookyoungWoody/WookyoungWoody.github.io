@@ -1,12 +1,12 @@
 metadata:
-  last_updated: '2026-08-12'
+  last_updated: '2026-08-26'
 papers:
   qhSKdD8AAAAJ:2osOgNQ5qMEC:
     citations: 1
     title: Experimental and theoretical investigation of freezing phenomenon in Printed Circuit Heat Exchanger
     year: '2025'
   qhSKdD8AAAAJ:IjCSPb-OGe4C:
-    citations: 10
+    citations: 11
     title: Pool boiling heat transfer of ammonia outside enhanced tubes with various fin structures
     year: '2024'
   qhSKdD8AAAAJ:Tyk-4Ss8FVUC:
@@ -50,7 +50,7 @@ papers:
     title: Effect of reentrant cavities on the thermal performance of a pulsating heat pipe
     year: '2018'
   qhSKdD8AAAAJ:u5HHmVD_uO8C:
-    citations: 23
+    citations: 24
     title: Fundamental issues and technical problems about pulsating heat pipes
     year: '2021'
   qhSKdD8AAAAJ:ufrVoPGSRksC:
