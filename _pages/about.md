@@ -35,7 +35,7 @@ latest_posts:
 
 I am a Senior Researcher at the [Heat Pump Research Center](https://www.kimm.re.kr), Korea Institute of Machinery and Materials (KIMM), leading **AI data center cooling** R&D (direct liquid cooling, immersion, jet impingement) as PI and project lead. My 10+ years in electronics cooling and two-phase heat transfer began with pulsating heat pipes at [KAIST](https://www.kaist.ac.kr) (Ph.D. 2021, advised by [Prof. Sung Jin Kim](https://scholar.google.com/citations?user=1YqQxnkAAAAJ)).
 
-I combine hands-on experimental expertise, from cryogenic (-220°C) liquid-hydrogen heat exchangers to 100 MPa high-pressure testing, with production-grade engineering software development (Python, FastAPI, React Native). Lab-to-market record: **{{ n_tt }} technology transfers** to industry, **{{ n_patents }} domestic + {{ n_us }} U.S. patents**, **{{ n_journal }} journal papers**, and **{{ n_sw }} registered software programs** ([industry CV](/assets/pdf/cv_industry.pdf)).
+I combine hands-on experimental expertise, from cryogenic (-220°C) liquid-hydrogen heat exchangers to 100 MPa high-pressure testing, with production-grade engineering software development (Python, FastAPI, React Native). Lab-to-market record: **{{ n_tt }} technology transfers** to industry, **{{ n_patents }} domestic + {{ n_us }} U.S. patents**, **{{ n_journal }} journal papers**, and **{{ n_sw }} registered software programs** ([academic CV](/assets/pdf/cv_academic.pdf)).
 
 My research focuses on **thermal engineering** with applications in:
 
