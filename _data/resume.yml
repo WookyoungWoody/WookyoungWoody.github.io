@@ -13,8 +13,10 @@ basics:
   email: wookyoung@kimm.re.kr
   phone: +82-42-868-7619
   url: https://wookyoungwoody.github.io/
-  summary: Thermal engineer specializing in data center cooling, heat exchangers, heat pump systems, and two-phase
-    heat transfer. Experienced in both experimental research and engineering software development.
+  summary: Ph.D. thermal engineer with 10+ years in electronics cooling and two-phase heat transfer, from pulsating
+    heat pipes (KAIST) to AI data center cooling (DLC, immersion, jet impingement) as PI/project lead at KIMM. Combines
+    hands-on experimental expertise (-220°C / 100 MPa testing, hydrogen heat exchangers, heat pumps) with
+    production-grade software development (Python / FastAPI / React Native).
   location:
     address: 156 Gajeongbuk-ro, Yuseong-gu
     postalCode: "34103"
