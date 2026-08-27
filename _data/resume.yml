@@ -94,7 +94,7 @@ skills:
       - Thermal network modeling
       - Heat exchanger design (PCHE, S&T, PHE)
       - CFD simulation
-      - Machine learning & surrogate modeling (scikit-learn, PyTorch, LightGBM)
+      - Surrogate modeling & design optimization
       - CoolProp/REFPROP
   - name: Software Development
     icon: fa-solid fa-code

@@ -537,7 +537,7 @@ def build_pdf():
                           "Cryogenic systems (-220°C) · Flow visualization"),
         ("Analytical & Computational:", "Thermal network modeling · Heat exchanger design (PCHE, S&T, PHE) · "
                           "CFD (ANSYS FLUENT, COMSOL) · CAD (SOLIDWORKS, INVENTOR) · "
-                          "Machine learning & surrogate modeling (scikit-learn, PyTorch, LightGBM) · "
+                          "Surrogate modeling & design optimization · "
                           "CoolProp/REFPROP"),
         ("Software Development:", "Python · JavaScript/TypeScript · C/C++ · FastAPI · React / React Native · "
                           "Git · Docker · Linux"),

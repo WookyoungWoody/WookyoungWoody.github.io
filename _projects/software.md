@@ -87,13 +87,13 @@ Fin-tube heat exchanger design program (C-2024-038692). Automates rating and siz
 
 ## Technology Stack
 
-| Layer     | Technologies                                               |
-| --------- | ---------------------------------------------------------- |
-| Backend   | Python, FastAPI, CoolProp, REFPROP                         |
-| Frontend  | React, React Native                                        |
-| Numerical | Effectiveness-NTU, thermal network modeling                |
-| AI/ML     | PyTorch, JAX, Physics-Informed Neural Networks, LLM agents |
-| DevOps    | Git/GitHub, Linux, CMake, Docker                           |
+| Layer     | Technologies                                        |
+| --------- | --------------------------------------------------- |
+| Backend   | Python, FastAPI, CoolProp, REFPROP                  |
+| Frontend  | React, React Native                                 |
+| Numerical | Effectiveness-NTU, thermal network modeling         |
+| AI        | Surrogate modeling, design optimization, LLM agents |
+| DevOps    | Git/GitHub, Linux, CMake, Docker                    |
 
 ---
 
