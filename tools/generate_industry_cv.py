@@ -41,6 +41,7 @@ LINK_PAD = 0.7          # mm of extra click area around hyperlink text
 KIMMPROP_IOS = "https://apps.apple.com/kr/app/kimmprop/id6745596456"
 KIMMPROP_ANDROID = "https://play.google.com/store/apps/details?id=com.kimmprop_v03"
 SOFTWARE_PROJECT_PAGE = "https://wookyoungwoody.github.io/projects/software/"
+PROJECTS_PAGE = "https://wookyoungwoody.github.io/projects/"
 
 
 class IndustryCVPDF(FPDF):
@@ -76,17 +77,19 @@ class IndustryCVPDF(FPDF):
         self.link(x0 + self.c_margin - LINK_PAD, y0 - LINK_PAD, w + 2 * LINK_PAD, h + 2 * LINK_PAD, url)
         return w
 
-    def link_chip(self, label, url, size=None):
+    def link_chip(self, label, url, size=None, h=None):
         """Inline hyperlink chip: accent + underline + trailing marker.
 
         Returns the width consumed so callers can width-check a line.
         """
         if size is None:
             size = SMALL_SIZE
+        if h is None:
+            h = BULLET_H
         text = f"{label} {LINK_MARKER}"
         self.set_font("Helvetica", "U", size)
         self.set_text_color(*ACCENT)
-        w = self.linked_cell(text, url, BULLET_H)
+        w = self.linked_cell(text, url, h)
         self.set_font("Helvetica", "", size)
         self.set_text_color(*DARK_GRAY)
         return w
@@ -389,7 +392,10 @@ def build_pdf():
     pdf.cell(0, LINE_H, f"{position}  |  {company}", ln=True)
     pdf.set_font("Helvetica", "", SMALL_SIZE)
     pdf.set_text_color(*MED_GRAY)
-    pdf.cell(0, 4, f"{date_range}  --  Korea's national research institute for machinery and materials", ln=True)
+    subline = f"{date_range}  --  Korea's national research institute for machinery and materials"
+    pdf.cell(pdf.get_string_width(subline) + 3, 4, subline, ln=False)
+    pdf.link_chip("Project page", PROJECTS_PAGE, SMALL_SIZE, h=4)
+    pdf.ln(4)
     pdf.ln(1)
 
     # Thematic stream groupings
@@ -662,7 +668,7 @@ def build_pdf():
     pdf.set_text_color(*MED_GRAY)
     note = f"All {n_software} programs registered with Korea Copyright Commission"
     pdf.cell(pdf.get_string_width(note) + 3, 4.5, note, ln=False)
-    pdf.link_chip("Project page", SOFTWARE_PROJECT_PAGE, SMALL_SIZE - 0.5)
+    pdf.link_chip("Details", SOFTWARE_PROJECT_PAGE, SMALL_SIZE - 0.5)
     pdf.ln(4.5)
     pdf.ln(0.5)
 
