@@ -34,6 +34,7 @@ BULLET_H = 5.0        # bullet line height
 # Trailing glyph marking a live hyperlink. Must stay latin-1: the core
 # Helvetica font cannot encode arrows like U+2197.
 LINK_MARKER = chr(187)  # >>
+LINK_PAD = 0.7          # mm of extra click area around hyperlink text
 
 # App store URLs are duplicated from _projects/software.md (the KIMMPROP
 # section); everything else resolves from _data/. Keep the two in sync.
@@ -59,6 +60,22 @@ class IndustryCVPDF(FPDF):
         self.set_text_color(*MED_GRAY)
         self.cell(0, 4, f"Page {self.page_no()}", align="C")
 
+    def linked_cell(self, text, url, h, w=None):
+        """Draw text and register a padded click area over it.
+
+        cell(link=...) sizes the hotspot to the glyph box only (~3mm tall),
+        which is a fussy target. Registering the rect separately lets the
+        hotspot cover the full line height plus a small margin.
+        """
+        if w is None:
+            w = self.get_string_width(text)
+        x0, y0 = self.get_x(), self.get_y()
+        self.cell(w, h, text, ln=False)
+        # cell() insets its text by c_margin, so the glyphs start there, not
+        # at the cell edge; without this the hotspot sits a millimetre left.
+        self.link(x0 + self.c_margin - LINK_PAD, y0 - LINK_PAD, w + 2 * LINK_PAD, h + 2 * LINK_PAD, url)
+        return w
+
     def link_chip(self, label, url, size=None):
         """Inline hyperlink chip: accent + underline + trailing marker.
 
@@ -69,8 +86,7 @@ class IndustryCVPDF(FPDF):
         text = f"{label} {LINK_MARKER}"
         self.set_font("Helvetica", "U", size)
         self.set_text_color(*ACCENT)
-        w = self.get_string_width(text)
-        self.cell(w, BULLET_H, text, link=url, ln=False)
+        w = self.linked_cell(text, url, BULLET_H)
         self.set_font("Helvetica", "", size)
         self.set_text_color(*DARK_GRAY)
         return w
@@ -241,7 +257,7 @@ def build_pdf():
     for text, url in contact_links:
         pdf.set_font("Helvetica", "U", 8.5)
         pdf.set_text_color(*ACCENT)
-        pdf.cell(pdf.get_string_width(text), 5, text, link=url, ln=False)
+        pdf.linked_cell(text, url, 5)
         pdf.set_font("Helvetica", "", 8.5)
         pdf.set_text_color(*MED_GRAY)
         pdf.cell(sep_w, 5, sep, ln=False)
