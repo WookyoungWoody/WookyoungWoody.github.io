@@ -159,6 +159,44 @@ def _load_data():
         return yaml.safe_load(f)
 
 
+def _make_annotations_indirect(path):
+    """Rewrite inline link annotations as indirect objects.
+
+    fpdf2 emits each link annotation as a dictionary written directly into
+    the page's /Annots array. The PDF spec expects annotations to be
+    indirect objects, and strict viewers (PDF Expert, for one) ignore the
+    inline form outright -- there, only text that *looks* like a URL stays
+    clickable via the viewer's own autodetection, so labelled links such as
+    "Google Scholar" or "App Store" are dead. Promoting them fixes that.
+
+    Also sets /P, the back-reference to the owning page, which some viewers
+    use to resolve an annotation's context.
+    """
+    from pypdf import PdfReader, PdfWriter
+    from pypdf.generic import ArrayObject, IndirectObject, NameObject
+
+    reader = PdfReader(path)
+    writer = PdfWriter(clone_from=reader)
+    promoted = 0
+    for page in writer.pages:
+        annots = page.get("/Annots")
+        if not annots:
+            continue
+        rewritten = ArrayObject()
+        for annot in annots:
+            if isinstance(annot, IndirectObject):
+                rewritten.append(annot)
+                continue
+            if page.indirect_reference is not None:
+                annot[NameObject("/P")] = page.indirect_reference
+            rewritten.append(writer._add_object(annot))
+            promoted += 1
+        page[NameObject("/Annots")] = rewritten
+    with open(path, "wb") as f:
+        writer.write(f)
+    return promoted
+
+
 def _scholar_url():
     """Google Scholar profile URL, built from the id in _data/socials.yml."""
     socials_path = os.path.join(_REPO_ROOT, "_data", "socials.yml")
@@ -725,8 +763,10 @@ def build_pdf():
             pdf.multi_cell(0, LINE_H, tail)
 
     pdf.output(OUTPUT)
+    promoted = _make_annotations_indirect(OUTPUT)
     print(f"Generated: {OUTPUT}")
     print(f"Pages: {pdf.page}")
+    print(f"Hyperlinks: {promoted} (rewritten as indirect objects)")
 
 
 if __name__ == "__main__":
