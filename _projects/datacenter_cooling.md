@@ -19,11 +19,11 @@ Since 2025 (PI), this project focuses on jet-impingement immersion cooling for n
 
 ### Direct Liquid Cooling (DLC)
 
-Cold plate systems are designed and tested for all major heat-generating components: CPUs, GPUs, RAM modules, and SSDs. Research includes thermal interface material (TIM) selection and optimization, micro-channel cold plate geometry, and system-level coolant loop design. The goal is to achieve component junction temperatures within safe operating limits while minimizing coolant flow rate and pump power.
+Since 2026 (Lead), this project develops direct-to-chip (DTC) cold plate cooling for the dominant heat sources in AI servers: CPUs and GPUs. Both single-phase and two-phase DTC modes are developed and tested, with system targets of **300 kW per rack** and **3 kW per chip**. Research covers thermal interface material (TIM) selection and optimization, micro-channel cold plate geometry, and system-level coolant loop design, holding junction temperatures within safe operating limits while minimizing coolant flow rate and pump power.
 
 ### Waste Heat Utilization
 
-Since 2025 (Lead), this project investigates recovering the thermal energy rejected by immersion cooling systems for beneficial reuse—space heating, process heat, or absorption cooling. Active thermal management strategies are developed to maintain stable coolant supply temperatures while maximizing recoverable heat quantity and quality. Integration with building HVAC systems is a key design target.
+Since 2025 (Lead), this project turns the low-grade heat rejected by data center cooling loops, typically around 50 °C, back into useful energy. The primary route is **adsorption** cooling: an adsorption chiller driven by that waste heat produces chilled water, recycling the rejected heat back into the cooling supply. Where an application calls for heat rather than cooling, the same stream is instead temperature-boosted and delivered as space or process heating. Active thermal management strategies maintain stable coolant supply temperatures while maximizing recoverable heat quantity and quality, with integration into building HVAC systems as a key design target.
 
 ## Key Achievements
 

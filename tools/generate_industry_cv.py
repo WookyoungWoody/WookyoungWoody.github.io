@@ -435,10 +435,7 @@ def build_pdf():
                     "KIMMPROP: iOS/Android thermophysical-property app (CoolProp/REFPROP via WASM) [PI, 2025]",
                     [("App Store", KIMMPROP_IOS), ("Google Play", KIMMPROP_ANDROID)],
                 ),
-                (
-                    f"{n_software} registered engineering design programs (PCHE, heat-pump cycle, vapor chamber, etc.) [Lead]",
-                    [("Details", SOFTWARE_PROJECT_PAGE)],
-                ),
+                f"{n_software} registered engineering design programs (PCHE, heat-pump cycle, vapor chamber, etc.) [Lead]",
             ],
         ),
     ]
