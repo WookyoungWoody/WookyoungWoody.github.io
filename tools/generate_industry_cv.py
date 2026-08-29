@@ -31,6 +31,16 @@ TINY_SIZE = 7.5       # column headers inside boxes
 LINE_H = 5.0          # standard line height
 BULLET_H = 5.0        # bullet line height
 
+# Trailing glyph marking a live hyperlink. Must stay latin-1: the core
+# Helvetica font cannot encode arrows like U+2197.
+LINK_MARKER = chr(187)  # >>
+
+# App store URLs are duplicated from _projects/software.md (the KIMMPROP
+# section); everything else resolves from _data/. Keep the two in sync.
+KIMMPROP_IOS = "https://apps.apple.com/kr/app/kimmprop/id6745596456"
+KIMMPROP_ANDROID = "https://play.google.com/store/apps/details?id=com.kimmprop_v03"
+SOFTWARE_PROJECT_PAGE = "https://wookyoungwoody.github.io/projects/software/"
+
 
 class IndustryCVPDF(FPDF):
     def header(self):
@@ -38,9 +48,47 @@ class IndustryCVPDF(FPDF):
 
     def footer(self):
         self.set_y(-10)
+        # Legend telling the reader the blue underlined text is live. Both
+        # pages carry links, so it runs on both.
+        self.set_x(self.l_margin)
+        self.set_font("Helvetica", "I", 6.5)
+        self.set_text_color(*MED_GRAY)
+        self.cell(70, 4, f"Blue underlined text is clickable {LINK_MARKER}", ln=False)
+        self.set_x(self.l_margin)
         self.set_font("Helvetica", "", 7)
         self.set_text_color(*MED_GRAY)
         self.cell(0, 4, f"Page {self.page_no()}", align="C")
+
+    def link_chip(self, label, url, size=None):
+        """Inline hyperlink chip: accent + underline + trailing marker.
+
+        Returns the width consumed so callers can width-check a line.
+        """
+        if size is None:
+            size = SMALL_SIZE
+        text = f"{label} {LINK_MARKER}"
+        self.set_font("Helvetica", "U", size)
+        self.set_text_color(*ACCENT)
+        w = self.get_string_width(text)
+        self.cell(w, BULLET_H, text, link=url, ln=False)
+        self.set_font("Helvetica", "", size)
+        self.set_text_color(*DARK_GRAY)
+        return w
+
+    def bullet_with_links(self, text, links, indent=4, size=None):
+        """Bullet whose trailing chips hyperlink out. Must stay on one line."""
+        if size is None:
+            size = BULLET_SIZE
+        self.set_x(self.l_margin + indent)
+        self.set_font("Helvetica", "", size)
+        self.set_text_color(*DARK_GRAY)
+        self.cell(4, BULLET_H, chr(149), ln=False)
+        self.set_x(self.l_margin + indent + 4)
+        self.cell(self.get_string_width(text) + 2, BULLET_H, text, ln=False)
+        for label, url in links:
+            self.link_chip(label, url, size)
+            self.cell(2, BULLET_H, "", ln=False)
+        self.ln(BULLET_H)
 
     def section_header(self, title, spacing_before=3):
         """Draw section header with accent underline rule."""
@@ -93,6 +141,22 @@ def _load_data():
     resume_path = os.path.join(_REPO_ROOT, "_data", "resume.yml")
     with open(resume_path, "r") as f:
         return yaml.safe_load(f)
+
+
+def _scholar_url():
+    """Google Scholar profile URL, built from the id in _data/socials.yml."""
+    socials_path = os.path.join(_REPO_ROOT, "_data", "socials.yml")
+    with open(socials_path, "r") as f:
+        socials = yaml.safe_load(f) or {}
+    uid = socials.get("scholar_userid", "")
+    return f"https://scholar.google.com/citations?user={uid}" if uid else ""
+
+
+def _profile_url(data, network):
+    for prof in data["basics"].get("profiles", []):
+        if prof.get("network", "").lower() == network.lower():
+            return prof.get("url", "")
+    return ""
 
 
 def _compute_counts(data):
@@ -154,15 +218,34 @@ def build_pdf():
     pdf.set_text_color(*ACCENT)
     pdf.cell(0, 5, f"{label}  |  Thermal Engineer", ln=True)
 
-    pdf.set_font("Helvetica", "", 8.5)
-    pdf.set_text_color(*MED_GRAY)
     # Single contact line tuned to fit the page width (must stay 1 line to
     # preserve the precise 2-page layout). Scholar shown as a short label
     # ("Google Scholar") rather than the full citations URL to make room.
-    contact_parts = [email, "Google Scholar", "linkedin.com/in/wookyoungwoody", "wookyoungwoody.github.io"]
-    if location_str:
-        contact_parts.append(location_str)
-    pdf.cell(0, 5, "  |  ".join(contact_parts), ln=True)
+    # Each entry is a live hyperlink; no LINK_MARKER here because the line
+    # already runs at ~171mm of the 174mm content width.
+    site_url = basics.get("url", "")
+    contact_links = [
+        (email, f"mailto:{email}"),
+        ("Google Scholar", _scholar_url()),
+        ("linkedin.com/in/wookyoungwoody", _profile_url(data, "LinkedIn")),
+        ("wookyoungwoody.github.io", site_url),
+    ]
+    sep = "  |  "
+    pdf.set_font("Helvetica", "", 8.5)
+    sep_w = pdf.get_string_width(sep)
+    line_w = sum(pdf.get_string_width(t) for t, _ in contact_links) + len(contact_links) * sep_w
+    line_w += pdf.get_string_width(location_str)
+    if line_w > cw:
+        print(f"WARNING: contact line is {line_w:.1f}mm wide, exceeds {cw:.1f}mm -- it will wrap")
+
+    for text, url in contact_links:
+        pdf.set_font("Helvetica", "U", 8.5)
+        pdf.set_text_color(*ACCENT)
+        pdf.cell(pdf.get_string_width(text), 5, text, link=url, ln=False)
+        pdf.set_font("Helvetica", "", 8.5)
+        pdf.set_text_color(*MED_GRAY)
+        pdf.cell(sep_w, 5, sep, ln=False)
+    pdf.cell(0, 5, location_str, ln=True)
 
     # Horizontal rule
     pdf.set_draw_color(*ACCENT)
@@ -285,8 +368,17 @@ def build_pdf():
             "Engineering Software & Apps",
             [
                 "AI-based automated design tool for data center DLC cooling systems [PI, 2026]",
-                f"KIMMPROP: cross-platform iOS/Android thermophysical-property app (CoolProp/REFPROP via WASM) [PI, 2025]",
-                f"{n_software} registered engineering design programs (PCHE, heat-pump cycle, vapor chamber, etc.) [Lead]",
+                # Shipped app -- link straight to both stores so a recruiter can
+                # open it. Text trimmed ("cross-platform" is implied by
+                # iOS/Android) to leave room for the two chips on one line.
+                (
+                    "KIMMPROP: iOS/Android thermophysical-property app (CoolProp/REFPROP via WASM) [PI, 2025]",
+                    [("App Store", KIMMPROP_IOS), ("Google Play", KIMMPROP_ANDROID)],
+                ),
+                (
+                    f"{n_software} registered engineering design programs (PCHE, heat-pump cycle, vapor chamber, etc.) [Lead]",
+                    [("Details", SOFTWARE_PROJECT_PAGE)],
+                ),
             ],
         ),
     ]
@@ -298,13 +390,32 @@ def build_pdf():
     def _tokens(text):
         return {t for t in re.findall(r"[a-z0-9]+", str(text).lower()) if len(t) > 3}
 
+    def _bullet_text(b):
+        """A stream bullet is either plain text or (text, [(label, url), ...])."""
+        return b[0] if isinstance(b, tuple) else b
+
     project_token_sets = [_tokens(p) for p in data.get("projects", []) + data.get("publications", [])]
     for _, stream_bullets in streams:
         for b in stream_bullets:
-            bt = _tokens(b.split("[")[0])
+            bt = _tokens(_bullet_text(b).split("[")[0])
             best = max((len(bt & pt) / len(bt) for pt in project_token_sets), default=0)
             if bt and best < 0.3:
-                print(f"WARNING: Experience bullet not traceable to resume.yml projects: {b!r}")
+                print(f"WARNING: Experience bullet not traceable to resume.yml projects: {_bullet_text(b)!r}")
+
+    # A linked bullet is drawn as inline cells, so unlike bullet() it cannot
+    # wrap -- overflow would silently run past the right margin.
+    bullet_avail = cw - 6 - 4
+    for _, stream_bullets in streams:
+        for b in stream_bullets:
+            if not isinstance(b, tuple):
+                continue
+            text, links = b
+            pdf.set_font("Helvetica", "", SMALL_SIZE)
+            w = pdf.get_string_width(text) + 2
+            pdf.set_font("Helvetica", "U", SMALL_SIZE)
+            w += sum(pdf.get_string_width(f"{label} {LINK_MARKER}") + 2 for label, _ in links)
+            if w > bullet_avail:
+                print(f"WARNING: linked bullet is {w:.1f}mm, exceeds {bullet_avail:.1f}mm: {text!r}")
 
     for stream_title, stream_bullets in streams:
         # Stream label
@@ -313,7 +424,10 @@ def build_pdf():
         pdf.set_text_color(*DARK_GRAY)
         pdf.cell(0, LINE_H, stream_title, ln=True)
         for b in stream_bullets:
-            pdf.bullet(b, indent=6, size=SMALL_SIZE)
+            if isinstance(b, tuple):
+                pdf.bullet_with_links(b[0], b[1], indent=6, size=SMALL_SIZE)
+            else:
+                pdf.bullet(b, indent=6, size=SMALL_SIZE)
         pdf.ln(1)
 
     # Quantified impact line
@@ -492,7 +606,10 @@ def build_pdf():
 
     pdf.set_font("Helvetica", "I", SMALL_SIZE - 0.5)
     pdf.set_text_color(*MED_GRAY)
-    pdf.cell(0, 4.5, f"All {n_software} programs registered with Korea Copyright Commission", ln=True)
+    note = f"All {n_software} programs registered with Korea Copyright Commission"
+    pdf.cell(pdf.get_string_width(note) + 3, 4.5, note, ln=False)
+    pdf.link_chip("Project page", SOFTWARE_PROJECT_PAGE, SMALL_SIZE - 0.5)
+    pdf.ln(4.5)
     pdf.ln(0.5)
 
     for c in kcc_sw_sorted:
