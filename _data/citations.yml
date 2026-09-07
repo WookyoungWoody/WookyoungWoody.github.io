@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-08-31'
+  last_updated: '2026-09-07'
 papers:
   qhSKdD8AAAAJ:2osOgNQ5qMEC:
     citations: 1
@@ -33,6 +33,10 @@ papers:
     citations: 1
     title: Thermal Performance Test of Prototype for Cu-Cu Fin Tube Heat Pipe Heat Exchanger
     year: '2023'
+  qhSKdD8AAAAJ:_FxGoFyzp5QC:
+    citations: 0
+    title: "Vapor\u2013liquid equilibrium measurements and mixture-model parametrization for the binary refrigerant systems R1234yf+ CF\u2083I and R1123+ CF\u2083I"
+    year: '2026'
   qhSKdD8AAAAJ:d1gkVwhDpl0C:
     citations: 49
     title: Effect of a flow behavior on the thermal performance of closed-loop and closed-end pulsating heat pipes
