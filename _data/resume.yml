@@ -8,15 +8,16 @@
 #   shortTitle/shortVenue/shortPublisher — curated abbreviations for the PDF
 basics:
   name: Wookyoung Kim
-  label: Senior Researcher
+  label: "Senior Researcher, KIMM  |  Associate Professor, UST"
   image: ""
   email: wookyoung@kimm.re.kr
   phone: +82-42-868-7619
   url: https://wookyoungwoody.github.io/
   summary: Ph.D. thermal engineer with 10+ years in electronics cooling and two-phase heat transfer, from pulsating
-    heat pipes (KAIST) to AI data center cooling (DLC, immersion, jet impingement) as PI/project lead at KIMM. Combines
-    hands-on experimental expertise (-220°C / 100 MPa testing, hydrogen heat exchangers, heat pumps) with
-    production-grade software development (Python / FastAPI / React Native).
+    heat pipes (KAIST) to AI data center cooling (DLC, immersion, jet impingement) as PI/project lead at KIMM, and
+    Associate Professor at the University of Science and Technology (UST), KIMM School. Combines hands-on experimental
+    expertise (-220°C / 100 MPa testing, hydrogen heat exchangers, heat pumps) with production-grade software
+    development (Python / FastAPI / React Native).
   location:
     address: 156 Gajeongbuk-ro, Yuseong-gu
     postalCode: "34103"
@@ -46,6 +47,21 @@ work:
       - "Lead: Immersion cooling waste heat utilization and thermal management"
       - 19 journal papers (11 SCI + 8 KCI), 18 domestic patents, 1 U.S. patent, 8 registered software programs, 5 technology
         transfers
+  # Concurrent faculty appointment. UST is Korea's national research-institute-based
+  # graduate university; KIMM researchers serve as its KIMM School faculty while
+  # remaining KIMM staff, so this runs alongside the entry above rather than
+  # replacing it. Keep KIMM first: the PDF generators read work[0] as the primary
+  # affiliation for the contact block.
+  - name: University of Science and Technology (UST)
+    position: Associate Professor
+    location: Daejeon, Republic of Korea
+    url: https://www.ust.ac.kr
+    startDate: "2026-09-01"
+    endDate: ""
+    summary: KIMM School, Mechanical Engineering Systems
+    highlights:
+      - "Full-time faculty (Associate Professor), appointed term Sep 2026 - Aug 2031"
+      - Graduate teaching and M.S./Ph.D. advising in thermal and energy systems
 education:
   - institution: KAIST (Korea Advanced Institute of Science and Technology)
     location: Daejeon, Republic of Korea

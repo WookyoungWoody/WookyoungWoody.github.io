@@ -1,9 +1,29 @@
 #!/usr/bin/env python3
-"""Generate industry-focused CV PDF using fpdf2.  2-page version."""
+"""Generate industry-focused CV PDF using fpdf2.  2-page version.
 
+Company-tailored variants
+-------------------------
+`--variant <name>` loads tools/cv_variants/<name>.yml and swaps ONLY the
+Professional Summary (page 1) and the page-2 curation (selected publications,
+selected patents, software ordering, technology-transfer ordering, technical
+skills). Everything else -- header, core competencies, experience, education,
+key achievements -- is shared with the base CV so every variant keeps the exact
+same 2-page format.
+
+    python3 tools/generate_industry_cv.py                       # base CV
+    python3 tools/generate_industry_cv.py --variant nvidia \
+        --out /path/to/cv_industry_nvidia.pdf
+
+Running with no arguments must keep producing the byte-for-byte same layout as
+before the variant system existed; the variant hooks only fire when a variant
+file is supplied.
+"""
+
+import argparse
 import yaml
 import os
 import re
+import sys
 import warnings
 
 warnings.filterwarnings("ignore")
@@ -12,6 +32,7 @@ from fpdf import FPDF
 
 _SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 _REPO_ROOT = os.path.join(_SCRIPT_DIR, "..")
+_VARIANT_DIR = os.path.join(_SCRIPT_DIR, "cv_variants")
 
 OUTPUT = os.path.join(_REPO_ROOT, "assets", "pdf", "cv_industry.pdf")
 
@@ -226,12 +247,165 @@ def _compute_counts(data):
     return journal_papers, patents, us_patents, software, transfers
 
 
+_MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+
+
+def _month_year(date_str):
+    """'2021-06-01' -> 'Jun 2021'; falls back to the year alone."""
+    if not date_str:
+        return ""
+    month = date_str[5:7]
+    if month.isdigit() and 1 <= int(month) <= 12:
+        return f"{_MONTHS[int(month) - 1]} {date_str[:4]}"
+    return date_str[:4]
+
+
 def _year(date_str):
     """Extract year from a date string like '2017-03-01'."""
     return date_str[:4] if date_str else ""
 
 
-def build_pdf():
+# ---------------------------------------------------------------- VARIANT DATA
+# The four blocks below are the *base* CV content. A variant YAML may replace
+# any of them; anything it omits falls back to these, so a variant file only
+# carries what actually differs.
+
+# Placeholders are filled from the counts computed off resume.yml, so a variant
+# can never drift from the real numbers.
+DEFAULT_SUMMARY = (
+    "Ph.D. thermal engineer with 10+ years in electronics cooling and two-phase heat transfer, from "
+    "pulsating heat pipes (KAIST) to AI data center cooling (DLC, immersion, jet impingement) "
+    "as PI/project lead at Korea's national research institute (KIMM). Combines hands-on experimental "
+    "expertise (-220°C / 100 MPa testing, hydrogen heat exchangers, heat pumps) with "
+    "production-grade software development (Python / FastAPI / React Native). Lab-to-market record: "
+    "{n_transfers} technology transfers, {n_patents} domestic + {n_us} U.S. patents, "
+    "{n_journal} journal papers ({n_sci} SCI + {n_kci} KCI), {n_software} registered design programs."
+)
+
+# 9 representative publications: W. Kim first-author / lead works + key co-author
+DEFAULT_SELECTED_PUBS = [
+    # W. Kim first-author - KIMM era
+    ("W. Kim", ' et al., "Freezing Phenomenon in PCHE for Cryogenic LH2 Vaporizer," Appl. Therm. Eng. 273 (2025)'),
+    ("W. Kim", ' et al., "Freezing Condition of PCHE for LH2 Vaporizer," J. Hydrogen New Energy 35(2) (2024)'),
+    ("W. Kim", ' et al., "Falling Film Evaporation of R-1233ZD(E): Flow & Thermal Characteristics," Korean J. ACRE 36(1) (2024)'),
+    # co-author - KIMM era
+    ("J.S. Kim, W. Kim", ' et al., "Pool boiling of ammonia outside enhanced tubes," Appl. Therm. Eng. 247 (2024)'),
+    ("H.S. Kim, W. Kim", ' et al., "Chemisorption heat pump performance under various conditions," Appl. Therm. Eng. (2024)'),
+    ("D.H. Kim, W. Kim", ' et al., "VLE of R-32/R-125: experiment and EOS verification," J. Mech. Sci. Technol. (2024)'),
+    ("J. Kim, W. Kim", ' et al., "Liquid behavior in falling-film evaporator distributor," Physics of Fluids 35 (2023)'),
+    # W. Kim first-author - KAIST era (Ph.D. core work)
+    ("W. Kim", ' and S.J. Kim, "Fundamental issues about pulsating heat pipes," J. Heat Transfer - ASME 143 (2021)'),
+    ("W. Kim", ' and S.J. Kim, "Flow behavior effect on pulsating heat pipes," Int. J. Heat Mass Transfer 149 (2020)'),
+]
+
+# 8 representative patents drawn from resume.yml certificates (KIPO)
+# Sorted to highlight most relevant to current research themes
+DEFAULT_SELECTED_PATENTS = [
+    "Immersion cooling device",
+    "Immersion cooling HVAC system and method",
+    "Heat exchanger with anti-freezing capability (1)",
+    "Micro-channel reactor",
+    "Ternary refrigerant composition and heat pump system",
+    "Adsorption heat pump evaporator and system",
+    "Heat pipe integrated reactor for adsorption heat pump",
+    "Geothermal heat supply device and heating system",
+]
+
+DEFAULT_SKILLS = [
+    ("Experimental:", "Thermal loop design & construction (1-/2-phase) · Low-GWP refrigerant systems · "
+                      "2-phase flow & heat-transfer measurement · High-pressure testing (100 MPa) · "
+                      "Cryogenic systems (-220°C) · Flow visualization"),
+    ("Analytical & Computational:", "Thermal network modeling · Heat exchanger design (PCHE, S&T, PHE) · "
+                      "CFD (ANSYS FLUENT, COMSOL) · CAD (SOLIDWORKS, INVENTOR) · "
+                      "Surrogate modeling & design optimization · "
+                      "CoolProp/REFPROP"),
+    ("Software Development:", "Python · JavaScript/TypeScript · C/C++ · FastAPI · React / React Native · "
+                      "Git · Docker · Linux"),
+]
+
+# Dashes the house style forbids, plus glyphs the latin-1 core fonts cannot
+# encode at all. Checked on every variant string so a copy-pasted em dash or
+# smart quote is caught at build time rather than in the rendered PDF.
+_BANNED_CHARS = {
+    "–": "en dash",
+    "—": "em dash",
+    "‘": "left single quote",
+    "’": "right single quote",
+    "“": "left double quote",
+    "”": "right double quote",
+}
+
+
+def _check_text(text, where, problems):
+    for ch, label in _BANNED_CHARS.items():
+        if ch in str(text):
+            problems.append(f"{where}: contains {label} (U+{ord(ch):04X}): {text!r}")
+    try:
+        str(text).encode("latin-1")
+    except UnicodeEncodeError as exc:
+        problems.append(f"{where}: non latin-1 character, core Helvetica cannot render it ({exc})")
+
+
+def _load_variant(name):
+    """Load tools/cv_variants/<name>.yml and validate its shape."""
+    path = name if os.path.sep in name or name.endswith((".yml", ".yaml")) else \
+        os.path.join(_VARIANT_DIR, f"{name}.yml")
+    if not os.path.exists(path):
+        available = sorted(
+            os.path.splitext(f)[0] for f in os.listdir(_VARIANT_DIR)
+            if f.endswith((".yml", ".yaml"))
+        ) if os.path.isdir(_VARIANT_DIR) else []
+        raise SystemExit(f"ERROR: variant not found: {path}\nAvailable variants: {', '.join(available) or '(none)'}")
+    with open(path, "r") as f:
+        variant = yaml.safe_load(f) or {}
+
+    known = {
+        "label", "summary", "phone", "email", "selected_publications", "selected_patents",
+        "software_order", "transfer_order", "skills",
+    }
+    unknown = set(variant) - known
+    if unknown:
+        raise SystemExit(f"ERROR: variant {path} has unknown key(s): {', '.join(sorted(unknown))}")
+
+    problems = []
+    _check_text(variant.get("summary", ""), "summary", problems)
+    _check_text(variant.get("phone", ""), "phone", problems)
+    _check_text(variant.get("email", ""), "email", problems)
+    for i, pub in enumerate(variant.get("selected_publications") or [], 1):
+        _check_text(pub.get("authors", ""), f"selected_publications[{i}].authors", problems)
+        _check_text(pub.get("citation", ""), f"selected_publications[{i}].citation", problems)
+    for i, sk in enumerate(variant.get("skills") or [], 1):
+        _check_text(sk.get("label", ""), f"skills[{i}].label", problems)
+        _check_text(sk.get("text", ""), f"skills[{i}].text", problems)
+    if problems:
+        raise SystemExit("ERROR: variant {} failed text checks:\n  - {}".format(path, "\n  - ".join(problems)))
+
+    variant["_path"] = path
+    return variant
+
+
+def _order_by(items, order, key):
+    """Hoist items whose `key` starts with one of the `order` prefixes.
+
+    Unlisted items keep their incoming order behind the hoisted ones, so a
+    variant only has to name what it wants promoted.
+    """
+    if not order:
+        return items
+    hoisted = []
+    for prefix in order:
+        match = next((it for it in items if key(it).startswith(prefix) and it not in hoisted), None)
+        if match is None:
+            print(f"WARNING: ordering entry has no match in resume.yml: {prefix!r}")
+        else:
+            hoisted.append(match)
+    return hoisted + [it for it in items if it not in hoisted]
+
+
+def build_pdf(variant=None, output=None):
+    variant = variant or {}
+    if output is None:
+        output = OUTPUT
     data = _load_data()
     journal_papers, patents, us_patents, software, transfers = _compute_counts(data)
 
@@ -280,11 +454,29 @@ def build_pdf():
     # ("Google Scholar") rather than the full citations URL to make room.
     # Each entry is a live hyperlink; no LINK_MARKER here because the line
     # already runs at ~171mm of the 174mm content width.
+    #
+    # A variant may add an optional `phone`. resume.yml carries no phone number
+    # on purpose (the public CV is published on the site), so the number only
+    # ever comes from a company-targeted variant file and the public build is
+    # byte-for-byte unaffected. The number does not fit next to the full
+    # LinkedIn URL, so when a phone is present the LinkedIn entry collapses to
+    # the short "LinkedIn" label, exactly like Scholar already does; font size
+    # and separator stay untouched so the line height, and therefore the
+    # fixed-position KEY ACHIEVEMENTS box below, cannot shift.
     site_url = basics.get("url", "")
-    contact_links = [
-        (email, f"mailto:{email}"),
+    phone = (variant.get("phone") or "").strip()
+    # Optional `email` override, same isolation rule as `phone`: the public
+    # build keeps the resume.yml address; job applications use the variant's.
+    email = (variant.get("email") or email).strip()
+    linkedin_label = "LinkedIn" if phone else "linkedin.com/in/wookyoungwoody"
+    contact_links = [(email, f"mailto:{email}")]
+    if phone:
+        # Rendered as plain text, not a link: a tel: hyperlink is useless on a
+        # desktop PDF reader and the literal digits are what an ATS parses.
+        contact_links.append((phone, None))
+    contact_links += [
         ("Google Scholar", _scholar_url()),
-        ("linkedin.com/in/wookyoungwoody", _profile_url(data, "LinkedIn")),
+        (linkedin_label, _profile_url(data, "LinkedIn")),
         ("wookyoungwoody.github.io", site_url),
     ]
     sep = "  |  "
@@ -296,9 +488,14 @@ def build_pdf():
         print(f"WARNING: contact line is {line_w:.1f}mm wide, exceeds {cw:.1f}mm -- it will wrap")
 
     for text, url in contact_links:
-        pdf.set_font("Helvetica", "U", 8.5)
-        pdf.set_text_color(*ACCENT)
-        pdf.linked_cell(text, url, 5)
+        if url:
+            pdf.set_font("Helvetica", "U", 8.5)
+            pdf.set_text_color(*ACCENT)
+            pdf.linked_cell(text, url, 5)
+        else:
+            pdf.set_font("Helvetica", "", 8.5)
+            pdf.set_text_color(*MED_GRAY)
+            pdf.cell(pdf.get_string_width(text), 5, text, ln=False)
         pdf.set_font("Helvetica", "", 8.5)
         pdf.set_text_color(*MED_GRAY)
         pdf.cell(sep_w, 5, sep, ln=False)
@@ -318,16 +515,17 @@ def build_pdf():
     # NOTE: keep this text within ~5 rendered lines (~550 chars). The fixed-
     # position KEY ACHIEVEMENTS box at the bottom of page 1 breaks across
     # pages (2 -> 7 page blowup) if the summary grows by even one line.
-    summary = (
-        "Ph.D. thermal engineer with 10+ years in electronics cooling and two-phase heat transfer, from "
-        "pulsating heat pipes (KAIST) to AI data center cooling (DLC, immersion, jet impingement) "
-        "as PI/project lead at Korea's national research institute (KIMM). Combines hands-on experimental "
-        "expertise (-220°C / 100 MPa testing, hydrogen heat exchangers, heat pumps) with "
-        "production-grade software development (Python / FastAPI / React Native). Lab-to-market record: "
-        f"{n_transfers} technology transfers, {n_patents} domestic + {n_us} U.S. patents, "
-        f"{n_journal} journal papers ({n_sci} SCI + {n_kci} KCI), {n_software} registered design programs."
+    counts = dict(
+        n_journal=n_journal, n_sci=n_sci, n_kci=n_kci, n_patents=n_patents,
+        n_us=n_us, n_software=n_software, n_transfers=n_transfers,
     )
+    summary = (variant.get("summary") or DEFAULT_SUMMARY).strip().format(**counts)
+    summary_y0 = pdf.get_y()
     pdf.multi_cell(0, LINE_H, summary)
+    summary_lines = round((pdf.get_y() - summary_y0) / LINE_H)
+    if summary_lines > 5:
+        print(f"WARNING: summary renders on {summary_lines} lines (max 5) -- "
+              "the KEY ACHIEVEMENTS box will be pushed past the page margin")
 
     # --------------------------------------------------------- CORE COMPETENCIES
     pdf.section_header("CORE COMPETENCIES")
@@ -379,23 +577,36 @@ def build_pdf():
     # --------------------------------------------------------- EXPERIENCE
     pdf.section_header("EXPERIENCE")
 
-    work = data["work"][0]
-    position = work.get("position", "")
-    company = work.get("name", "")
-    start_year = _year(work.get("startDate", ""))
-    end_date = work.get("endDate", "")
-    end_str = _year(end_date) if end_date else "Present"
-    date_range = f"Jun {start_year} - {end_str}"
+    # Both concurrent appointments, most recent first: the UST professorship
+    # sits above KIMM, and the thematic streams below belong to the KIMM line
+    # they follow. Each appointment collapses to one line (bold role and
+    # employer, then dates in gray) so the block keeps the exact height of the
+    # employer+description pair it replaced -- page 1 runs with ~3.5mm of
+    # slack, so this section cannot grow without breaking the fixed-position
+    # KEY ACHIEVEMENTS box. The UST major (Mechanical Engineering Systems) is
+    # dropped here for width; it stays in resume.yml for the web and kami CVs.
+    APPOINTMENT_H = 4.5
 
-    pdf.set_font("Helvetica", "B", BODY_SIZE + 0.5)
-    pdf.set_text_color(*BLACK)
-    pdf.cell(0, LINE_H, f"{position}  |  {company}", ln=True)
-    pdf.set_font("Helvetica", "", SMALL_SIZE)
-    pdf.set_text_color(*MED_GRAY)
-    subline = f"{date_range}  --  Korea's national research institute for machinery and materials"
-    pdf.cell(pdf.get_string_width(subline) + 3, 4, subline, ln=False)
-    pdf.link_chip("Project page", PROJECTS_PAGE, SMALL_SIZE, h=4)
-    pdf.ln(4)
+    def appointment_line(entry, chip=None):
+        head = f"{entry.get('position', '')}  |  {entry.get('name', '')}"
+        end = entry.get("endDate", "")
+        dates = f"   {_month_year(entry.get('startDate', ''))} - {_month_year(end) if end else 'Present'}"
+        pdf.set_x(pdf.l_margin)
+        pdf.set_font("Helvetica", "B", BODY_SIZE + 0.5)
+        pdf.set_text_color(*BLACK)
+        pdf.cell(pdf.get_string_width(head) + 1, APPOINTMENT_H, head, ln=False)
+        pdf.set_font("Helvetica", "", SMALL_SIZE)
+        pdf.set_text_color(*MED_GRAY)
+        pdf.cell(pdf.get_string_width(dates) + 3, APPOINTMENT_H, dates, ln=False)
+        if chip:
+            pdf.link_chip(chip[0], chip[1], SMALL_SIZE, h=APPOINTMENT_H)
+        pdf.ln(APPOINTMENT_H)
+
+    appointments = sorted(data["work"], key=lambda w: w.get("startDate", ""), reverse=True)
+    for entry in appointments:
+        # The project pages describe the KIMM research, so the chip rides that line.
+        is_kimm = "KIMM" in entry.get("name", "") and "UST" not in entry.get("name", "")
+        appointment_line(entry, chip=("Project page", PROJECTS_PAGE) if is_kimm else None)
     pdf.ln(1)
 
     # Thematic stream groupings
@@ -574,26 +785,21 @@ def build_pdf():
     pdf.set_y(ach_y + ach_h + 2)
 
     # ========================================================= PAGE 2 STARTS HERE
-    # (auto_page_break handles it; we proceed with content)
+    # Break explicitly rather than leaning on auto_page_break. A variant with a
+    # shorter summary shortens page 1, and the implicit break would then leave
+    # the SELECTED PUBLICATIONS header stranded at the bottom of page 1 with its
+    # entries on page 2. Rendering is identical to the implicit break: both land
+    # the header at the top margin (hence spacing_before=0 here).
+    pdf.add_page()
 
     # --------------------------------------------------------- SELECTED PUBLICATIONS
-    pdf.section_header("SELECTED PUBLICATIONS")
+    pdf.section_header("SELECTED PUBLICATIONS", spacing_before=0)
 
-    # 9 representative publications: W. Kim first-author / lead works + key co-author
-    selected_pubs = [
-        # W. Kim first-author — KIMM era
-        ("W. Kim", ' et al., "Freezing Phenomenon in PCHE for Cryogenic LH2 Vaporizer," Appl. Therm. Eng. 273 (2025)'),
-        ("W. Kim", ' et al., "Freezing Condition of PCHE for LH2 Vaporizer," J. Hydrogen New Energy 35(2) (2024)'),
-        ("W. Kim", ' et al., "Falling Film Evaporation of R-1233ZD(E): Flow & Thermal Characteristics," Korean J. ACRE 36(1) (2024)'),
-        # co-author — KIMM era
-        ("J.S. Kim, W. Kim", ' et al., "Pool boiling of ammonia outside enhanced tubes," Appl. Therm. Eng. 247 (2024)'),
-        ("H.S. Kim, W. Kim", ' et al., "Chemisorption heat pump performance under various conditions," Appl. Therm. Eng. (2024)'),
-        ("D.H. Kim, W. Kim", ' et al., "VLE of R-32/R-125: experiment and EOS verification," J. Mech. Sci. Technol. (2024)'),
-        ("J. Kim, W. Kim", ' et al., "Liquid behavior in falling-film evaporator distributor," Physics of Fluids 35 (2023)'),
-        # W. Kim first-author — KAIST era (Ph.D. core work)
-        ("W. Kim", ' and S.J. Kim, "Fundamental issues about pulsating heat pipes," J. Heat Transfer - ASME 143 (2021)'),
-        ("W. Kim", ' and S.J. Kim, "Flow behavior effect on pulsating heat pipes," Int. J. Heat Mass Transfer 149 (2020)'),
-    ]
+    variant_pubs = variant.get("selected_publications")
+    if variant_pubs:
+        selected_pubs = [(p.get("authors", ""), p.get("citation", "")) for p in variant_pubs]
+    else:
+        selected_pubs = DEFAULT_SELECTED_PUBS
 
     for idx, (bold_part, rest) in enumerate(selected_pubs, 1):
         pdf.set_x(pdf.l_margin)
@@ -612,25 +818,21 @@ def build_pdf():
     # --------------------------------------------------------- SELECTED PATENTS
     pdf.section_header("SELECTED PATENTS")
 
-    # 8 representative patents drawn from resume.yml certificates (KIPO)
-    # Sorted to highlight most relevant to current research themes
-    selected_patent_names = [
-        "Immersion cooling device",
-        "Immersion cooling HVAC system and method",
-        "Heat exchanger with anti-freezing capability (1)",
-        "Micro-channel reactor",
-        "Ternary refrigerant composition and heat pump system",
-        "Adsorption heat pump evaporator and system",
-        "Heat pipe integrated reactor for adsorption heat pump",
-        "Geothermal heat supply device and heating system",
-    ]
+    selected_patent_names = variant.get("selected_patents") or DEFAULT_SELECTED_PATENTS
 
     kipo_patents = [c for c in data["certificates"] if c["issuer"] == "Korean Intellectual Property Office"]
     patent_map = {c["name"]: c for c in kipo_patents}
 
+    # A curated name that no longer exists in resume.yml would silently shrink
+    # the list, so surface it.
+    missing = [p for p in selected_patent_names if p not in patent_map]
+    for p in missing:
+        print(f"WARNING: selected patent not found in resume.yml certificates: {p!r}")
+    n_shown_patents = len(selected_patent_names) - len(missing)
+
     pdf.set_font("Helvetica", "I", SMALL_SIZE - 0.5)
     pdf.set_text_color(*MED_GRAY)
-    pdf.cell(0, 4.5, f"Showing 8 of {n_patents} domestic patents (Korean Intellectual Property Office)", ln=True)
+    pdf.cell(0, 4.5, f"Showing {n_shown_patents} of {n_patents} domestic patents (Korean Intellectual Property Office)", ln=True)
     pdf.ln(0.5)
 
     shown = 0
@@ -658,8 +860,9 @@ def build_pdf():
     pdf.section_header("REGISTERED SOFTWARE PROGRAMS")
 
     kcc_sw = [c for c in data["certificates"] if c["issuer"] == "Korea Copyright Commission"]
-    # Sort by date
+    # Sort by date, then let a variant hoist the programs it wants read first.
     kcc_sw_sorted = sorted(kcc_sw, key=lambda c: c.get("date", ""), reverse=True)
+    kcc_sw_sorted = _order_by(kcc_sw_sorted, variant.get("software_order"), lambda c: c["name"])
 
     pdf.set_font("Helvetica", "I", SMALL_SIZE - 0.5)
     pdf.set_text_color(*MED_GRAY)
@@ -693,7 +896,7 @@ def build_pdf():
     pdf.cell(0, 4.5, f"{n_transfers} transfers to industry partners", ln=True)
     pdf.ln(0.5)
 
-    for t in transfers:
+    for t in _order_by(list(transfers), variant.get("transfer_order"), lambda t: t.get("position", "")):
         pos = t.get("position", "")
         pdf.set_x(pdf.l_margin)
         pdf.set_font("Helvetica", "", SMALL_SIZE)
@@ -705,17 +908,11 @@ def build_pdf():
     # --------------------------------------------------------- TECHNICAL SKILLS
     pdf.section_header("TECHNICAL SKILLS")
 
-    skills = [
-        ("Experimental:", "Thermal loop design & construction (1-/2-phase) · Low-GWP refrigerant systems · "
-                          "2-phase flow & heat-transfer measurement · High-pressure testing (100 MPa) · "
-                          "Cryogenic systems (-220°C) · Flow visualization"),
-        ("Analytical & Computational:", "Thermal network modeling · Heat exchanger design (PCHE, S&T, PHE) · "
-                          "CFD (ANSYS FLUENT, COMSOL) · CAD (SOLIDWORKS, INVENTOR) · "
-                          "Surrogate modeling & design optimization · "
-                          "CoolProp/REFPROP"),
-        ("Software Development:", "Python · JavaScript/TypeScript · C/C++ · FastAPI · React / React Native · "
-                          "Git · Docker · Linux"),
-    ]
+    variant_skills = variant.get("skills")
+    if variant_skills:
+        skills = [(s.get("label", ""), s.get("text", "")) for s in variant_skills]
+    else:
+        skills = DEFAULT_SKILLS
 
     for skill_label, val in skills:
         pdf.set_x(pdf.l_margin)
@@ -765,12 +962,44 @@ def build_pdf():
                 tail += f"  [{period}]"
             pdf.multi_cell(0, LINE_H, tail)
 
-    pdf.output(OUTPUT)
-    promoted = _make_annotations_indirect(OUTPUT)
-    print(f"Generated: {OUTPUT}")
+    out_dir = os.path.dirname(os.path.abspath(output))
+    if out_dir and not os.path.isdir(out_dir):
+        os.makedirs(out_dir, exist_ok=True)
+    pdf.output(output)
+    promoted = _make_annotations_indirect(output)
+    if variant.get("label"):
+        print(f"Variant: {variant['label']} ({variant.get('_path', '')})")
+    print(f"Generated: {output}")
     print(f"Pages: {pdf.page}")
     print(f"Hyperlinks: {promoted} (rewritten as indirect objects)")
+    if pdf.page != 2:
+        print(f"ERROR: this CV must be exactly 2 pages, got {pdf.page}")
+        return 1
+    return 0
+
+
+def main(argv=None):
+    parser = argparse.ArgumentParser(description="Generate the industry CV (optionally a company-tailored variant).")
+    parser.add_argument(
+        "--variant",
+        help="variant name under tools/cv_variants/ (e.g. nvidia) or a path to a variant YAML file",
+    )
+    parser.add_argument(
+        "--out",
+        help=f"output PDF path (default: {os.path.relpath(OUTPUT, _REPO_ROOT)}). "
+             "Company variants should be written outside assets/pdf/, which is published on the public site.",
+    )
+    args = parser.parse_args(argv)
+
+    variant = _load_variant(args.variant) if args.variant else None
+    output = args.out
+    if variant and not output:
+        raise SystemExit(
+            "ERROR: --variant requires --out. Variant CVs are targeted at one company and must not "
+            "be written to assets/pdf/, which is published on the public site."
+        )
+    return build_pdf(variant=variant, output=output)
 
 
 if __name__ == "__main__":
-    build_pdf()
+    sys.exit(main())

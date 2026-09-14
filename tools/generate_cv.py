@@ -149,7 +149,16 @@ def build_cv():
     kv_narrow("DATE OF BIRTH:", "September 27, 1993")
     kv_narrow("NATIONALITY:", "Korea")
     kv_narrow("AFFILIATION:", f"{affiliation_name},\n{department}")
-    kv_narrow("POSITION:", work["position"])
+    # All appointments, most recent first. The UST professorship runs
+    # concurrently with the KIMM post, so both are listed; AFFILIATION and
+    # CONTACT above stay on KIMM, which is the employer of record.
+    def _appointment(entry):
+        start = entry.get("startDate", "")[:4]
+        end = entry.get("endDate", "")[:4] or "present"
+        return f"{entry['position']}, {entry['name']} ({start}-{end})"
+
+    appointments = sorted(data["work"], key=lambda e: e.get("startDate", ""), reverse=True)
+    kv_narrow("POSITION:", "\n".join(_appointment(e) for e in appointments))
     kv_narrow("CONTACT:", department)
     pdf.set_font("Times", size=10)
     pdf.set_x(pdf.l_margin + 38)

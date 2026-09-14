@@ -104,7 +104,12 @@ def build_short_cv():
         4.8,
         f"{work['position']}, {department}\n"
         f"{work['name']}\n"
-        f"{address_line}\n"
+        # Concurrent UST professorship, if resume.yml carries one beyond work[0].
+        + "".join(
+            f"{e['position']}, {e['summary'].split(',')[0].strip()}, {e['name']}\n"
+            for e in data["work"][1:]
+        )
+        + f"{address_line}\n"
         f"TEL: {basics['phone']}  |  E-MAIL: {basics['email']}",
         new_x=XPos.LMARGIN,
         new_y=YPos.NEXT,
