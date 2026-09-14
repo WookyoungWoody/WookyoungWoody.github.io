@@ -45,7 +45,7 @@ work:
       - "PI: KIMMPROP - Thermophysical property iOS/Android app development"
       - "Lead: PCHE design & testing for liquid hydrogen vaporizers (down to -220°C, 100 MPa)"
       - "Lead: Immersion cooling waste heat utilization and thermal management"
-      - 19 journal papers (11 SCI + 8 KCI), 18 domestic patents, 1 U.S. patent, 8 registered software programs, 5 technology
+      - 20 journal papers (12 SCI + 8 KCI), 18 domestic patents, 1 U.S. patent, 8 registered software programs, 5 technology
         transfers
   # Concurrent faculty appointment. UST is Korea's national research-institute-based
   # graduate university; KIMM researchers serve as its KIMM School faculty while
@@ -398,6 +398,16 @@ certificates:
     date: "2019-10-08"
     url: ""
 publications:
+  - name: Vapor–liquid equilibrium measurements and mixture-model parametrization for the binary refrigerant systems
+      R1234yf + CF3I and R1123 + CF3I
+    publisher: International Journal of Refrigeration
+    releaseDate: "2026"
+    url: https://doi.org/10.1016/j.ijrefrig.2026.107108
+    summary: Kim, Dong Ho and Kim, Wookyoung and Lee, Kong Hoon
+    volume: "192"
+    pages: "107108"
+    shortTitle: VLE measurements and mixture-model parametrization for R1234yf + CF3I and R1123 + CF3I
+    shortPublisher: Int. J. Refrig.
   - name: Falling film evaporation of ammonia on smooth and Low-Fin tube arrays
     publisher: Thermal Science and Engineering Progress
     releaseDate: "2026"

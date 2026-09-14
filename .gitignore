@@ -23,3 +23,9 @@ vendor
 # certificates contain personal IDs / KIMM internal numbers. The site serves
 # curated paper PDFs from assets/pdf/papers/ instead.
 cv_documents/
+
+# Company-tailored industry CV variants. Each file targets one employer, and
+# this repo is the public site -- a recruiter at one company must not be able
+# to read the summary written for another. The generator already refuses to
+# write a variant PDF into assets/pdf/; this keeps the source YAML out too.
+tools/cv_variants/
