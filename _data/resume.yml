@@ -16,7 +16,7 @@ basics:
   summary: Ph.D. thermal engineer with 10+ years in electronics cooling and two-phase heat transfer, from pulsating
     heat pipes (KAIST) to AI data center cooling (DLC, immersion, jet impingement) as PI/project lead at KIMM, and
     Associate Professor at the University of Science and Technology (UST), KIMM School. Combines hands-on experimental
-    expertise (-220°C / 100 MPa testing, hydrogen heat exchangers, heat pumps) with production-grade software
+    expertise (cryogenic testing, hydrogen heat exchangers, heat pumps) with production-grade software
     development (Python / FastAPI / React Native).
   location:
     address: 156 Gajeongbuk-ro, Yuseong-gu
@@ -43,7 +43,7 @@ work:
     highlights:
       - "PI: Jet-enhanced immersion cooling for next-gen data center cooling"
       - "PI: KIMMPROP - Thermophysical property iOS/Android app development"
-      - "Lead: PCHE design & testing for liquid hydrogen vaporizers (down to -220°C, 100 MPa)"
+      - "Lead: PCHE design & testing for liquid hydrogen vaporizers (nitrogen tests to -185°C, 21 MPa; -220°C, 100 MPa target)"
       - "Lead: Immersion cooling waste heat utilization and thermal management"
       - 20 journal papers (12 SCI + 8 KCI), 18 domestic patents, 1 U.S. patent, 8 registered software programs, 5 technology
         transfers
@@ -100,8 +100,8 @@ skills:
     icon: fa-solid fa-flask
     keywords:
       - Two-phase heat transfer testing
-      - Cryogenic systems (down to -220°C)
-      - High-pressure testing (up to 100 MPa)
+      - Cryogenic testing (nitrogen, down to -185°C)
+      - High-pressure testing (up to 21 MPa)
       - PCHE diffusion bonding & fabrication
       - Immersion cooling (CPU/GPU servers)
       - Flow visualization (high-speed camera)

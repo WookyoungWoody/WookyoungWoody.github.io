@@ -276,7 +276,7 @@ DEFAULT_SUMMARY = (
     "Ph.D. thermal engineer with 10+ years in electronics cooling and two-phase heat transfer, from "
     "pulsating heat pipes (KAIST) to AI data center cooling (DLC, immersion, jet impingement) "
     "as PI/project lead at Korea's national research institute (KIMM). Combines hands-on experimental "
-    "expertise (-220°C / 100 MPa testing, hydrogen heat exchangers, heat pumps) with "
+    "expertise (cryogenic testing, hydrogen heat exchangers, heat pumps) with "
     "production-grade software development (Python / FastAPI / React Native). Lab-to-market record: "
     "{n_transfers} technology transfers, {n_patents} domestic + {n_us} U.S. patents, "
     "{n_journal} journal papers ({n_sci} SCI + {n_kci} KCI), {n_software} registered design programs."
@@ -313,8 +313,8 @@ DEFAULT_SELECTED_PATENTS = [
 
 DEFAULT_SKILLS = [
     ("Experimental:", "Thermal loop design & construction (1-/2-phase) · Low-GWP refrigerant systems · "
-                      "2-phase flow & heat-transfer measurement · High-pressure testing (100 MPa) · "
-                      "Cryogenic systems (-220°C) · Flow visualization"),
+                      "2-phase flow & heat-transfer measurement · High-pressure testing (21 MPa) · "
+                      "Cryogenic testing (nitrogen, -185°C) · Flow visualization"),
     ("Analytical & Computational:", "Thermal network modeling · Heat exchanger design (PCHE, S&T, PHE) · "
                       "CFD (ANSYS FLUENT, COMSOL) · CAD (SOLIDWORKS, INVENTOR) · "
                       "Surrogate modeling & design optimization · "
@@ -622,7 +622,7 @@ def build_pdf(variant=None, output=None):
         (
             "Cryogenic / Hydrogen Heat Exchangers",
             [
-                "PCHE design & testing for liquid-hydrogen vaporizers: cryogenic testing to -220°C / 100 MPa [Lead, 2021-2026]",
+                "PCHE design & testing for LH2 vaporizers: N2 tests to -185°C / 21 MPa, -220°C / 100 MPa target [Lead, 2021-2026]",
                 "Anti-freezing PCHE design; CFD conjugate heat transfer analysis; freezing condition experimental mapping [Lead]",
                 "Compact PCHE development for below -200°C, 100 MPa-class hydrogen supply system [Lead, 2022-2026]",
             ],
