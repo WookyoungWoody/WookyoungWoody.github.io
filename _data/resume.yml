@@ -177,8 +177,7 @@ interests:
       - Sub-200°C systems
 projects:
   - name: Development of an AI-based Automated Design Tool for Data Center Direct Liquid Cooling (DLC) Systems
-    summary: AI-driven automated design tool for data center direct liquid cooling (DLC) systems, using surrogate
-      modeling and optimization for cold-plate and cooling-system design (PI)
+    summary: AI-driven automated design tool for data center direct liquid cooling (DLC) systems, using surrogate modeling and optimization for cold-plate and cooling-system design to shorten thermal design iterations (PI)
     startDate: "2026"
     endDate: "2026"
   - name: Development of a Direct Liquid Cooling (DLC) System for Reducing Power Consumption in Data Centers
@@ -192,12 +191,11 @@ projects:
     startDate: "2025"
     endDate: "2025"
   - name: KIMMPROP - Thermophysical Property iOS/Android App
-    summary: Cross-platform iOS/Android app for thermophysical property calculations using CoolProp/REFPROP via WASM
-      (PI)
+    summary: Cross-platform iOS/Android app for thermophysical property calculations, built with React Native on CoolProp/REFPROP compiled to WASM; published on the App Store and Google Play (PI)
     startDate: "2025"
     endDate: "2025"
   - name: PCHE for Liquid Hydrogen Supply System
-    summary: Core material development for liquid hydrogen supply system - PCHE performance testing and design (Lead)
+    summary: Core material development for liquid hydrogen supply system - PCHE performance testing and design, including anti-freezing channel design with conjugate heat transfer analysis and freezing-condition experiments (Lead)
     startDate: "2021"
     endDate: "2026"
   - name: Compact PCHE Design for Liquid Hydrogen
@@ -205,11 +203,11 @@ projects:
     startDate: "2022"
     endDate: "2026"
   - name: Immersion Cooling Waste Heat Utilization
-    summary: Immersion cooling waste heat utilization and active thermal management technology (Lead)
+    summary: Immersion cooling waste heat utilization and active thermal management technology for data centers (Lead)
     startDate: "2024"
     endDate: "2028"
   - name: 300°C High-Temperature Heat Pump System
-    summary: 300°C-class high-temperature heat pump system for fossil fuel replacement (Participant)
+    summary: 300°C-class high-temperature heat pump system for fossil fuel replacement in industrial processes (Participant)
     startDate: "2023"
     endDate: "2028"
   - name: Chemisorption Heat Pump with Electrochemical Compressor
@@ -237,11 +235,11 @@ projects:
     startDate: "2022"
     endDate: "2022"
   - name: Compact Inverter Compressor Dress Care System
-    summary: Compact inverter compressor-based dress care system development (Participant)
+    summary: Compact inverter compressor-based dress care system development; technology transferred to industry (Participant)
     startDate: "2022"
     endDate: "2022"
   - name: Ultra-Thin Vapor Chamber Performance Enhancement
-    summary: Performance enhancement technology for ultra-thin vapor chambers for semiconductor cooling (Participant)
+    summary: Performance enhancement technology for ultra-thin vapor chambers for semiconductor cooling; technology transferred to an industry partner (Participant)
     startDate: "2022"
     endDate: "2023"
   - name: PCHE Freezing Test for Vehicle Heat Exchangers
