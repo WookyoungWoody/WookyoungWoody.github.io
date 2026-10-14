@@ -273,10 +273,10 @@ def _year(date_str):
 # Placeholders are filled from the counts computed off resume.yml, so a variant
 # can never drift from the real numbers.
 DEFAULT_SUMMARY = (
-    "Ph.D. thermal engineer with 10+ years in electronics cooling and two-phase heat transfer, from "
-    "pulsating heat pipes (KAIST) to AI data center cooling (DLC, immersion, jet impingement) "
+    "Ph.D. thermal engineer with 10+ years in electronics cooling, from "
+    "pulsating heat pipes (KAIST) to AI data center cooling (single- and two-phase D2C, immersion, jet impingement) "
     "as PI/project lead at Korea's national research institute (KIMM). Combines hands-on experimental "
-    "expertise (cryogenic testing, hydrogen heat exchangers, heat pumps) with "
+    "expertise (two-phase heat transfer, cryogenic testing, heat exchangers, heat pumps) with "
     "production-grade software development (Python / FastAPI / React Native). Lab-to-market record: "
     "{n_transfers} technology transfers, {n_patents} domestic + {n_us} U.S. patents, "
     "{n_journal} journal papers ({n_sci} SCI + {n_kci} KCI), {n_software} registered design programs."
