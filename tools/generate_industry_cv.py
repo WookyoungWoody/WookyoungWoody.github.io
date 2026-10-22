@@ -584,7 +584,7 @@ def build_pdf(variant=None, output=None):
     # employer+description pair it replaced -- page 1 runs with ~3.5mm of
     # slack, so this section cannot grow without breaking the fixed-position
     # KEY ACHIEVEMENTS box. The UST major (Mechanical Engineering Systems) is
-    # dropped here for width; it stays in resume.yml for the web and kami CVs.
+    # dropped here for width; it stays in resume.yml for the web CV.
     APPOINTMENT_H = 4.5
 
     def appointment_line(entry, chip=None):

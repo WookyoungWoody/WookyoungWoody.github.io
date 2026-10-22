@@ -1,7 +1,7 @@
 # Single-source CV data (JSONResume schema, YAML form).
 # Loaded by Jekyll as site.data.resume — consumed by _layouts/cv.liquid
-# (/cv), _includes/cv_kami_body.liquid (/cv/html), and the PDF generators
-# in tools/. Section order on /cv follows the jsonresume list in _config.yml.
+# (/cv) and the PDF generators in tools/. Section order on /cv follows the
+# jsonresume list in _config.yml.
 #
 # Publication extras used only by tools/generate_cv.py (ignored by the web):
 #   volume/issue/pages  — citation numbers (pages = range or article no.)
