@@ -62,6 +62,8 @@ work:
     highlights:
       - "Full-time faculty (Associate Professor), appointed term Sep 2026 - Aug 2031"
       - Graduate teaching and M.S./Ph.D. advising in thermal and energy systems
+      - "PI: UST Next-Generation Leader Development Program - two-phase direct-to-chip cold plate design guidelines
+        (Oct 2026 - Feb 2028)"
 education:
   - institution: KAIST (Korea Advanced Institute of Science and Technology)
     location: Daejeon, Republic of Korea
@@ -176,6 +178,14 @@ interests:
       - Supercritical fluid
       - Sub-200°C systems
 projects:
+  - name: Channel-Scale Transition Behavior and Visualization-Based Design Guidelines for Low-GWP Refrigerant Two-Phase
+      Direct-to-Chip Cold Plates
+    summary: UST Next-Generation Leader Development Program (Ph.D. student training) to locate where conventional boiling
+      correlations break down as cold-plate channels shrink from mini- to micro-scale, observe the transition flow
+      through a transparent-manifold visualization test section, and turn thermal resistance, pressure drop, and outlet
+      quality data into cold-plate geometry design guidelines for low-GWP refrigerants (PI)
+    startDate: "2026"
+    endDate: "2028"
   - name: Development of an AI-based Automated Design Tool for Data Center Direct Liquid Cooling (DLC) Systems
     summary: AI-driven automated design tool for data center direct liquid cooling (DLC) systems, using surrogate modeling and optimization for cold-plate and cooling-system design to shorten thermal design iterations (PI)
     startDate: "2026"

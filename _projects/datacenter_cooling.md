@@ -21,6 +21,10 @@ Since 2025 (PI), this project focuses on jet-impingement immersion cooling for n
 
 Since 2026 (Lead), this project develops direct-to-chip (DTC) cold plate cooling for the dominant heat sources in AI servers: CPUs and GPUs. Both single-phase and two-phase DTC modes are developed and tested, with system targets of **300 kW per rack** and **3 kW per chip**. Research covers thermal interface material (TIM) selection and optimization, micro-channel cold plate geometry, and system-level coolant loop design, holding junction temperatures within safe operating limits while minimizing coolant flow rate and pump power.
 
+### Two-Phase Cold Plate Design Guidelines
+
+Since 2026 (PI), funded by the UST Next-Generation Leader Development Program, this project trains a Ph.D. student while resolving where conventional boiling correlations stop predicting two-phase cold plate performance as channels shrink from mini- to micro-scale. Low-GWP refrigerants (R1233zd(E), R1234ze(E), R1234yf) are tested on the same rig, and a visualization test section, with a transparent cover replacing the manifold side only, shows the internal flow in the transition range. Thermal resistance, pressure drop, and outlet quality are reduced to design-selection criteria for fin geometry, flow distribution, and refrigerant choice.
+
 ### Waste Heat Utilization
 
 Since 2025 (Lead), this project turns the low-grade heat rejected by data center cooling loops, typically around 50 °C, back into useful energy. The primary route is **adsorption** cooling: an adsorption chiller driven by that waste heat produces chilled water, recycling the rejected heat back into the cooling supply. Where an application calls for heat rather than cooling, the same stream is instead temperature-boosted and delivered as space or process heating. Active thermal management strategies maintain stable coolant supply temperatures while maximizing recoverable heat quantity and quality, with integration into building HVAC systems as a key design target.
