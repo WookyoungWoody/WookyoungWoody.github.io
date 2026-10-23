@@ -807,13 +807,19 @@ def build_pdf(variant=None, output=None):
         pdf.set_text_color(*MED_GRAY)
         num_w = pdf.get_string_width(f"({idx}) ") + 1
         pdf.cell(num_w, LINE_H, f"({idx})", ln=False)
+        # write() wraps to l_margin, so shift it to hang every wrapped line under
+        # the text start; multi_cell after the bold cell would indent the wrap by
+        # the author-list width, which differs per entry.
+        left = pdf.l_margin
+        pdf.set_left_margin(left + num_w)
         pdf.set_font("Helvetica", "B", SMALL_SIZE)
         pdf.set_text_color(*BLACK)
-        bw = pdf.get_string_width(bold_part)
-        pdf.cell(bw + 1, LINE_H, bold_part, ln=False)
+        pdf.write(LINE_H, bold_part)
         pdf.set_font("Helvetica", "", SMALL_SIZE)
         pdf.set_text_color(*DARK_GRAY)
-        pdf.multi_cell(0, LINE_H, rest)
+        pdf.write(LINE_H, rest)
+        pdf.set_left_margin(left)
+        pdf.ln(LINE_H)
 
     # --------------------------------------------------------- SELECTED PATENTS
     pdf.section_header("SELECTED PATENTS")
