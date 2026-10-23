@@ -46,6 +46,9 @@ Since 2025 (Lead), this project turns the low-grade heat rejected by data center
 
 - **Immersion Cooling Device** (2024) — Patent on immersion tank and jet-impingement hardware design
 - **Immersion Cooling HVAC System and Method** (2022) — Patent on integrating immersion cooling with building HVAC for waste heat recovery
+- **Immersion Cooling System for Data Centers** (2024) — Patent on a dielectric fluid loop with multiple storage tanks and valve-controlled connecting lines between the immersion chamber and the cooler
+- **Fire-Suppression Cooling System for Data Centers** (2024) — Patent on using the immersion dielectric fluid to suppress fires in air-cooled and immersion-cooled data center halls
+- **Multi-Thermal Management Device and Method for Immersion Cooling Tanks** (2024) — Patent on two-stage cooling of the tank working fluid, first against a heat-use loop and then a cooler, with a bypass line back to the tank
 
 ## Collaborators
 

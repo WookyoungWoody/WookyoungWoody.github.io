@@ -45,7 +45,7 @@ work:
       - "PI: KIMMPROP - Thermophysical property iOS/Android app development"
       - "Lead: PCHE design & testing for liquid hydrogen vaporizers (nitrogen tests to -185°C, 21 MPa; -220°C, 100 MPa target)"
       - "Lead: Immersion cooling waste heat utilization and thermal management"
-      - 20 journal papers (12 SCI + 8 KCI), 18 domestic patents, 1 U.S. patent, 8 registered software programs, 5 technology
+      - 20 journal papers (12 SCI + 8 KCI), 26 domestic patents, 1 U.S. patent, 8 registered software programs, 5 technology
         transfers
   # Concurrent faculty appointment. UST is Korea's national research-institute-based
   # graduate university; KIMM researchers serve as its KIMM School faculty while
@@ -297,6 +297,38 @@ projects:
     startDate: "2016"
     endDate: "2018"
 certificates:
+  - name: Adsorption heat pump with pulsating heat pipe
+    issuer: Korean Intellectual Property Office
+    date: "2022-12-16"
+    url: ""
+  - name: Fire-suppression cooling system for data centers
+    issuer: Korean Intellectual Property Office
+    date: "2024-12-26"
+    url: ""
+  - name: Immersion cooling system for data centers
+    issuer: Korean Intellectual Property Office
+    date: "2024-12-26"
+    url: ""
+  - name: Multi-thermal management device and method for immersion cooling tanks
+    issuer: Korean Intellectual Property Office
+    date: "2024-11-14"
+    url: ""
+  - name: Tray for falling-film evaporator and falling-film evaporator
+    issuer: Korean Intellectual Property Office
+    date: "2023-12-12"
+    url: ""
+  - name: Multi-stage evaporator
+    issuer: Korean Intellectual Property Office
+    date: "2024-11-06"
+    url: ""
+  - name: Tray structure for heat exchanger (2)
+    issuer: Korean Intellectual Property Office
+    date: "2022-10-13"
+    url: ""
+  - name: Tray structure for heat exchanger (3)
+    issuer: Korean Intellectual Property Office
+    date: "2022-10-13"
+    url: ""
   - name: Heat exchanger with anti-freezing capability (1)
     issuer: Korean Intellectual Property Office
     date: "2023-03-27"
@@ -313,7 +345,7 @@ certificates:
     issuer: Korean Intellectual Property Office
     date: "2024-11-04"
     url: ""
-  - name: Tray structure for heat exchanger
+  - name: Tray structure for heat exchanger (1)
     issuer: Korean Intellectual Property Office
     date: "2022-10-13"
     url: ""
