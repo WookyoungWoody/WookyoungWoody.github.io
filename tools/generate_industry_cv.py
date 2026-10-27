@@ -316,9 +316,8 @@ DEFAULT_SKILLS = [
                       "2-phase flow & heat-transfer measurement · High-pressure testing (21 MPa) · "
                       "Cryogenic testing (nitrogen, -185°C) · Flow visualization"),
     ("Analytical & Computational:", "Thermal network modeling · Heat exchanger design (PCHE, S&T, PHE) · "
-                      "CFD (ANSYS FLUENT, COMSOL) · CAD (SOLIDWORKS, INVENTOR) · "
-                      "Surrogate modeling & design optimization · "
-                      "CoolProp/REFPROP"),
+                      "CFD (FLUENT, COMSOL) · CAD (SOLIDWORKS, INVENTOR) · "
+                      "Surrogate-model optimization · CoolProp/REFPROP"),
     ("Software Development:", "Python · JavaScript/TypeScript · C/C++ · FastAPI · React / React Native · "
                       "Git · Docker · Linux"),
 ]
