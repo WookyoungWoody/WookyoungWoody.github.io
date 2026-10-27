@@ -114,5 +114,7 @@ Fin-tube heat exchanger design program (C-2024-038692). Automates rating and siz
 
 ## Related Technology Transfers
 
-- **Heat Pipe and Vapor Chamber Structural Design for Electronics Cooling** — fabrication-ready design methodology transferred to industry partners
-- **Micro-Channel Bonding and Fabrication Techniques for Heat Exchangers** — joining and sealing processes for PCHE and micro-channel devices
+- **Diffusion bonding technology for cryogenic hydrogen heat exchangers** (2025): joining process for PCHE and micro-channel devices
+- **Ultra-thin vapor chamber design technology** (2025): design methodology for semiconductor thermal management
+- **Heat pump design for low-dew-point dehumidifiers for secondary-battery manufacturing** (2024)
+- **Compact inverter compressor-based dress care system** (2023)

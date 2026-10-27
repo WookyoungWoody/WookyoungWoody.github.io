@@ -45,7 +45,7 @@ work:
       - "PI: KIMMPROP - Thermophysical property iOS/Android app development"
       - "Lead: PCHE design & testing for liquid hydrogen vaporizers (nitrogen tests to -185°C, 21 MPa; -220°C, 100 MPa target)"
       - "Lead: Immersion cooling waste heat utilization and thermal management"
-      - 20 journal papers (12 SCI + 8 KCI), 26 domestic patents, 1 U.S. patent, 8 registered software programs, 5 technology
+      - 20 journal papers (12 SCI + 8 KCI), 26 domestic patents, 1 U.S. patent, 8 registered software programs, 4 technology
         transfers
   # Concurrent faculty appointment. UST is Korea's national research-institute-based
   # graduate university; KIMM researchers serve as its KIMM School faculty while
@@ -64,6 +64,9 @@ work:
       - Graduate teaching and M.S./Ph.D. advising in thermal and energy systems
       - "PI: UST Next-Generation Leader Development Program - two-phase direct-to-chip cold plate design guidelines
         (Oct 2026 - Feb 2028)"
+      - "Advising 1 Ph.D. student on two-phase direct-to-chip cold plates (from Sep 2026)"
+      - "Supervised 8 research interns at KIMM (2023-2026); 5 intern-led conference presentations as corresponding
+        author, one receiving the 2023 Excellent Paper Award"
 education:
   - institution: KAIST (Korea Advanced Institute of Science and Technology)
     location: Daejeon, Republic of Korea
@@ -429,7 +432,7 @@ certificates:
     issuer: Korea Copyright Commission
     date: "2024-10-22"
     url: ""
-  - name: Plate pulsating heat spreader with artificial cavities
+  - name: Plate pulsating heat spreader with artificial cavities (KR 10-1832432)
     issuer: Korean Intellectual Property Office
     date: "2018-02-20"
     url: ""
@@ -670,31 +673,42 @@ publications:
     shortVenue: KSME 2016 Annual Meeting
 volunteer:
   - organization: Technology Transfer
-    position: Heat pipe and vapor chamber structural design for electronics cooling
+    position: Diffusion bonding technology for cryogenic hydrogen heat exchangers
     startDate: ""
     endDate: ""
-    summary: Transferred heat pipe/vapor chamber design technology to industry partner for electronics thermal management
+    summary: Transferred diffusion bonding technology for cryogenic hydrogen heat exchangers (2025)
   - organization: Technology Transfer
-    position: Micro-channel bonding and fabrication techniques for heat exchangers
+    position: Ultra-thin vapor chamber design technology
     startDate: ""
     endDate: ""
-    summary: Transferred PCHE fabrication and micro-channel bonding techniques
+    summary: Transferred ultra-thin vapor chamber design technology for semiconductor thermal management (2025)
   - organization: Technology Transfer
-    position: Low dew-point dehumidifier development technology
+    position: Heat pump design for low-dew-point dehumidifiers in battery manufacturing
     startDate: ""
     endDate: ""
-    summary: Transferred low dew-point dehumidifier design and development technology
+    summary: Transferred heat pump design technology for low-dew-point dehumidifiers used in secondary-battery manufacturing (2024)
   - organization: Technology Transfer
-    position: Ultra-thin vapor chamber for next-generation semiconductor cooling
+    position: Compact inverter compressor-based dress care system
     startDate: ""
     endDate: ""
-    summary: Transferred ultra-thin vapor chamber technology for semiconductor thermal management
-  - organization: Technology Transfer
-    position: Compact inverter compressor-based dress care system development
-    startDate: ""
-    endDate: ""
-    summary: Transferred compact inverter compressor system design for consumer appliances
-awards: []
+    summary: Transferred compact inverter compressor-based dress care system technology (2023)
+awards:
+  - title: Best Award (President's Award)
+    awarder: Korea Institute of Machinery and Materials (KIMM)
+    date: "2025-12-02"
+    summary: For contribution to AI-Ready research capability (KIMMPROP thermophysical property app)
+  - title: Best Paper Award
+    awarder: Korean Society of Mechanical Engineers (KSME)
+    date: "2024-04-25"
+    summary: "Experimental study on flow distribution of PCHE using flow visualization"
+  - title: Excellent Paper Award
+    awarder: Korean Hydrogen and New Energy Society
+    date: "2023-11-29"
+    summary: "Experimental study on the freezing phenomenon of a PCHE for cryogenic liquid hydrogen vaporizers (presented by a supervised intern; corresponding author)"
+  - title: Best Paper Award
+    awarder: Korean Society of Mechanical Engineers (KSME)
+    date: "2017-05-25"
+    summary: "Effect of artificial cavities on the startup performance of a pulsating heat pipe (KAIST)"
 references: []
 affiliations:
   - organization: Korean Society of Mechanical Engineers (KSME)
@@ -702,18 +716,23 @@ affiliations:
     startDate: "2026-04"
     endDate: ""
     summary: ""
+  - organization: KSME Thermal Engineering Division, Future Development Committee
+    position: Committee Member
+    startDate: ""
+    endDate: ""
+    summary: "KSME regular member since 2021-05."
+  - organization: SAREK Future Growth Special Committee
+    position: Committee Member
+    startDate: ""
+    endDate: ""
+    summary: "SAREK regular member since 2022-04."
   - organization: SAREK Data Center Facility Technology Division Committee
     position: Committee Member - Thermal Management / Cooling
     startDate: "2026-03"
     endDate: ""
     summary: Elevated to a Division Committee (부문위원회) of SAREK in 2026.
-  - organization: Society of Air-Conditioning and Refrigerating Engineers of Korea (SAREK)
-    position: Regular Member
-    startDate: "2022-04"
-    endDate: ""
-    summary: ""
-  - organization: Korean Society of Mechanical Engineers (KSME)
-    position: Regular Member
-    startDate: "2021-05"
-    endDate: ""
-    summary: ""
+  - organization: 2026 Artience Daejeon (Daejeon Cultural Foundation art-science program)
+    position: Collaborating Researcher / Mentor
+    startDate: "2026-03"
+    endDate: "2026-12"
+    summary: "Theme: The Future of Data Centers: Convergence of Direct Liquid Cooling Technology and Art"
