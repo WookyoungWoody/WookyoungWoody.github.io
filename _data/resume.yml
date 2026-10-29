@@ -45,7 +45,7 @@ work:
       - "PI: KIMMPROP - Thermophysical property iOS/Android app development"
       - "Lead: PCHE design & testing for liquid hydrogen vaporizers (nitrogen tests to -185°C, 21 MPa; -220°C, 100 MPa target)"
       - "Lead: Immersion cooling waste heat utilization and thermal management"
-      - 20 journal papers (12 SCI + 8 KCI), 26 domestic patents, 1 U.S. patent, 8 registered software programs, 4 technology
+      - 20 journal papers (12 SCI + 8 KCI), 26 domestic patents, 1 U.S. patent, 8 registered software programs, 7 technology
         transfers
   # Concurrent faculty appointment. UST is Korea's national research-institute-based
   # graduate university; KIMM researchers serve as its KIMM School faculty while
@@ -672,6 +672,16 @@ publications:
     summary: Kim, Wookyoung and Kim, Sung Jin
     shortVenue: KSME 2016 Annual Meeting
 volunteer:
+  - organization: Technology Transfer
+    position: Phase-equilibrium property evaluation for refrigerant mixtures
+    startDate: ""
+    endDate: ""
+    summary: Transferred know-how on vapor-liquid equilibrium measurement of refrigerant mixtures and equation-of-state modeling to an industry partner (2026, know-how inventor)
+  - organization: Technology Transfer
+    position: Heat transfer enhancement for data center liquid cooling
+    startDate: ""
+    endDate: ""
+    summary: Transferred direct liquid cooling cold plate know-how, including a single- versus two-phase direct liquid cooling comparison, to an industry partner (2026, know-how inventor)
   - organization: Technology Transfer
     position: Low-temperature freezing performance test of a PCHE for vehicle heat exchangers
     startDate: ""

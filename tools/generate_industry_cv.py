@@ -901,14 +901,12 @@ def build_pdf(variant=None, output=None):
     pdf.cell(0, 4.5, f"{n_transfers} transfers to industry partners", ln=True)
     pdf.ln(0.5)
 
-    for t in _order_by(list(transfers), variant.get("transfer_order"), lambda t: t.get("position", "")):
-        pos = t.get("position", "")
-        pdf.set_x(pdf.l_margin)
-        pdf.set_font("Helvetica", "", SMALL_SIZE)
-        pdf.set_text_color(*DARK_GRAY)
-        pdf.cell(4, LINE_H, chr(149), ln=False)
-        pdf.set_x(pdf.l_margin + 4)
-        pdf.multi_cell(0, LINE_H, pos)
+    # One run-on paragraph instead of a bullet per transfer keeps the CV at two pages.
+    ordered = _order_by(list(transfers), variant.get("transfer_order"), lambda t: t.get("position", ""))
+    pdf.set_x(pdf.l_margin)
+    pdf.set_font("Helvetica", "", SMALL_SIZE)
+    pdf.set_text_color(*DARK_GRAY)
+    pdf.multi_cell(0, LINE_H, "  \u00b7  ".join(t.get("position", "") for t in ordered), align="L")
 
     # --------------------------------------------------------- TECHNICAL SKILLS
     pdf.section_header("TECHNICAL SKILLS")
