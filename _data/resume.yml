@@ -111,20 +111,25 @@ skills:
       - Immersion cooling (CPU/GPU servers)
       - Flow visualization (high-speed camera)
       - VLE measurement & gas chromatography
+      - Thermal interface material (TIM) contact resistance measurement
+      - Experimental design
   - name: Analytical & Computational
     icon: fa-solid fa-computer
     keywords:
       - Thermal network modeling
       - Heat exchanger design (PCHE, S&T, PHE)
-      - CFD simulation
+      - Microchannel design
+      - CFD simulation (ANSYS Fluent, COMSOL Multiphysics)
+      - System modeling (Modelica)
       - Surrogate modeling & design optimization
-      - CoolProp/REFPROP
+      - CoolProp/REFPROP, MATLAB
+      - 3D CAD (SOLIDWORKS, Autodesk Inventor)
   - name: Software Development
     icon: fa-solid fa-code
     keywords:
-      - Python, JavaScript, TypeScript
-      - FastAPI, React Native
-      - Git/GitHub, Linux, CMake
+      - Python, C/C++, JavaScript, TypeScript
+      - FastAPI, React, React Native
+      - Git/GitHub, Linux, CMake, Docker
       - Cross-platform app development (iOS/Android)
       - AI/LLM agent development
 languages:
