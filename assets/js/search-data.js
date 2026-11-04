@@ -18,21 +18,14 @@ ninja.data = [{
           },
         },{id: "nav-projects",
           title: "projects",
-          description: "Research projects in thermal engineering and software development.",
+          description: "Current and completed research projects, with my role, period, and research area for each.",
           section: "Navigation",
           handler: () => {
             window.location.href = "/projects/";
           },
-        },{id: "nav-repositories",
-          title: "repositories",
-          description: "GitHub repositories and open-source contributions.",
-          section: "Navigation",
-          handler: () => {
-            window.location.href = "/repositories/";
-          },
         },{id: "nav-cv",
           title: "CV",
-          description: "Curriculum Vitae of Wookyoung Kim, Ph.D. — Senior Researcher at KIMM.",
+          description: "Curriculum Vitae of Wookyoung Kim, Ph.D., Senior Researcher at KIMM and Associate Professor at UST.",
           section: "Navigation",
           handler: () => {
             window.location.href = "/cv/";
