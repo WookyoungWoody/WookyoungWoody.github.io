@@ -1,0 +1,16 @@
+{%- comment -%} Params: thrust (required), level (optional heading tag, default h2). Renders nothing when the thrust has no transfers. {%- endcomment -%}
+{%- assign pp_h = include.level | default: 'h2' -%}
+{%- assign pp_tt = site.data.resume.volunteer | where: 'thrust', include.thrust -%}
+{%- if pp_tt.size > 0 -%}
+  <div class="thrust-transfers pp-box" data-thrust="{{ include.thrust }}">
+    <{{ pp_h }} class="pp-box-title">Technology Transfers</{{ pp_h }}>
+    <ul>
+      {%- for t in pp_tt -%}
+        <li>
+          <strong>{{ t.position | escape }}</strong>
+          <span>{{ t.summary | escape }}</span>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+{%- endif -%}

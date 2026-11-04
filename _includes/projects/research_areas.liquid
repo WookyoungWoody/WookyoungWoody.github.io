@@ -1,0 +1,37 @@
+<div class="thrust-grid">
+  {%- for t in site.data.project_thrusts -%}
+    {%- unless t.url -%}{%- continue -%}{%- endunless -%}
+    {%- assign pp_doc = site.projects | where: 'url', t.url | first -%}
+    {%- assign pp_cur = 0 -%}
+    {%- assign pp_total = 0 -%}
+    {%- for p in site.data.resume.projects -%}
+      {%- if p.thrust != t.id -%}{%- continue -%}{%- endif -%}
+      {%- assign pp_total = pp_total | plus: 1 -%}
+      {%- capture pp_st -%}{% include projects/status.liquid project=p %}{%- endcapture -%}
+      {%- unless pp_st contains 'completed' -%}{%- assign pp_cur = pp_cur | plus: 1 -%}{%- endunless -%}
+    {%- endfor -%}
+    {%- assign pp_tt = site.data.resume.volunteer | where: 'thrust', t.id | size -%}
+    <div class="thrust-card" data-thrust="{{ t.id }}">
+      {%- if pp_doc.photo -%}
+        <img class="thrust-photo" src="{{ pp_doc.photo | relative_url }}" alt="{{ pp_doc.photo_alt | escape }}" loading="lazy">
+      {%- endif -%}
+      <h3 class="thrust-title">
+        <a href="{{ t.url | relative_url }}">{{ pp_doc.title | default: t.label | escape }}</a>
+      </h3>
+      <p class="thrust-desc">{{ pp_doc.description | escape }}</p>
+      <p class="thrust-counts">
+        <span
+          ><strong>{{ pp_cur }}</strong> current</span
+        >
+        <span
+          ><strong>{{ pp_total }}</strong> total project{% if pp_total != 1 %}s{% endif -%}
+        </span>
+        {% if pp_tt > 0 %}
+          <span
+            ><strong>{{ pp_tt }}</strong> technology transfer{% if pp_tt != 1 %}s{% endif -%}
+          </span>
+        {% endif %}
+      </p>
+    </div>
+  {%- endfor -%}
+</div>

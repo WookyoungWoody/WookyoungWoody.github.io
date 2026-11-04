@@ -1,0 +1,13 @@
+{%- comment -%}
+  Space-free CSS class for a role (PurgeCSS-safe). Usage: include projects/role_class.liquid role=p.role
+{%- endcomment -%}
+{%- case include.role -%}
+  {%- when 'PI' -%}
+    pp-role-pi
+  {%- when 'Lead' -%}
+    pp-role-lead
+  {%- when 'Participant' -%}
+    pp-role-participant
+  {%- else -%}
+    pp-role-grad
+{%- endcase -%}

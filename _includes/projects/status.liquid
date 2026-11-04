@@ -1,0 +1,20 @@
+{%- comment -%}
+  Single source of truth for project status. Usage: include projects/status.liquid project=p
+  Outputs one word: active | continuing | completed.
+  Rule: a valid `status` override (active, continuing, completed; case and spaces ignored) wins.
+  Otherwise an empty or missing endDate means ongoing (active), endDate year >= build year means active, else completed.
+{%- endcomment -%}
+{%- assign pp_p = include.project -%}
+{%- assign pp_o = pp_p.status | append: '' | downcase | strip -%}
+{%- if pp_o == 'active' or pp_o == 'continuing' or pp_o == 'completed' -%}
+  {{- pp_o -}}
+{%- else -%}
+  {%- assign pp_e = pp_p.endDate | append: '' | strip -%}
+  {%- if pp_e == '' -%}
+    active
+  {%- else -%}
+    {%- assign pp_build_year = site.time | date: '%Y' | plus: 0 -%}
+    {%- assign pp_end_year = pp_e | plus: 0 -%}
+    {%- if pp_end_year >= pp_build_year -%}active{%- else -%}completed{%- endif -%}
+  {%- endif -%}
+{%- endif -%}

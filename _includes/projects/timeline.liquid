@@ -1,0 +1,97 @@
+{%- assign pp_by = site.time | date: '%Y' | plus: 0 -%}
+{%- assign pp_min = pp_by -%}
+{%- assign pp_max = pp_by -%}
+{%- for p in site.data.resume.projects -%}
+  {%- assign pp_sb = p.startDate | append: '' | strip -%}
+  {%- if pp_sb == '' -%}{%- continue -%}{%- endif -%}
+  {%- assign pp_eb = p.endDate | append: '' | strip -%}
+  {%- assign s = pp_sb | plus: 0 -%}
+  {%- if pp_eb == '' -%}{%- assign e = pp_by -%}{%- else -%}{%- assign e = pp_eb | plus: 0 -%}{%- endif -%}
+  {%- if e < s -%}{%- assign e = s -%}{%- endif -%}
+  {%- if s < pp_min -%}{%- assign pp_min = s -%}{%- endif -%}
+  {%- if e > pp_max -%}{%- assign pp_max = e -%}{%- endif -%}
+{%- endfor -%}
+{%- assign pp_n = pp_max | minus: pp_min | plus: 1 -%}
+{%- assign pp_now_col = pp_by | minus: pp_min | plus: 2 -%}
+<div class="timeline" style="--pp-n: {{ pp_n }};">
+  <div class="tl-head">
+    <span class="tl-corner"></span>
+    {%- for y in (pp_min..pp_max) -%}
+      <span class="tl-year{% if y == pp_by %} is-now{% endif %}">{{ y }}</span>
+    {%- endfor -%}
+  </div>
+  <div class="tl-body">
+    <div class="tl-lines" aria-hidden="true">
+      <span></span>
+      {%- for y in (pp_min..pp_max) -%}
+        <i></i>
+      {%- endfor -%}
+    </div>
+    <div class="tl-marker" aria-hidden="true">
+      <span class="tl-now" style="grid-column: {{ pp_now_col }};" title="Current year: {{ pp_by }}"></span>
+    </div>
+    {%- for t in site.data.project_thrusts -%}
+      {%- capture pp_order -%}{% include projects/order.liquid mode="timeline" thrust=t.id %}{%- endcapture -%}
+      {%- assign pp_ids = pp_order | strip | split: ',' -%}
+      {%- if pp_ids.size == 0 -%}{%- continue -%}{%- endif -%}
+      <div class="tl-group" data-thrust="{{ t.id }}">
+        <span class="tl-group-label">{{ t.label | escape }}</span>
+      </div>
+      {%- for i in pp_ids -%}
+        {%- assign pp_i = i | plus: 0 -%}
+        {%- assign p = site.data.resume.projects[pp_i] -%}
+        {%- capture pp_st -%}{% include projects/status.liquid project=p %}{%- endcapture -%}
+        {%- assign pp_st = pp_st | strip -%}
+        {%- capture pp_rc -%}{% include projects/role_class.liquid role=p.role %}{%- endcapture -%}
+        {%- assign pp_rc = pp_rc | strip -%}
+        {%- assign pp_eb = p.endDate | append: '' | strip -%}
+        {%- assign s = p.startDate | append: '' | strip | plus: 0 -%}
+        {%- if pp_eb == '' -%}{%- assign e = pp_by -%}{%- else -%}{%- assign e = pp_eb | plus: 0 -%}{%- endif -%}
+        {%- if e < s -%}{%- assign e = s -%}{%- endif -%}
+        {%- assign c1 = s | minus: pp_min | plus: 2 -%}
+        {%- assign c2 = e | minus: pp_min | plus: 3 -%}
+        {%- capture pp_label -%}
+          {{ p.shortName | escape }}, {{ p.role }}, {% if pp_eb == '' %}{{ s }}-present{% elsif s == e %}{{ s }}{% else %}{{ s }}-{{ e }}{% endif %}, {{ pp_st }}
+        {%- endcapture -%}
+        <div class="tl-row">
+          <span class="tl-label" title="{{ pp_label | strip }}">
+            <span class="tl-name">{{ p.shortName | escape }}</span>
+            <span class="tl-role">
+              {%- case p.role -%}
+                {%- when 'Participant' -%}
+                  Part.
+                {%- when 'Graduate Researcher' -%}
+                  Grad.
+                {%- else -%}
+                  {{ p.role }}
+              {%- endcase -%}
+            </span>
+          </span>
+          <span
+            class="timeline-bar {{ pp_rc }}"
+            data-role="{{ p.role }}"
+            data-status="{{ pp_st }}"
+            data-thrust="{{ p.thrust }}"
+            style="grid-column: {{ c1 }} / {{ c2 }};"
+            role="img"
+            aria-label="{{ pp_label | strip }}"
+            title="{{ pp_label | strip }}"
+          ></span>
+          {%- if pp_st == 'continuing' and e < pp_by -%}
+            {%- assign c3 = e | minus: pp_min | plus: 3 -%}
+            {%- assign c4 = pp_by | minus: pp_min | plus: 3 -%}
+            <span class="tl-ext {{ pp_rc }}" style="grid-column: {{ c3 }} / {{ c4 }};" aria-hidden="true"></span>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    {%- endfor -%}
+  </div>
+</div>
+<ul class="tl-key" aria-label="Timeline key">
+  <li><span class="key-swatch pp-role-pi"></span>PI</li>
+  <li><span class="key-swatch pp-role-lead"></span>Lead</li>
+  <li><span class="key-swatch pp-role-participant"></span>Participant</li>
+  <li><span class="key-swatch pp-role-grad"></span>Graduate Researcher</li>
+  <li><span class="key-swatch is-ext pp-role-pi"></span>Continuing after the funded period</li>
+  <li><span class="key-now"></span>Current year ({{ pp_by }})</li>
+</ul>

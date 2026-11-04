@@ -1,0 +1,10 @@
+{%- comment -%} Params: thrust (required), level (optional heading tag, default h2). Renders nothing when the thrust has no projects. {%- endcomment -%}
+{%- assign pp_h = include.level | default: 'h2' -%}
+{%- capture pp_order -%}{% include projects/order.liquid mode="thrust" thrust=include.thrust %}{%- endcapture -%}
+{%- assign pp_n = pp_order | strip | split: ',' | size -%}
+{%- if pp_n > 0 -%}
+  <div class="thrust-projects pp-box" data-thrust="{{ include.thrust }}">
+    <{{ pp_h }} class="pp-box-title">Projects in this research area</{{ pp_h }}>
+    {% include projects/list.liquid mode="thrust" thrust=include.thrust compact="true" hide_thrust="true" %}
+  </div>
+{%- endif -%}

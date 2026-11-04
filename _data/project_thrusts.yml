@@ -1,0 +1,16 @@
+# Research areas (thrusts) used by the projects page, home page, and detail pages.
+# Order here is the display order. Projects reference these ids through `thrust:` in resume.yml.
+- id: datacenter
+  label: Data Center Cooling
+  url: /projects/datacenter_cooling/
+- id: hydrogen
+  label: PCHE for Liquid Hydrogen
+  url: /projects/pche/
+- id: heatpump
+  label: Heat Pump Systems
+  url: /projects/heatpump/
+- id: software
+  label: Engineering Software
+  url: /projects/software/
+- id: kaist
+  label: Graduate Research (KAIST)

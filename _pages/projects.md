@@ -2,64 +2,36 @@
 layout: page
 title: projects
 permalink: /projects/
-description: Research projects in thermal engineering and software development.
+description: Current and completed research projects, with my role, period, and research area for each.
 nav: true
 nav_order: 3
-display_categories: [current, tools]
-horizontal: false
 ---
 
-<!-- pages/projects.md -->
-<div class="projects">
-{% if site.enable_project_categories and page.display_categories %}
-  <!-- Display categorized projects -->
-  {% for category in page.display_categories %}
-  <a id="{{ category }}" href=".#{{ category }}">
-    <h2 class="category">{{ category }}</h2>
-  </a>
-  {% assign categorized_projects = site.projects | where: "category", category %}
-  {% assign sorted_projects = categorized_projects | sort: "importance" %}
-  <!-- Generate cards for each project -->
-  {% if page.horizontal %}
-  <div class="container">
-    <div class="row row-cols-1 row-cols-md-2">
-    {% for project in sorted_projects %}
-      {% include projects_horizontal.liquid %}
-    {% endfor %}
-    </div>
-  </div>
-  {% else %}
-  <div class="row row-cols-1 row-cols-md-3">
-    {% for project in sorted_projects %}
-      {% include projects.liquid %}
-    {% endfor %}
-  </div>
-  {% endif %}
-  {% endfor %}
+<div class="project-portfolio">
 
-{% else %}
+{% include projects/counts.liquid %}
 
-<!-- Display projects without categories -->
+{% include projects/role_legend.liquid %}
 
-{% assign sorted_projects = site.projects | sort: "importance" %}
+<section id="current-projects" class="pp-section">
+<h2 class="pp-heading">Current projects</h2>
+{% include projects/list.liquid mode="current" empty_text="No current projects." %}
+</section>
 
-  <!-- Generate cards for each project -->
+<section id="research-areas" class="pp-section">
+<h2 class="pp-heading">Research areas</h2>
+{% include projects/research_areas.liquid %}
+</section>
 
-{% if page.horizontal %}
+<section id="project-timeline" class="pp-section">
+<h2 class="pp-heading">Timeline</h2>
+{% include projects/timeline.liquid %}
+</section>
 
-  <div class="container">
-    <div class="row row-cols-1 row-cols-md-2">
-    {% for project in sorted_projects %}
-      {% include projects_horizontal.liquid %}
-    {% endfor %}
-    </div>
-  </div>
-  {% else %}
-  <div class="row row-cols-1 row-cols-md-3">
-    {% for project in sorted_projects %}
-      {% include projects.liquid %}
-    {% endfor %}
-  </div>
-  {% endif %}
-{% endif %}
+<section id="completed-section" class="pp-section">
+{% include projects/completed.liquid %}
+</section>
+
+<p class="pp-footer">Publications, patents, and the full record are in the <a href="{{ '/cv/#projects' | relative_url }}">CV</a>.</p>
+
 </div>

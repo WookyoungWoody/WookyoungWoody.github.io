@@ -1,0 +1,17 @@
+{%- comment -%}
+  A list of projects. Params: mode, thrust, kaist (see order.liquid), compact, hide_thrust,
+  empty_text (optional text shown instead of a list when nothing matches; otherwise nothing is rendered).
+{%- endcomment -%}
+{%- capture pp_order -%}{% include projects/order.liquid mode=include.mode thrust=include.thrust kaist=include.kaist %}{%- endcapture -%}
+{%- assign pp_ids = pp_order | strip | split: ',' -%}
+{%- if pp_ids.size > 0 -%}
+  <ul class="project-list{% if include.compact == 'true' %} is-compact{% endif %}">
+    {%- for i in pp_ids -%}
+      {%- assign pp_i = i | plus: 0 -%}
+      {%- assign pp_proj = site.data.resume.projects[pp_i] -%}
+      {% include projects/item.liquid project=pp_proj compact=include.compact hide_thrust=include.hide_thrust %}
+    {%- endfor -%}
+  </ul>
+{%- elsif include.empty_text -%}
+  <p class="pp-empty">{{ include.empty_text }}</p>
+{%- endif -%}

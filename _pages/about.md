@@ -35,14 +35,16 @@ latest_posts:
 
 I am a Senior Researcher at the [Heat Pump Research Center](https://www.kimm.re.kr), Korea Institute of Machinery and Materials (KIMM), leading **AI data center cooling** R&D (direct liquid cooling, immersion, jet impingement) as PI and project lead. Since September 2026 I am also an **Associate Professor** in the Mechanical Engineering Systems major of the KIMM School at the [University of Science and Technology (UST)](https://www.ust.ac.kr), Korea's national research-institute-based graduate university, where I teach and advise M.S. and Ph.D. students. My 10+ years in electronics cooling and two-phase heat transfer began with pulsating heat pipes at [KAIST](https://www.kaist.ac.kr) (Ph.D. 2021, advised by [Prof. Sung Jin Kim](https://scholar.google.com/citations?user=1YqQxnkAAAAJ)).
 
-I combine hands-on experimental expertise, from cryogenic (-220°C) liquid-hydrogen heat exchangers to 100 MPa high-pressure testing, with production-grade engineering software development (Python, FastAPI, React Native). Lab-to-market record: **{{ n_tt }} technology transfers** to industry, **{{ n_patents }} domestic + {{ n_us }} U.S. patents**, **{{ n_journal }} journal papers**, and **{{ n_sw }} registered software programs** ([academic CV](/assets/pdf/cv_academic.pdf)).
+I combine hands-on experimental expertise, including cryogenic tests of liquid-hydrogen heat exchangers with liquid nitrogen down to -185°C at 21 MPa (design targets: -220°C and 100 MPa), with production-grade engineering software development (Python, FastAPI, React Native). Lab-to-market record: **{{ n_tt }} technology transfers** to industry, **{{ n_patents }} domestic + {{ n_us }} U.S. patents**, **{{ n_journal }} journal papers**, and **{{ n_sw }} registered software programs** ([academic CV](/assets/pdf/cv_academic.pdf)).
 
 My research focuses on **thermal engineering** with applications in:
 
-- **Data center cooling** — immersion cooling, direct liquid cooling (DLC), jet-impingement cooling for next-generation high-power servers
-- **High-heat-flux electronics cooling** — CPU/GPU cold plate design, focused cooling for next-generation chips
-- **Heat exchangers** — Printed Circuit Heat Exchangers (PCHE) for cryogenic liquid hydrogen, compact heat exchanger design & optimization
-- **Heat pump systems** — chemisorption/adsorption heat pumps, high-temperature heat pumps (300°C class)
-- **Low GWP refrigerant systems** — next-generation eco-friendly refrigerant development, VLE measurement, equation of state development
-- **Two-phase heat transfer** — boiling, evaporation, pulsating heat pipes, vapor chambers, flow visualization
-- **Cryogenic heat transfer** — liquid hydrogen vaporizer design, supercritical fluid heat transfer
+- **Data center cooling**: immersion cooling, direct liquid cooling (DLC), jet-impingement cooling for next-generation high-power servers
+- **High-heat-flux electronics cooling**: CPU/GPU cold plate design, focused cooling for next-generation chips
+- **Heat exchangers**: Printed Circuit Heat Exchangers (PCHE) for cryogenic liquid hydrogen, compact heat exchanger design & optimization
+- **Heat pump systems**: chemisorption/adsorption heat pumps, high-temperature heat pumps (300°C class)
+- **Low GWP refrigerant systems**: next-generation eco-friendly refrigerant development, VLE measurement, equation of state development
+- **Two-phase heat transfer**: boiling, evaporation, pulsating heat pipes, vapor chambers, flow visualization
+- **Cryogenic heat transfer**: liquid hydrogen vaporizer design, supercritical fluid heat transfer
+
+{% include projects/home_block.liquid %}

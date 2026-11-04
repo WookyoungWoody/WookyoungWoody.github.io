@@ -1,0 +1,19 @@
+{%- capture pp_all -%}{% include projects/order.liquid mode="completed" %}{%- endcapture -%}
+{%- capture pp_kimm -%}{% include projects/order.liquid mode="completed" kaist="exclude" %}{%- endcapture -%}
+{%- capture pp_kaist -%}{% include projects/order.liquid mode="completed" kaist="only" %}{%- endcapture -%}
+{%- assign pp_n_all = pp_all | strip | split: ',' | size -%}
+{%- assign pp_n_kimm = pp_kimm | strip | split: ',' | size -%}
+{%- assign pp_n_kaist = pp_kaist | strip | split: ',' | size -%}
+{%- if pp_n_all > 0 -%}
+  <details id="completed-projects" class="pp-completed">
+    <summary>Completed projects ({{ pp_n_all }})</summary>
+    {% if pp_n_kimm > 0 %}
+      <h3 class="pp-group-title">KIMM</h3>
+      {% include projects/list.liquid mode="completed" kaist="exclude" %}
+    {% endif %}
+    {% if pp_n_kaist > 0 %}
+      <h3 class="pp-group-title">KAIST graduate research</h3>
+      {% include projects/list.liquid mode="completed" kaist="only" %}
+    {% endif %}
+  </details>
+{%- endif -%}

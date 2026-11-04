@@ -7,20 +7,22 @@ importance: 4
 category: tools
 ---
 
+{% include projects/thrust_projects.liquid thrust="software" %}
+
 ## Engineering Software Development
 
-My software work bridges academic research and practical engineering, translating heat transfer models and thermodynamic correlations into accessible tools for field engineers and researchers. All programs below have been formally registered with the Korea Copyright Commission.
+My software work bridges academic research and practical engineering, translating heat transfer models and thermodynamic correlations into accessible tools for field engineers and researchers. Programs listed with a registration number below are registered with the Korea Copyright Commission.
 
 ---
 
-### KIMMPROP — Thermophysical Property App
+### KIMMPROP: Thermophysical Property App
 
 <div style="display:flex; align-items:flex-start; gap:2rem; flex-wrap:wrap; margin-bottom:1rem;">
   <div style="flex:1; min-width:220px;">
     <p>
       A cross-platform mobile application for real-time thermophysical property lookup, built with React Native and powered by CoolProp/REFPROP via JavaScript/WASM compilation. Designed for field engineers who need instant access to refrigerant and working-fluid properties without a laptop.
     </p>
-    <p>Available on iOS and Android. Active development as PI since 2025.</p>
+    <p>Available on iOS and Android. Developed as PI, actively maintained, and registered with the Korea Copyright Commission.</p>
     <div style="display:flex; gap:0.75rem; flex-wrap:wrap; margin-top:1rem;">
       <a href="https://apps.apple.com/kr/app/kimmprop/id6745596456" target="_blank" rel="noopener"
          style="display:inline-flex; align-items:center; gap:0.4rem; background:#000; color:#fff; padding:0.5rem 1rem; border-radius:8px; text-decoration:none; font-size:0.9rem; font-weight:600;">
@@ -52,12 +54,18 @@ My software work bridges academic research and practical engineering, translatin
 
 A collection of registered software tools for printed circuit heat exchanger (PCHE) analysis and sizing:
 
-- **PCHE Thickness Design Program** (C-2024-052179) — structural sizing under high-pressure conditions
-- **100 kg/hr Hydrogen PCHE Design Program** (C-2025-056891) — tailored for hydrogen liquefaction applications
-- **Lab-Scale Heat Exchanger Analysis Program** (C-2023-056463) — experimental data post-processing and correlation fitting
-- **Heat Exchanger HTC Uncertainty Analysis Program** (C-2023-059071) — propagation of measurement uncertainty to heat transfer coefficients
+- **PCHE Thickness Design Program** (C-2024-052179): structural sizing under high-pressure conditions
+- **100 kg/hr Hydrogen PCHE Design Program** (C-2025-056891): for liquid hydrogen vaporization (supply) applications
+- **Lab-Scale Heat Exchanger Analysis Program** (C-2023-056463): experimental data post-processing and correlation fitting
+- **Heat Exchanger HTC Uncertainty Analysis Program** (C-2023-059071): propagation of measurement uncertainty to heat transfer coefficients
 
 The suite uses a Python/FastAPI backend with a React frontend, employing an effectiveness-NTU iterative solver for multi-stream design.
+
+---
+
+### AI-Based DLC Design Tool
+
+This project developed an AI-driven automated design tool for data center direct liquid cooling (DLC) systems. It uses surrogate modeling and optimization for cold-plate and cooling-system design to shorten thermal design iterations, and its development is completed. See the [Data Center Cooling](/projects/datacenter_cooling/) page.
 
 ---
 
@@ -112,9 +120,4 @@ Fin-tube heat exchanger design program (C-2024-038692). Automates rating and siz
 
 ---
 
-## Related Technology Transfers
-
-- **Diffusion bonding technology for cryogenic hydrogen heat exchangers** (2025): joining process for PCHE and micro-channel devices
-- **Ultra-thin vapor chamber design technology** (2025): design methodology for semiconductor thermal management
-- **Heat pump design for low-dew-point dehumidifiers for secondary-battery manufacturing** (2024)
-- **Compact inverter compressor-based dress care system** (2023)
+{% include projects/thrust_transfers.liquid thrust="software" %}

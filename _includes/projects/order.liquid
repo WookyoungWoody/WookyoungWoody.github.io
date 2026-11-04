@@ -1,0 +1,60 @@
+{%- comment -%}
+  Outputs resume.yml project indices as "i,i,i," in display order.
+  Params: mode = current | thrust | completed | timeline
+          thrust = optional thrust id filter
+          kaist = optional: "only" or "exclude"
+{%- endcomment -%}
+{%- assign pp_keys = '' -%}
+{%- for p in site.data.resume.projects -%}
+  {%- if include.thrust and p.thrust != include.thrust -%}{%- continue -%}{%- endif -%}
+  {%- if include.kaist == 'only' and p.thrust != 'kaist' -%}{%- continue -%}{%- endif -%}
+  {%- if include.kaist == 'exclude' and p.thrust == 'kaist' -%}{%- continue -%}{%- endif -%}
+  {%- capture pp_st -%}{% include projects/status.liquid project=p %}{%- endcapture -%}
+  {%- assign pp_st = pp_st | strip -%}
+  {%- case p.role -%}
+    {%- when 'PI' -%}
+      {%- assign pp_rr = 1 -%}
+    {%- when 'Lead' -%}
+      {%- assign pp_rr = 2 -%}
+    {%- when 'Participant' -%}
+      {%- assign pp_rr = 3 -%}
+    {%- else -%}
+      {%- assign pp_rr = 4 -%}
+  {%- endcase -%}
+  {%- if pp_st == 'active' -%}
+    {%- assign pp_sr = 1 -%}
+  {%- elsif pp_st == 'continuing' -%}
+    {%- assign pp_sr = 2 -%}
+  {%- else -%}
+    {%- assign pp_sr = 3 -%}
+  {%- endif -%}
+  {%- assign pp_start_inv = 9999 | minus: p.startDate -%}
+  {%- assign pp_end_inv = 9999 | minus: p.endDate -%}
+  {%- assign pp_idx = forloop.index0 | plus: 100 -%}
+  {%- assign pp_sblank = p.startDate | append: '' | strip -%}
+  {%- if include.mode == 'timeline' and pp_sblank == '' -%}{%- continue -%}{%- endif -%}
+  {%- if include.mode == 'current' -%}
+    {%- if pp_st != 'completed' -%}
+      {%- assign pp_keys = pp_keys | append: pp_rr | append: pp_sr | append: pp_start_inv | append: pp_idx | append: '~' -%}
+    {%- endif -%}
+  {%- elsif include.mode == 'thrust' -%}
+    {%- if pp_st != 'completed' -%}
+      {%- assign pp_keys = pp_keys | append: '0' | append: pp_rr | append: pp_sr | append: pp_start_inv | append: pp_idx | append: '~' -%}
+    {%- else -%}
+      {%- assign pp_keys = pp_keys | append: '1' | append: pp_end_inv | append: pp_start_inv | append: pp_idx | append: '~' -%}
+    {%- endif -%}
+  {%- elsif include.mode == 'completed' -%}
+    {%- if pp_st == 'completed' -%}
+      {%- assign pp_keys = pp_keys | append: pp_end_inv | append: pp_start_inv | append: pp_idx | append: '~' -%}
+    {%- endif -%}
+  {%- else -%}
+    {%- assign pp_keys = pp_keys | append: p.startDate | append: p.endDate | append: pp_idx | append: '~' -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- assign pp_sorted = pp_keys | split: '~' | sort -%}
+{%- for k in pp_sorted -%}
+  {%- if k != '' -%}
+    {{- k | slice: -3, 3 | minus: 100 -}}
+    ,
+  {%- endif -%}
+{%- endfor -%}

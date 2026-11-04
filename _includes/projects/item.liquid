@@ -1,0 +1,62 @@
+{%- comment -%}
+  One project. Params: project, compact ("true" hides the summary), hide_thrust ("true" hides the thrust tag).
+  Optional resume.yml fields supported: program, funder (photo is not rendered here).
+{%- endcomment -%}
+{%- assign pp_p = include.project -%}
+{%- capture pp_st -%}{% include projects/status.liquid project=pp_p %}{%- endcapture -%}
+{%- assign pp_st = pp_st | strip -%}
+{%- capture pp_rc -%}{% include projects/role_class.liquid role=pp_p.role %}{%- endcapture -%}
+{%- assign pp_rc = pp_rc | strip -%}
+{%- assign pp_thrust = site.data.project_thrusts | where: 'id', pp_p.thrust | first -%}
+{%- assign pp_s = pp_p.startDate | append: '' | strip -%}
+{%- assign pp_e = pp_p.endDate | append: '' | strip -%}
+{%- capture pp_period -%}
+  {%- if pp_st == 'continuing' and pp_s != '' -%}
+    since {{ pp_s }}
+  {%- elsif pp_s == '' -%}
+    {{ pp_e }}
+  {%- elsif pp_e == '' -%}
+    {{ pp_s }}-present
+  {%- elsif pp_s == pp_e -%}
+    {{ pp_s }}
+  {%- else -%}
+    {{ pp_s }}-{{ pp_e }}
+  {%- endif -%}
+{%- endcapture -%}
+<li
+  class="project-item {{ pp_rc }}{% if pp_st == 'completed' %} is-completed{% endif %}"
+  data-role="{{ pp_p.role }}"
+  data-status="{{ pp_st }}"
+  data-thrust="{{ pp_p.thrust }}"
+  data-start="{{ pp_p.startDate }}"
+  data-end="{{ pp_p.endDate }}"
+>
+  <div class="project-head">
+    <span class="role-badge role-{{ pp_p.role | slugify }}">{{ pp_p.role }}</span>
+    <span class="status-badge status-{{ pp_st }}">{{ pp_st | capitalize }}</span>
+  </div>
+  <div class="project-name">{{ pp_p.shortName | escape }}</div>
+  <div class="project-meta">
+    {% assign pp_period = pp_period | strip %}
+    {% if pp_period != '' -%}
+      <span class="project-period">{{ pp_period }}</span>
+    {%- endif %}
+    {% if include.hide_thrust != 'true' and pp_thrust %}
+      {% if pp_thrust.url %}
+        <a class="thrust-tag" href="{{ pp_thrust.url | relative_url }}">{{ pp_thrust.label | escape }}</a>
+      {% else %}
+        <span class="thrust-tag">{{ pp_thrust.label | escape }}</span>
+      {% endif %}
+    {% endif %}
+  </div>
+  {%- if include.compact != 'true' -%}
+    <p class="project-summary">{{ pp_p.summary | escape }}</p>
+  {%- endif -%}
+  {%- if pp_p.program or pp_p.funder -%}
+    <p class="project-funding">
+      {% if pp_p.program %}{{ pp_p.program | escape }}{% endif -%}
+      {%- if pp_p.program and pp_p.funder %}, {% endif -%}
+      {%- if pp_p.funder %}{{ pp_p.funder | escape }}{% endif %}
+    </p>
+  {%- endif -%}
+</li>

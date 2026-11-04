@@ -1,0 +1,48 @@
+{%- assign pp_cur = 0 -%}
+{%- assign pp_pi = 0 -%}
+{%- assign pp_lead = 0 -%}
+{%- assign pp_part = 0 -%}
+{%- assign pp_total = 0 -%}
+{%- for p in site.data.resume.projects -%}
+  {%- assign pp_total = pp_total | plus: 1 -%}
+  {%- capture pp_st -%}{% include projects/status.liquid project=p %}{%- endcapture -%}
+  {%- if pp_st contains 'completed' -%}{%- continue -%}{%- endif -%}
+  {%- assign pp_cur = pp_cur | plus: 1 -%}
+  {%- if p.role == 'PI' -%}
+    {%- assign pp_pi = pp_pi | plus: 1 -%}
+  {%- elsif p.role == 'Lead' -%}
+    {%- assign pp_lead = pp_lead | plus: 1 -%}
+  {%- elsif p.role == 'Participant' -%}
+    {%- assign pp_part = pp_part | plus: 1 -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- assign pp_done = pp_total | minus: pp_cur -%}
+<div
+  id="project-counts"
+  class="pp-counts"
+  data-current="{{ pp_cur }}"
+  data-pi="{{ pp_pi }}"
+  data-lead="{{ pp_lead }}"
+  data-participant="{{ pp_part }}"
+  data-total="{{ pp_total }}"
+  data-completed="{{ pp_done }}"
+>
+  <div class="pp-count pp-count-main">
+    <span class="pp-count-num">{{ pp_cur }}</span>
+    <span class="pp-count-label"
+      >current project{% if pp_cur != 1 %}s{% endif -%}
+    </span>
+  </div>
+  <div class="pp-count">
+    <span class="pp-count-num">{{ pp_pi }}</span> <span class="pp-count-label">as PI</span>
+  </div>
+  <div class="pp-count">
+    <span class="pp-count-num">{{ pp_lead }}</span> <span class="pp-count-label">as Lead</span>
+  </div>
+  <div class="pp-count">
+    <span class="pp-count-num">{{ pp_part }}</span> <span class="pp-count-label">as Participant</span>
+  </div>
+  <div class="pp-count">
+    <span class="pp-count-num">{{ pp_done }}</span> <span class="pp-count-label">completed</span>
+  </div>
+</div>
