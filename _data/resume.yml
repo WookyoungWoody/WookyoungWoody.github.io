@@ -191,119 +191,197 @@ projects:
     summary: UST Next-Generation Leader Development Program (Ph.D. student training) to locate where conventional boiling
       correlations break down as cold-plate channels shrink from mini- to micro-scale, observe the transition flow
       through a transparent-manifold visualization test section, and turn thermal resistance, pressure drop, and outlet
-      quality data into cold-plate geometry design guidelines for low-GWP refrigerants (PI)
+      quality data into cold-plate geometry design guidelines for low-GWP refrigerants
     startDate: "2026"
     endDate: "2028"
+    role: PI
+    shortName: Two-Phase Cold Plate Design Guidelines
+    thrust: datacenter
   - name: Development of an AI-based Automated Design Tool for Data Center Direct Liquid Cooling (DLC) Systems
-    summary: AI-driven automated design tool for data center direct liquid cooling (DLC) systems, using surrogate modeling and optimization for cold-plate and cooling-system design to shorten thermal design iterations (PI)
+    summary: AI-driven automated design tool for data center direct liquid cooling (DLC) systems, using surrogate modeling and optimization for cold-plate and cooling-system design to shorten thermal design iterations
     startDate: "2026"
     endDate: "2026"
+    role: PI
+    shortName: AI-Based DLC Design Tool
+    thrust: datacenter
+    status: completed
   - name: Development of a Direct Liquid Cooling (DLC) System for Reducing Power Consumption in Data Centers
     summary: National R&D project (KETEP, Ministry of Climate, Energy and Environment) to develop a direct liquid
-      cooling (DLC) system that reduces data center power consumption (Lead)
+      cooling (DLC) system that reduces data center power consumption
     startDate: "2026"
     endDate: "2029"
+    role: Lead
+    shortName: DLC System for Data Center Power Saving
+    thrust: datacenter
   - name: Jet-Enhanced Immersion Cooling for Data Centers
     summary: Development of high-efficiency jet-impingement immersion cooling technology for next-generation high-heat-density
-      data center servers (PI)
+      data center servers
     startDate: "2025"
     endDate: "2025"
+    role: PI
+    shortName: Jet-Enhanced Immersion Cooling
+    thrust: datacenter
+    status: continuing
   - name: KIMMPROP - Thermophysical Property iOS/Android App
-    summary: Cross-platform iOS/Android app for thermophysical property calculations, built with React Native on CoolProp/REFPROP compiled to WASM; published on the App Store and Google Play (PI)
+    summary: Cross-platform iOS/Android app for thermophysical property calculations, built with React Native on CoolProp/REFPROP compiled to WASM; published on the App Store and Google Play
     startDate: "2025"
     endDate: "2025"
+    role: PI
+    shortName: KIMMPROP Property App
+    thrust: software
+    status: continuing
   - name: PCHE for Liquid Hydrogen Supply System
-    summary: Core material development for liquid hydrogen supply system - PCHE performance testing and design, including anti-freezing channel design with conjugate heat transfer analysis and freezing-condition experiments (Lead)
+    summary: Core material development for liquid hydrogen supply system - PCHE performance testing and design, including anti-freezing channel design with conjugate heat transfer analysis and freezing-condition experiments
     startDate: "2021"
-    endDate: "2026"
+    endDate: "2025"
+    role: Lead
+    shortName: PCHE for LH2 Supply System
+    thrust: hydrogen
   - name: Compact PCHE Design for Liquid Hydrogen
-    summary: Compact heat exchanger (PCHE) design technology for liquid hydrogen below -200°C, 100 MPa class (Lead)
+    summary: Compact heat exchanger (PCHE) design technology for liquid hydrogen below -200°C, 100 MPa class
     startDate: "2022"
     endDate: "2026"
+    role: Lead
+    shortName: Compact PCHE for Liquid Hydrogen
+    thrust: hydrogen
   - name: Immersion Cooling Waste Heat Utilization
-    summary: Immersion cooling waste heat utilization and active thermal management technology for data centers (Lead)
+    summary: Immersion cooling waste heat utilization and active thermal management technology for data centers
     startDate: "2024"
     endDate: "2028"
+    role: Lead
+    shortName: Immersion Cooling Waste Heat Utilization
+    thrust: datacenter
   - name: 300°C High-Temperature Heat Pump System
-    summary: 300°C-class high-temperature heat pump system for fossil fuel replacement in industrial processes (Participant)
+    summary: 300°C-class high-temperature heat pump system for fossil fuel replacement in industrial processes
     startDate: "2023"
     endDate: "2028"
+    role: Participant
+    shortName: 300°C High-Temperature Heat Pump
+    thrust: heatpump
   - name: Chemisorption Heat Pump with Electrochemical Compressor
-    summary: Chemisorption heat pump system using electrochemical compressor (Participant)
+    summary: Chemisorption heat pump system using electrochemical compressor
     startDate: "2021"
     endDate: "2025"
+    role: Participant
+    shortName: Electrochemical Chemisorption Heat Pump
+    thrust: heatpump
   - name: Next-Gen Alternative Refrigerant & HVAC Technology
-    summary: Next-generation alternative refrigerant and high-efficiency HVAC core technology development (Participant)
+    summary: Next-generation alternative refrigerant and high-efficiency HVAC core technology development
     startDate: "2021"
     endDate: "2025"
+    role: Participant
+    shortName: "Next-Gen Refrigerant & HVAC"
+    thrust: heatpump
   - name: Low-Charge Industrial Heat Pump
-    summary: Industrial heat pump with low refrigerant charge and simultaneous hot/cold water production (Participant)
+    summary: Industrial heat pump with low refrigerant charge and simultaneous hot/cold water production
     startDate: "2022"
     endDate: "2023"
+    role: Participant
+    shortName: Low-Charge Industrial Heat Pump
+    thrust: heatpump
   - name: Water-Source Heating/Cooling Hybrid System
-    summary: Water-source heating/cooling and regenerative heat hybrid system (Participant)
+    summary: Water-source heating/cooling and regenerative heat hybrid system
     startDate: "2022"
     endDate: "2023"
+    role: Participant
+    shortName: Water-Source Hybrid Heating/Cooling
+    thrust: heatpump
   - name: Heat Pipe HX Performance Enhancement
-    summary: Heat pipe heat exchanger performance enhancement using boiling (Participant)
+    summary: Heat pipe heat exchanger performance enhancement using boiling
     startDate: "2022"
     endDate: "2022"
+    role: Participant
+    shortName: Heat Pipe HX Enhancement
+    thrust: heatpump
   - name: Post H-class Gas Turbine Technology
-    summary: Post H-class gas turbine technology development (Participant)
+    summary: Post H-class gas turbine technology development
     startDate: "2022"
     endDate: "2022"
+    role: Participant
+    shortName: Post H-Class Gas Turbine
+    thrust: heatpump
   - name: Compact Inverter Compressor Dress Care System
-    summary: Compact inverter compressor-based dress care system development; technology transferred to industry (Participant)
+    summary: Compact inverter compressor-based dress care system development; technology transferred to industry
     startDate: "2022"
     endDate: "2022"
+    role: Participant
+    shortName: Inverter-Compressor Dress Care System
+    thrust: heatpump
   - name: Ultra-Thin Vapor Chamber Performance Enhancement
-    summary: Performance enhancement technology for ultra-thin vapor chambers for semiconductor cooling; technology transferred to an industry partner (Participant)
+    summary: Performance enhancement technology for ultra-thin vapor chambers for semiconductor cooling; technology transferred to an industry partner
     startDate: "2022"
     endDate: "2023"
+    role: Participant
+    shortName: Ultra-Thin Vapor Chamber
+    thrust: datacenter
   - name: PCHE Freezing Test for Vehicle Heat Exchangers
-    summary: PCHE freezing performance test for automotive heat exchanger applications (PI)
+    summary: PCHE freezing performance test for automotive heat exchanger applications
     startDate: "2025"
     endDate: "2025"
+    role: PI
+    shortName: Vehicle PCHE Freezing Test
+    thrust: hydrogen
   - name: BTMS Integrated A/Con System Evaluation
     summary: Battery thermal management system integrated A/Con system real-vehicle evaluation process development
-      (Participant)
     startDate: "2025"
     endDate: "2025"
+    role: Participant
+    shortName: BTMS-Integrated A/C Evaluation
+    thrust: datacenter
   - name: 3D Multiporous Cooling System for Ultra-high Heat Flux Applications
-    summary: Development of a 3D multi-porous cooling device for ultra-high-heat-flux heat-generating elements (Graduate
-      Researcher)
+    summary: Development of a 3D multi-porous cooling device for ultra-high-heat-flux heat-generating elements
     startDate: "2021"
     endDate: "2021"
+    role: Graduate Researcher
+    shortName: 3D Multiporous Cooling System
+    thrust: kaist
   - name: Smart protective suit with active cooling/ventilation and antivirus suit changing system
     summary: Active cooling and ventilation system for a smart protective suit enabling on-body thermal management
-      (Graduate Researcher)
     startDate: "2020"
     endDate: "2020"
+    role: Graduate Researcher
+    shortName: Smart Protective Suit Cooling
+    thrust: kaist
   - name: Next-Generation CPI Reliability Structural & Thermal Design
     summary: Structural and thermal design technology to secure the reliability of next-generation CPI; NRF original-technology
-      development project (Graduate Researcher)
+      development project
     startDate: "2020"
     endDate: "2020"
+    role: Graduate Researcher
+    shortName: "CPI Structural & Thermal Design"
+    thrust: kaist
   - name: OHP High-Pressure Working-Fluid Charging Technology
     summary: Technical service for high-pressure working-fluid charging of oscillating heat pipes (OHP); commissioned
-      by Korea Institute of Energy Research (Graduate Researcher)
+      by Korea Institute of Energy Research
     startDate: "2020"
     endDate: "2020"
+    role: Graduate Researcher
+    shortName: OHP High-Pressure Charging
+    thrust: kaist
   - name: Thermal optimization of MMU rear housing for reducing the weight
     summary: Heat-dissipation performance optimization and weight reduction of an MMU rear housing; industry project
-      funded by Samsung Electronics (Graduate Researcher)
+      funded by Samsung Electronics
     startDate: "2019"
     endDate: "2020"
+    role: Graduate Researcher
+    shortName: MMU Rear Housing Thermal Design
+    thrust: kaist
   - name: Development of a Flexible Thin-Film Ultra-Thermal-Conductor
     summary: NRF basic research on flexible thin-film ultra-high-thermal-conductivity heat spreaders based on pulsating
-      heat pipes (Graduate Researcher)
+      heat pipes
     startDate: "2015"
     endDate: "2020"
+    role: Graduate Researcher
+    shortName: Flexible Thin-Film Heat Spreader
+    thrust: kaist
   - name: Study on a smart space thermal management system
     summary: Pulsating-heat-pipe-based deployable radiator and smart thermal control device for spacecraft; contract
-      with Korea Aerospace University (Graduate Researcher)
+      with Korea Aerospace University
     startDate: "2016"
     endDate: "2018"
+    role: Graduate Researcher
+    shortName: Smart Space Thermal Management
+    thrust: kaist
 certificates:
   - name: Adsorption heat pump with pulsating heat pipe
     issuer: Korean Intellectual Property Office
@@ -682,36 +760,43 @@ volunteer:
     startDate: ""
     endDate: ""
     summary: Transferred know-how on vapor-liquid equilibrium measurement of refrigerant mixtures and equation-of-state modeling to an industry partner (2026, know-how inventor)
+    thrust: heatpump
   - organization: Technology Transfer
     position: Heat transfer enhancement for data center liquid cooling
     startDate: ""
     endDate: ""
     summary: Transferred direct liquid cooling cold plate know-how, including a single- versus two-phase direct liquid cooling comparison, to an industry partner (2026, know-how inventor)
+    thrust: datacenter
   - organization: Technology Transfer
     position: Low-temperature freezing performance test of a PCHE for vehicle heat exchangers
     startDate: ""
     endDate: ""
     summary: Transferred PCHE low-temperature heat transfer and freezing performance test results to an industry partner for vehicle heat exchanger application (2025, principal investigator)
+    thrust: hydrogen
   - organization: Technology Transfer
     position: Diffusion bonding technology for cryogenic hydrogen heat exchangers
     startDate: ""
     endDate: ""
     summary: Transferred diffusion bonding technology for cryogenic hydrogen heat exchangers (2025)
+    thrust: hydrogen
   - organization: Technology Transfer
     position: Ultra-thin vapor chamber design technology
     startDate: ""
     endDate: ""
     summary: Transferred ultra-thin vapor chamber design technology for semiconductor thermal management (2025)
+    thrust: datacenter
   - organization: Technology Transfer
     position: Heat pump design for low-dew-point dehumidifiers in battery manufacturing
     startDate: ""
     endDate: ""
     summary: Transferred heat pump design technology for low-dew-point dehumidifiers used in secondary-battery manufacturing (2024)
+    thrust: heatpump
   - organization: Technology Transfer
     position: Compact inverter compressor-based dress care system
     startDate: ""
     endDate: ""
     summary: Transferred compact inverter compressor-based dress care system technology (2023)
+    thrust: heatpump
 awards:
   - title: Best Award (President's Award)
     awarder: Korea Institute of Machinery and Materials (KIMM)

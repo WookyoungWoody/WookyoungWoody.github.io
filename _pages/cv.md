@@ -6,7 +6,7 @@ nav: true
 nav_order: 5
 cv_format: jsonresume # options: rendercv, jsonresume
 cv_pdf: assets/pdf/cv_academic.pdf
-description: Curriculum Vitae of Wookyoung Kim, Ph.D. — Senior Researcher at KIMM.
+description: Curriculum Vitae of Wookyoung Kim, Ph.D., Senior Researcher at KIMM and Associate Professor at UST.
 toc:
   sidebar: left
 ---

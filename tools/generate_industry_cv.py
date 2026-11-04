@@ -621,7 +621,7 @@ def build_pdf(variant=None, output=None):
         (
             "Cryogenic / Hydrogen Heat Exchangers",
             [
-                "PCHE design & testing for LH2 vaporizers: N2 tests to -185°C / 21 MPa, -220°C / 100 MPa target [Lead, 2021-2026]",
+                "PCHE design & testing for LH2 vaporizers: N2 tests to -185°C / 21 MPa, -220°C / 100 MPa target [Lead, 2021-2025]",
                 "Anti-freezing PCHE design; CFD conjugate heat transfer analysis; freezing condition experimental mapping [Lead]",
                 "Compact PCHE development for below -200°C, 100 MPa-class hydrogen supply system [Lead, 2022-2026]",
             ],

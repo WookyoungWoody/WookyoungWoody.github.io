@@ -594,7 +594,7 @@ def build_cv():
             name = proj.get("name", "")
             summary = proj.get("summary", "")
             period = _project_period(proj.get("startDate", ""), proj.get("endDate", ""))
-            _, role = _split_role(summary)
+            role = proj.get("role") or _split_role(summary)[1]
 
             indent_mm = 8
             pdf.set_x(pdf.l_margin)

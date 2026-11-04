@@ -13,8 +13,9 @@
         <h6 class="title font-weight-bold">{{ entry.name }}</h6>
       {% endif %}
 
-      {% if entry.summary %}
-        <p>{{ entry.summary | markdownify | remove: '<p>' | remove: '</p>' }}</p>
+      {% if entry.summary or entry.role %}
+        {% capture project_summary %}{{ entry.summary }}{% if entry.role %}{% if entry.summary != blank %} {% endif %}({{ entry.role }}){% endif %}{% endcapture %}
+        <p>{{ project_summary | markdownify | remove: '<p>' | remove: '</p>' }}</p>
       {% endif %}
 
       {% if entry.highlights %}

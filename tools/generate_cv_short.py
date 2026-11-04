@@ -174,9 +174,17 @@ def build_short_cv():
     n_software = len([c for c in data["certificates"] if c["issuer"] == "Korea Copyright Commission"])
     n_transfers = len(data.get("volunteer", []))
     n_projects = len(data.get("projects", []))
+
+    def _project_role(p):
+        """Role from the `role` field; fallback: legacy trailing '(PI)/(Lead)' in summary."""
+        if p.get("role"):
+            return p["role"]
+        m = re.search(r"\((PI|Lead)\)", p.get("summary", ""))
+        return m.group(1) if m else ""
+
     pi_lead_projects = [
         p for p in data.get("projects", [])
-        if "(PI)" in p.get("summary", "") or "(Lead)" in p.get("summary", "")
+        if _project_role(p) in ("PI", "Lead")
     ]
 
     pdf.section_title("RESEARCH OUTPUTS")
@@ -239,9 +247,7 @@ def build_short_cv():
 
     for i, proj in enumerate(pi_lead_projects, 1):
         name = proj.get("name", "")
-        summary = proj.get("summary", "")
-        m = re.search(r"\((PI|Lead)\)", summary)
-        role = m.group(1) if m else ""
+        role = _project_role(proj)
         period = _period(proj.get("startDate", ""), proj.get("endDate", ""))
 
         pdf.set_x(pdf.l_margin)
