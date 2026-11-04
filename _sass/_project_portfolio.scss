@@ -1,4 +1,4 @@
-/* Project portfolio: projects page, home block, and detail-page boxes.
+/* Project portfolio: projects page and detail-page boxes.
    Colors come only from the theme variables in _themes.scss, so light and dark both work. */
 
 .project-portfolio,
@@ -44,10 +44,6 @@
     color: var(--pp-muted);
     font-size: 0.9rem;
   }
-}
-
-.pp-home {
-  margin-top: 2rem;
 }
 
 /* counts */
@@ -278,16 +274,26 @@
   }
   gap: 0.75rem;
 }
+/* The whole card is one link (the title link's ::after covers it); the CTA line, lift, and shadow say so. */
 .thrust-card {
   position: relative;
+  display: flex;
+  flex-direction: column;
   padding: 0.8rem 0.9rem;
   background: var(--global-card-bg-color);
   border: 1px solid var(--global-divider-color);
   border-radius: var(--pp-radius);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
 
   &:hover,
   &:focus-within {
     border-color: var(--global-theme-color);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
   }
   .thrust-photo {
     display: block;
@@ -312,6 +318,14 @@
         color: var(--global-theme-color);
         text-decoration: none;
       }
+      &:focus-visible {
+        outline: none;
+      }
+      &:focus-visible::after {
+        outline: 2px solid var(--global-theme-color);
+        outline-offset: 2px;
+        border-radius: var(--pp-radius);
+      }
     }
   }
   .thrust-desc {
@@ -331,6 +345,34 @@
       color: var(--global-theme-color);
       font-size: 0.95rem;
     }
+  }
+  .thrust-cta {
+    margin-top: auto;
+    padding-top: 0.7rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--global-theme-color);
+  }
+  .thrust-cta-arrow {
+    display: inline-block;
+    margin-left: 0.3rem;
+    transition: transform 0.15s ease;
+  }
+  &:hover .thrust-cta-arrow,
+  &:focus-within .thrust-cta-arrow {
+    transform: translateX(4px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .thrust-card,
+  .thrust-card .thrust-cta-arrow {
+    transition: none;
+  }
+  .thrust-card:hover,
+  .thrust-card:focus-within,
+  .thrust-card:hover .thrust-cta-arrow,
+  .thrust-card:focus-within .thrust-cta-arrow {
+    transform: none;
   }
 }
 

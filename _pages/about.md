@@ -46,5 +46,3 @@ My research focuses on **thermal engineering** with applications in:
 - **Low GWP refrigerant systems**: next-generation eco-friendly refrigerant development, VLE measurement, equation of state development
 - **Two-phase heat transfer**: boiling, evaporation, pulsating heat pipes, vapor chambers, flow visualization
 - **Cryogenic heat transfer**: liquid hydrogen vaporizer design, supercritical fluid heat transfer
-
-{% include projects/home_block.liquid %}

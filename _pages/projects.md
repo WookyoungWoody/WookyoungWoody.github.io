@@ -11,16 +11,15 @@ nav_order: 3
 
 {% include projects/counts.liquid %}
 
-{% include projects/role_legend.liquid %}
-
-<section id="current-projects" class="pp-section">
-<h2 class="pp-heading">Current projects</h2>
-{% include projects/list.liquid mode="current" empty_text="No current projects." %}
-</section>
-
 <section id="research-areas" class="pp-section">
 <h2 class="pp-heading">Research areas</h2>
 {% include projects/research_areas.liquid %}
+</section>
+
+<section id="current-projects" class="pp-section">
+<h2 class="pp-heading">Current projects</h2>
+{% include projects/role_legend.liquid %}
+{% include projects/list.liquid mode="current" empty_text="No current projects." %}
 </section>
 
 <section id="project-timeline" class="pp-section">
