@@ -204,7 +204,6 @@ projects:
     role: PI
     shortName: AI-Based DLC Design Tool
     thrust: datacenter
-    status: completed
   - name: Development of a Direct Liquid Cooling (DLC) System for Reducing Power Consumption in Data Centers
     summary: National R&D project (KETEP, Ministry of Climate, Energy and Environment) to develop a direct liquid
       cooling (DLC) system that reduces data center power consumption
@@ -251,6 +250,18 @@ projects:
     role: Lead
     shortName: Immersion Cooling Waste Heat Utilization
     thrust: datacenter
+  - name: Development of Eco-Friendly, High-Efficiency, Non-Toxic Refrigerants using AI and Heat Pump Application and
+      Verification Technologies
+    summary: AI-based molecular discovery of non-toxic, PFAS-compliant pure refrigerants with GWP below 150, lab-scale
+      synthesis, and verification in air-to-water heat pumps; KIMM measures pressure-density-temperature, saturation
+      pressure, and critical-point data
+    startDate: "2026"
+    endDate: "2029"
+    role: Participant
+    shortName: AI-Discovered Low-GWP Refrigerants
+    thrust: heatpump
+    program: Energy Demand Management Core Technology Development Program
+    funder: Ministry of Climate, Energy and Environment / KETEP
   - name: 300°C High-Temperature Heat Pump System
     summary: 300°C-class high-temperature heat pump system for fossil fuel replacement in industrial processes
     startDate: "2023"
