@@ -60,6 +60,10 @@ on:
       - "!INSTALL.md"
       - "!README.md"
   workflow_dispatch:
+  schedule:
+    # Monthly rebuild: project status (active/completed) and the timeline's
+    # current-year marker are computed at build time from _data/resume.yml.
+    - cron: "0 0 1 * *"
 
 permissions:
   contents: write
