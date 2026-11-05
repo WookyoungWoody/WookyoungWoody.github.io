@@ -49,7 +49,7 @@ A Python-based PCHE performance prediction tool has been developed and officiall
 
 <div class="publications">
 
-{% bibliography --query @*[key=kim2025freezing], @*[key=kim2024icec], @*[key=kim2024kci_pche_freezing], @*[key=sohn2022kci_pche_icing] %}
+{% bibliography --query @*[key=kim2026pche_scaleup], @*[key=kim2025freezing], @*[key=kim2024icec], @*[key=kim2024kci_pche_freezing], @*[key=sohn2022kci_pche_icing] %}
 
 </div>
 

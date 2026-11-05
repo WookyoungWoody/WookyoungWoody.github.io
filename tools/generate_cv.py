@@ -306,10 +306,13 @@ def build_cv():
 
     def journal_tuple(p):
         year = p["releaseDate"][:4]
-        vol = p["volume"] + (f"({p['issue']})" if p.get("issue") else "")
+        vol = p.get("volume", "") + (f"({p['issue']})" if p.get("issue") else "")
+        # An in-press article has an article number but no volume yet.
+        cite = f"{vol}, {p['pages']}" if vol else p["pages"]
+        note = f", {p['note']}" if p.get("note") else ""
         journal = p.get("shortPublisher", p["publisher"])
         title = p.get("shortTitle", p["name"])
-        return (author_line(p["summary"]), f', "{title}", ', journal, f" {vol}, {p['pages']} ({year}).")
+        return (author_line(p["summary"]), f', "{title}", ', journal, f" {cite} ({year}){note}.")
 
     def conf_line(p):
         year = p["releaseDate"][:4]

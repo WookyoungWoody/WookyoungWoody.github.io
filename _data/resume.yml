@@ -6,6 +6,8 @@
 # Publication extras used only by tools/generate_cv.py (ignored by the web):
 #   volume/issue/pages  — citation numbers (pages = range or article no.)
 #   shortTitle/shortVenue/shortPublisher — curated abbreviations for the PDF
+#   note: status after the year, such as "in press" for an accepted article
+#     that has an article number but no volume yet (leave volume out)
 basics:
   name: Wookyoung Kim
   label: "Senior Researcher, KIMM  |  Associate Professor, UST"
@@ -535,6 +537,12 @@ certificates:
     date: "2019-10-08"
     url: ""
 publications:
+  - name: Advanced modeling for large-scale low-temperature PCHE design with the effect of scale-up mechanism
+    publisher: Applied Thermal Engineering
+    releaseDate: "2026"
+    summary: Kim, Wookyoung and Kim, Minchang and Kim, Bogyeom and Lee, Kong Hoon and Kim, Taehoon
+    pages: "133887"
+    note: in press
   - name: Vapor–liquid equilibrium measurements and mixture-model parametrization for the binary refrigerant systems
       R1234yf + CF3I and R1123 + CF3I
     publisher: International Journal of Refrigeration
