@@ -540,9 +540,10 @@ publications:
   - name: Advanced modeling for large-scale low-temperature PCHE design with the effect of scale-up mechanism
     publisher: Applied Thermal Engineering
     releaseDate: "2026"
+    url: https://doi.org/10.1016/j.applthermaleng.2026.133887
     summary: Kim, Wookyoung and Kim, Minchang and Kim, Bogyeom and Lee, Kong Hoon and Kim, Taehoon
+    volume: "309"
     pages: "133887"
-    note: in press
   - name: Vapor–liquid equilibrium measurements and mixture-model parametrization for the binary refrigerant systems
       R1234yf + CF3I and R1123 + CF3I
     publisher: International Journal of Refrigeration
