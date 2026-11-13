@@ -33,7 +33,7 @@ This project turns the low-grade heat rejected by data center cooling loops, typ
 
 ### AI-Based DLC Design Tool
 
-This project developed an AI-driven automated design tool for data center direct liquid cooling (DLC) systems. It uses surrogate modeling and optimization for cold-plate and cooling-system design to shorten thermal design iterations, and its development is completed.
+This project develops an AI-driven automated design tool for data center direct liquid cooling (DLC) systems. It uses surrogate modeling and optimization for cold-plate and cooling-system design to shorten thermal design iterations, and development is ongoing. Its cold plate automated design program is registered with the Korea Copyright Commission (C-2026-059148).
 
 ## Key Achievements
 
@@ -42,7 +42,7 @@ This project developed an AI-driven automated design tool for data center direct
 - Developed high-heat chip stress test apparatus for repeatable thermal performance characterization
 - Conducted dielectric fluid-based thermal performance testing across multiple fluid candidates
 - Benchmarked immersion cooling against air cooling for battery pack thermal management
-- Completed development of an AI-driven automated design tool for data center DLC systems (surrogate modeling and optimization)
+- Developed and registered an AI-driven cold plate automated design program for data center DLC systems (C-2026-059148), using surrogate modeling and optimization
 
 {% include projects/thrust_transfers.liquid thrust="datacenter" %}
 

@@ -65,7 +65,7 @@ The suite uses a Python/FastAPI backend with a React frontend, employing an effe
 
 ### AI-Based DLC Design Tool
 
-This project developed an AI-driven automated design tool for data center direct liquid cooling (DLC) systems. It uses surrogate modeling and optimization for cold-plate and cooling-system design to shorten thermal design iterations, and its development is completed. See the [Data Center Cooling](/projects/datacenter_cooling/) page.
+This project develops an AI-driven automated design tool for data center direct liquid cooling (DLC) systems. It uses surrogate modeling and optimization for cold-plate and cooling-system design to shorten thermal design iterations, and development is ongoing. Its cold plate automated design program is registered (C-2026-059148): given chip heat load, pressure-drop limit, and junction temperature targets, it searches Pareto-optimal channel geometries and re-checks the recommended design with physics-based calculations. See the [Data Center Cooling](/projects/datacenter_cooling/) page.
 
 ---
 
@@ -117,6 +117,7 @@ Fin-tube heat exchanger design program (C-2024-038692). Automates rating and siz
 | PCHE Thickness Design              | C-2024-052179    | 2024 |
 | 100 kg/hr Hydrogen PCHE Design     | C-2025-056891    | 2025 |
 | Adsorption Cooling Simulation      | C-2025-034652    | 2025 |
+| AI DLC Cold Plate Automated Design | C-2026-059148    | 2026 |
 
 ---
 

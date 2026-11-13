@@ -496,6 +496,10 @@ certificates:
     issuer: Korean Intellectual Property Office
     date: "2023-03-31"
     url: ""
+  - name: AI-based DLC cold plate automated design program (C-2026-059148)
+    issuer: Korea Copyright Commission
+    date: "2026-11-12"
+    url: ""
   - name: PCHE thickness design program (C-2024-052179)
     issuer: Korea Copyright Commission
     date: "2024-12-11"
