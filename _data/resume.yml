@@ -356,8 +356,8 @@ projects:
     shortName: Smart Protective Suit Cooling
     thrust: kaist
   - name: Next-Generation CPI Reliability Structural & Thermal Design
-    summary: Structural and thermal design technology to secure the reliability of next-generation CPI; NRF original-technology
-      development project
+    summary: Structural and thermal design technology to secure the reliability of next-generation CPI, including thermal
+      analysis and modeling of through-silicon via (TSV) structures; NRF original-technology development project
     startDate: "2020"
     endDate: "2020"
     role: Graduate Researcher
