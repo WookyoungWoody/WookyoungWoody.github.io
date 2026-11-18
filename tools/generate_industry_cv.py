@@ -309,12 +309,11 @@ DEFAULT_SUMMARY = (
     "{n_journal} journal papers ({n_sci} SCI + {n_kci} KCI), {n_software} registered design programs."
 )
 
-# 9 representative publications: W. Kim first-author / lead works + key co-author
+# 8 representative publications: W. Kim first-author / lead works + key co-author
 DEFAULT_SELECTED_PUBS = [
-    # W. Kim first-author - KIMM era
-    ("W. Kim", ' et al., "Freezing Phenomenon in PCHE for Cryogenic LH2 Vaporizer," Appl. Therm. Eng. 273 (2025)'),
-    ("W. Kim", ' et al., "Freezing Condition of PCHE for LH2 Vaporizer," J. Hydrogen New Energy 35(2) (2024)'),
-    ("W. Kim", ' et al., "Falling Film Evaporation of R-1233ZD(E): Flow & Thermal Characteristics," Korean J. ACRE 36(1) (2024)'),
+    # W. Kim first-author / corresponding - KIMM era
+    ("W. Kim", ' et al., "Advanced modeling for large-scale low-temperature PCHE design," Appl. Therm. Eng. 309 (2026)'),
+    ("B. Kim et al., W. Kim", ' (corresponding), "Freezing Phenomenon in PCHE for Cryogenic LH2 Vaporizer," Appl. Therm. Eng. 273 (2025)'),
     # co-author - KIMM era
     ("J.S. Kim, W. Kim", ' et al., "Pool boiling of ammonia outside enhanced tubes," Appl. Therm. Eng. 247 (2024)'),
     ("H.S. Kim, W. Kim", ' et al., "Chemisorption heat pump performance under various conditions," Appl. Therm. Eng. (2024)'),
@@ -339,14 +338,13 @@ DEFAULT_SELECTED_PATENTS = [
 ]
 
 DEFAULT_SKILLS = [
-    ("Experimental:", "Thermal loop design & construction (1-/2-phase) · Low-GWP refrigerant systems · "
-                      "2-phase flow & heat-transfer measurement · High-pressure testing (21 MPa) · "
-                      "Cryogenic testing (nitrogen, -185°C) · Flow visualization"),
-    ("Analytical & Computational:", "Thermal network modeling · Heat exchanger design (PCHE, S&T, PHE) · "
-                      "CFD (FLUENT, COMSOL) · CAD (SOLIDWORKS, INVENTOR) · "
-                      "Surrogate-model optimization · CoolProp/REFPROP"),
-    ("Software Development:", "Python · JavaScript/TypeScript · C/C++ · FastAPI · React / React Native · "
-                      "Git · Docker · Linux"),
+    ("Experimental:", "Thermal loop design & construction (1-/2-phase) · 2-phase flow & heat-transfer measurement · "
+                      "Flow visualization · High-pressure testing (100 MPa) · Cryogenic testing (nitrogen, -185°C) · "
+                      "Low-GWP refrigerant systems"),
+    ("Analytical:", "Component design (HX, cold plate, heat pipe) · Physics-based 1D & thermal network modeling · "
+                    "Surrogate optimization"),
+    ("Software & Programming Languages:", "CFD (ANSYS FLUENT, COMSOL) · CAD (SOLIDWORKS, INVENTOR) · Python · MATLAB · "
+                                          "CoolProp/REFPROP · JavaScript/TypeScript · Git · Linux"),
 ]
 
 # Dashes the house style forbids, plus glyphs the latin-1 core fonts cannot
